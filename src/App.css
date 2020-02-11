@@ -156,8 +156,8 @@ h2 {
   position: relative;
 }
 
-.now-playing, 
-.top-rated, 
+.now_playing, 
+.top_rated, 
 .popular {
   position: relative;
 }

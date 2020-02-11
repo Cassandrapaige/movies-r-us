@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 /* COMPONENTS */
-import MovieList from './MovieList'
-import ListView from './ListView'
+import MovieList from '../MovieList'
+import ListItem from '../ListItem'
 
 /* MOVIEDB API KEY*/
-import {API_KEY} from '../base'
+import {API_KEY} from '../../base'
 
-class Popular extends Component {
+class Movies extends Component {
 constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,7 @@ constructor(props) {
 }
 
 componentDidMount = () => {
-    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
+    axios.get(`https://api.themoviedb.org/3/movie/${this.props.view}?api_key=${API_KEY}`)
         .then(res => {
         this.setState({
             movies: res.data.results,
@@ -27,14 +27,14 @@ componentDidMount = () => {
 
  render() {
      return (
-        <ListView 
-            type= 'popular'
-            title = 'Most Popular'>
+        <ListItem 
+            type= {this.props.view}
+            title = {this.props.title}>
             <MovieList 
                 movies={this.state.movies} container={this.props.container}/>
-        </ListView>
+        </ListItem>
         )
     }
 }
 
-export default Popular;
+export default Movies;

@@ -10,7 +10,7 @@ const Homepage = () => {
         <Header />
         <div id = 'all-movies'>
             <NowPlaying />
-            <Popular container="movieList"/> 
+            <Popular/> 
             <TopRated />
         </div>
         </Fragment>
