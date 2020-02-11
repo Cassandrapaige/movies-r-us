@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
-
 
 /* COMPONENTS */
 import MovieList from './MovieList'
@@ -19,7 +17,7 @@ constructor(props) {
 }
 
 componentDidMount = () => {
-    axios.get(`https://api.themoviedb.org/3/movie/poular?api_key=${API_KEY}`)
+    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
         .then(res => {
         this.setState({
             movies: res.data.results
@@ -32,10 +30,7 @@ componentDidMount = () => {
          <ListView 
             type= 'popular'
             title = 'Most Popular'>
-            <MovieList movies={this.state.movies}>
-                <Link to = {`/` + this.state.movies.map((movie) => movie.id)} className='movie-link'>
-                See more<i className ="fas fa-arrow-right sm-arrow"></i></Link> 
-            </MovieList>   
+            <MovieList movies={this.state.movies} />
         </ListView>
         )
     }

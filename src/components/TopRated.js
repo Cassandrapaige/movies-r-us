@@ -8,7 +8,7 @@ import ListView from './ListView'
 /* MOVIEDB API KEY*/
 import {API_KEY} from '../base'
 
-class NowPlaying extends Component {
+class TopRated extends Component {
 constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,7 @@ constructor(props) {
 }
 
 componentDidMount = () => {
-    axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`)
+    axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`)
         .then(res => {
         this.setState({
             movies: res.data.results
@@ -28,12 +28,12 @@ componentDidMount = () => {
  render() {
      return (
          <ListView 
-            type= 'now-playing'
-            title = 'Now Playing'>
+            type= 'top-rated'
+            title = 'Top Rated'>
             <MovieList movies={this.state.movies} />  
         </ListView>
         )
     }
 }
 
-export default NowPlaying;
+export default TopRated;

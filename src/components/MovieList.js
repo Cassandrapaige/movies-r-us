@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react';
-import { NavLink } from 'react-router-dom'
-import placeholder from '../images/placeholder.png';
 import StarRating from './StarRating';
+import { NavLink } from 'react-router-dom'
 
+/* PLACEHOLDER IMAGE */
+import placeholder from '../images/placeholder.png';
+
+/* DISPLAY MAX 80 CHARACTERS OF MOVIE-OVERVIEW */
 const substringOverview = (desc, limit= 80) => {
     const fullDesc = [];
     if(desc.length > limit) {
@@ -31,7 +34,8 @@ return movies.length ? (
                 <p className = 'movie-overview'>{substringOverview(movie.overview)}</p>
                 <StarRating movie = {movie} />
             </div>
-                {children}   
+                <NavLink to = {`/` + movie.id} className='movie-link'>
+                See more<i className ="fas fa-arrow-right sm-arrow"></i></NavLink>      
             </div>
 		</div>
 
@@ -42,9 +46,7 @@ return movies.length ? (
  
     return (
     <Fragment>
-        <div className = 'movieListView'>
-            { MovieViewListing }
-        </div>
+        { MovieViewListing }
     </Fragment>
     )
 }
