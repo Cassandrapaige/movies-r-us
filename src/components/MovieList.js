@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom'
 import placeholder from '../images/placeholder.png';
 import StarRating from './StarRating';
@@ -16,7 +16,7 @@ const substringOverview = (desc, limit= 80) => {
     return desc;
 }
 
-const ListView = ({movies}) => {
+const ListView = ({movies, children}) => {
 const MovieViewListing = movies.map(movie => {
 return movies.length ? (
     <div className='movieList' key={movie.id}>
@@ -31,7 +31,7 @@ return movies.length ? (
                 <p className = 'movie-overview'>{substringOverview(movie.overview)}</p>
                 <StarRating movie = {movie} />
             </div>
-                {props.children}   
+                {children}   
             </div>
 		</div>
 
@@ -41,12 +41,12 @@ return movies.length ? (
 })
  
     return (
-        <>
-            <div className = 'movieListView'>
-                { MovieViewListing }
-            </div>
-        </>
+    <Fragment>
+        <div className = 'movieListView'>
+            { MovieViewListing }
+        </div>
+    </Fragment>
     )
-    }
+}
 
 export default ListView;

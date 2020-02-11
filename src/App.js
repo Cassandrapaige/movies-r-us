@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Header from './components/Header'
 import Popular from './components/Popular'
 
-
 const App = () => {
     return (
       <BrowserRouter>
