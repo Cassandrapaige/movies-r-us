@@ -19,10 +19,10 @@ const substringOverview = (desc, limit= 80) => {
     return desc;
 }
 
-const ListView = ({movies, children}) => {
+const ListView = ({movies, children, container}) => {
 const MovieViewListing = movies.map(movie => {
 return movies.length ? (
-    <div className='movieList' key={movie.id}>
+    <div className='movie card' key={movie.id}>
         <div className = 'movie-content'>
         <NavLink to ={`/` + movie.id}>
             { movie.poster_path !== null ? 
@@ -45,9 +45,9 @@ return movies.length ? (
 })
  
     return (
-    <Fragment>
+    <div className= {container}>
         { MovieViewListing }
-    </Fragment>
+    </div>
     )
 }
 

@@ -30,7 +30,7 @@ componentDidMount = () => {
          <ListView 
             type= 'top-rated'
             title = 'Top Rated'>
-            <MovieList movies={this.state.movies} />  
+            <MovieList movies={this.state.movies} container="movieList" />  
         </ListView>
         )
     }

@@ -20,17 +20,18 @@ componentDidMount = () => {
     axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
         .then(res => {
         this.setState({
-            movies: res.data.results
+            movies: res.data.results,
         })
     }, (error => console.log(error))
 )}
 
  render() {
      return (
-         <ListView 
+        <ListView 
             type= 'popular'
             title = 'Most Popular'>
-            <MovieList movies={this.state.movies} />
+            <MovieList 
+                movies={this.state.movies} container={this.props.container}/>
         </ListView>
         )
     }
