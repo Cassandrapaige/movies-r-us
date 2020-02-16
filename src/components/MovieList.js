@@ -19,16 +19,16 @@ const substringOverview = (desc, limit= 80) => {
     return desc;
 }
 
-const ListView = ({movies, children, container}) => {
+const MovieList = ({movies, children, container}) => {
 const MovieViewListing = movies.map(movie => {
 return movies.length ? (
-    <div className='movie card' key={movie.id}>
+    <div className='movie' key={movie.id}>
         <div className = 'movie-content'>
         <NavLink to ={`/` + movie.id}>
             { movie.poster_path !== null ? 
             <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} className='movie-img' alt={movie.original_title}/>
             : <img src={placeholder} className='movie-img' alt={movie.original_title}/>}
-        </NavLink>
+       
             <div className="about-movie">
                 <h4 className = 'movie-title'>{movie.original_title}</h4>
                 <p className = 'movie-overview'>{substringOverview(movie.overview)}</p>
@@ -36,11 +36,12 @@ return movies.length ? (
             </div>
                 <NavLink to = {`/` + movie.id} className='movie-link'>
                 See more<i className ="fas fa-arrow-right sm-arrow"></i></NavLink>      
+                </NavLink>
             </div>
 		</div>
-
+       
 ) :  <div className='movieList'>
-        <h6> 'Oops. Where did all the movies ago? ' </h6>
+        <h6> 'Oops. Where did all the movies go? ' </h6>
     </div>
 })
  
@@ -51,4 +52,4 @@ return movies.length ? (
     )
 }
 
-export default ListView;
+export default MovieList;

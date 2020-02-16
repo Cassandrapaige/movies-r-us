@@ -28,9 +28,8 @@ class ErrorCatch extends Component {
         if (this.state.hasError) {
         return (
         <div className= 'err'>
-          <h2 className='errorMsg'>"Ooops. Looks like something went wrong."</h2>
-          <button onClick = {this.goBack}>
-          Go Back <i class="fas fa-arrow-right"></i></button>
+          <h2 className='errorMsg'>Ooops. Looks like something went wrong.</h2>
+          <button onClick = {this.goBack} className = 'back-btn'> <i class="fas fa-arrow-left"></i> Go back </button>
         </div>
         )
         

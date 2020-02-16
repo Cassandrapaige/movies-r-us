@@ -25,7 +25,7 @@ const Pagination = props => {
                     <a href="#">Prev</a></li> : '' }
 
                     { props.pages <= 5 ? {links} : <> {display} </> }
-                    { props.current > 4 ? links[props.current-1] : '' }
+                    { props.current > 5 ? links[props.current-1] : '' }
 
                     { props.current <= props.pages ? 
                     <li className= 'pageLinks' 

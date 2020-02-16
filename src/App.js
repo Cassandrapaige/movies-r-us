@@ -9,7 +9,8 @@ import Footer from './components/Footer'
 import PopularView from './components/views/PopularView'
 import TopRatedView from './components/views/TopRatedView'
 import NowPlayingView from './components/views/NowPlayingView'
-import Similar from './components/views/Similar'
+import SearchView from './components/views/SearchView'
+import SimilarView from './components/views/SimilarView'
 import ShowMovie from './components/ShowMovie'
 import ErrorHandler from './components/ErrorHandler'
 
@@ -23,9 +24,10 @@ const App = () => {
             <Route exact path= '/popular' component = { PopularView } />
             <Route exact path= '/top-rated' component = { TopRatedView } />
             <Route exact path= '/new' component = { NowPlayingView } />
+            <Route exact path= '/search' component = { SearchView} />
             <ErrorHandler>
-            <Route exact path= '/similar/:movie_id' component = { Similar } />
-            <Route exact path= '/:movie_id' component = { ShowMovie } />
+              <Route exact path= '/similar/:movie_id' component = { SimilarView } />
+              <Route exact path= '/:movie_id' component = { ShowMovie } />
             </ErrorHandler>
           </Switch>
           <Footer />

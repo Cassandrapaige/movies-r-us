@@ -32,6 +32,9 @@ class Navbar extends Component {
                 <li className="navbar-item">
                     <NavLink to= '/top-rated' className='nav-link'>Top Rated</NavLink>
                 </li>
+                <li className="navbar-item">
+                    <NavLink to= '/search' className='nav-link' id='search_nav'>Search<i class="fas fa-search"></i></NavLink>
+                </li>
             </ul>
         </nav>
         )
