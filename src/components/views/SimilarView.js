@@ -51,12 +51,12 @@ class Similar extends Component {
                 <h2 className = 'listTitle'>Similar Movies</h2>
                 <MovieList movies={this.state.movies} container= "movieListView" /> 
                 </div>
-
-                : <div className = 'err'><h3 className ='errorMsg'>Apparently this movie is just so original that no other can compare.</h3>
-                <button onClick = {this.goBack} className = 'back-btn'> <i class="fas fa-arrow-left"></i> Go back </button>        </div>
-
-                }  
-            
+                : 
+                <div className = 'err'><h3 className ='errorMsg'>Apparently this movie is just so original that no other can compare.</h3>
+                <button onClick = {this.goBack} className = 'back-btn'> <i class="fas fa-arrow-left"></i> Go back </button>       
+                </div>
+            }  
+        
             { this.state.total > 20 ? 
             <Pagination pages= {numPages} next={this.next} current = {this.state.current} /> : '' }   
         </Fragment> 

@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+import Search from './Search'
 
 class Navbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            active: false
+            active: false,
+            value: ''
         }
     }
 
@@ -14,12 +17,32 @@ class Navbar extends Component {
             active: !this.state.active
         })
     }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.history.push({
+            pathname: '/search',
+            search: this.state.value
+        })
+        this.setState({
+            value: ''
+        })
+    }
     
+    handleChange = (e) => {
+        this.setState({
+            value: e.target.value
+        })
+    }
+
     render() {
         return (
         <nav className='navbar'>
         <div className="hamburger_menu">
-            <a href='#' onClick= {this.toggleClass}><i className="fas fa-bars"></i></a>
+            <a href='#' onClick= {this.toggleClass}>
+               {this.state.active ? <i class="fas fa-times"></i> :
+               <i className="fas fa-bars"></i>
+               } </a>
         </div>
             <NavLink to= '/' className='navbar-brand'>Movies R Us</NavLink>
             <ul className="navbar-nav" id={this.state.active ? "show" : null}>
@@ -33,7 +56,11 @@ class Navbar extends Component {
                     <NavLink to= '/top-rated' className='nav-link'>Top Rated</NavLink>
                 </li>
                 <li className="navbar-item">
-                    <NavLink to= '/search' className='nav-link' id='search_nav'>Search<i class="fas fa-search"></i></NavLink>
+                    <Search 
+                        onChange = {this.handleChange}
+                        handleSubmit = {this.handleSubmit}
+                        value = {this.state.value}
+                    />
                 </li>
             </ul>
         </nav>
@@ -41,4 +68,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+export default withRouter(Navbar);

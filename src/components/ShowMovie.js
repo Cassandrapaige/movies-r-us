@@ -21,6 +21,7 @@ class ShowMovie extends Component {
             this.setState({
                 movie: res.data
          });
+         console.log(this.state.movie)
         })
          axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
          .then(res => {

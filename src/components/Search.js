@@ -2,14 +2,11 @@ import React from 'react'
 
 const Search = (props) => {
     return (
-    <div className = 'search'>
-        <h2>Look for any movie</h2>
-        <form action="" onSubmit={props.handleSubmit}>
+        <form className = 'search_form' onSubmit={props.handleSubmit}>
             <div className="input-field">
-                <input type="text" placeholder='Search movie' onChange={props.onChange}/>
+                <input type="text" placeholder='Search movie' onChange={props.onChange} value = {props.value}/>            
             </div>
         </form>
-    </div>
     )
 }
 

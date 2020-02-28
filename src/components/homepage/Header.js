@@ -13,7 +13,7 @@ class Header extends Component {
 		axios.get('https://api.themoviedb.org/3/movie/now_playing?api_key=70dcc58955640e84f5c3ea8e6d2b9ade')
 			.then((res) => {
 			this.setState({
-				movies: res.data.results[1]
+				movies: res.data.results[2]
 			});
 		}).catch(err => console.error(err.message));
 	}

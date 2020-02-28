@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import './App.css';
 
 /* COMPONENTS */
@@ -15,6 +15,7 @@ import ShowMovie from './components/ShowMovie'
 import ErrorHandler from './components/ErrorHandler'
 
 const App = () => {
+
     return (
       <BrowserRouter>
         <div className="container">
@@ -24,11 +25,12 @@ const App = () => {
             <Route exact path= '/popular' component = { PopularView } />
             <Route exact path= '/top-rated' component = { TopRatedView } />
             <Route exact path= '/new' component = { NowPlayingView } />
-            <Route exact path= '/search' component = { SearchView} />
-            <ErrorHandler>
+             <Route exact path= '/search' component = { SearchView} />
+             <ErrorHandler>
               <Route exact path= '/similar/:movie_id' component = { SimilarView } />
               <Route exact path= '/:movie_id' component = { ShowMovie } />
             </ErrorHandler>
+
           </Switch>
           <Footer />
         </div>
