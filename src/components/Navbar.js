@@ -25,8 +25,10 @@ class Navbar extends Component {
             search: this.state.value
         })
         this.setState({
-            value: ''
+            value: '',
+            active: !this.state.active
         })
+        window.location.reload();
     }
     
     handleChange = (e) => {
@@ -46,13 +48,13 @@ class Navbar extends Component {
         </div>
             <NavLink to= '/' className='navbar-brand'>Movies R Us</NavLink>
             <ul className="navbar-nav" id={this.state.active ? "show" : null}>
-                <li className="navbar-item">
+                <li className="navbar-item" onClick= {this.toggleClass}>
                     <NavLink to= '/new' className='nav-link'>Now Playing</NavLink>
                 </li>
-                <li className="navbar-item">
+                <li className="navbar-item" onClick= {this.toggleClass}>
                     <NavLink to= '/popular' className='nav-link'>Most Popular</NavLink>
                 </li>
-                <li className="navbar-item">
+                <li className="navbar-item" onClick= {this.toggleClass}>
                     <NavLink to= '/top-rated' className='nav-link'>Top Rated</NavLink>
                 </li>
                 <li className="navbar-item">

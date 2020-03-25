@@ -9,19 +9,21 @@ class ShowMovie extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoading: true,
             movie: null,
             showMovie: false
-      }
+        }
     }
 
     componentDidMount = () => {
+        window.scrollTo(0, 100);
         let id = this.props.match.params.movie_id;
         axios.get('https://api.themoviedb.org/3/movie/' + id + '?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
         .then(res => {
             this.setState({
-                movie: res.data
-         });
-         console.log(this.state.movie)
+                movie: res.data,
+                isLoading: false        
+            });
         })
          axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
          .then(res => {
@@ -93,9 +95,9 @@ class ShowMovie extends Component {
       }
 
     render() {
-        const movie = this.state.movie ? (
-            <div className='movie-show' style={this.state.showMovie ? {opacity : .2} : {opacity : 1}} key={this.state.movie.id}>
-            {this.state.movie.poster_path !== null ? 
+        const movie = this.state.movie && !this.state.isLoading ? (
+             <div className='movie-show' style={this.state.showMovie ? {opacity : .2} : {opacity : 1}} key={this.state.movie.id}>
+            { this.state.movie.poster_path !== null ? 
               <img src={`https://image.tmdb.org/t/p/w500/${this.state.movie.poster_path}`} className='movie-show-img' alt={this.state.movie.original_title}/>
               : <img src={placeholder} className='movie-show-img' alt={this.state.movie.original_title}/>
               }
@@ -105,37 +107,39 @@ class ShowMovie extends Component {
 
                     <StarRating movie = {this.state.movie} />
                     <div className='website-link-div'>{this.state.movie.homepage ? (
-                    <a href = {this.state.movie.homepage} target='_blank' rel='noopener noreferrer' className='website-link'><button className='webLink'><i className="fas fa-link"></i> Website</button></a>
-                    ) : null}
-                    {this.state.video && <button onClick = {this.showMovie} className = 'trailer'><i class="fas fa-play"></i> Play Trailer </button> }
+                      <a href = {this.state.movie.homepage} target='_blank' rel='noopener noreferrer' className='website-link'><button className='webLink'><i className="fas fa-link"></i> Website</button></a>
+                      ) : null}
+                      {this.state.video && <button onClick = {this.showMovie} className = 'trailer'><i class="fas fa-play"></i> Play Trailer </button> }
                     </div>
-
-                    <h6>Overview</h6>
-                    <p className= 'movie-show-overview'>{this.state.movie.overview}</p>
-                    <p className= 'genre-list'>{this.state.movie.genres.map(genre => <li className='genre-list-item' key={genre.id}><img className='genre-icon' src={this.switchGenre(genre.name)} alt={genre.name}/>{genre.name}</li>)}</p>
+                      <h6>Overview</h6>
+                      <p className= 'movie-show-overview'>{this.state.movie.overview}</p>
+                      <p className= 'genre-list'>{this.state.movie.genres.map(genre => <li className='genre-list-item' key={genre.id}><img className='genre-icon' src={this.switchGenre(genre.name)} alt={genre.name}/>{genre.name}</li>)}</p>
                     <div>
                     <div className="nav_btns">
-                    <button onClick = {this.goBack} className = 'back-btn'> <i class="fas fa-arrow-left"></i> Go back </button>
-                    <NavLink to={'/similar/'+this.state.movie.id} className ='similarBtn'>See Similar <i class="fas fa-arrow-right"></i></NavLink>
+                      <button onClick = {this.goBack} className = 'back-btn'> <i class="fas fa-arrow-left"></i> Go back </button>
+                      <NavLink to={'/similar/'+this.state.movie.id} className ='similarBtn'>See Similar <i class="fas fa-arrow-right"></i></NavLink>
                     </div>
                 </div>
               </div> 
             </div>
+          
         ) : (
-            <div className='movie-show'></div>
+            <div className="loading">
+                 <div class="lds-facebook"><div></div><div></div><div></div></div>
+            </div>
         ) 
 
         return(
-
             <div className='show-movie'>
-                {movie}
+                 {movie}
+  
                 {
                   this.state.video &&  this.state.showMovie && 
                   <div className="video">
                   <button onClick = {this.showMovie}> <i class="fas fa-times"></i></button>
                   <iframe width="560" height="315" src={`https://www.youtube.com/embed/${this.state.video}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                   </div>
-                }
+                } 
             </div>
         )
     }

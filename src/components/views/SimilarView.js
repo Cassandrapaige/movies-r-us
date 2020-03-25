@@ -7,12 +7,14 @@ import {API_KEY} from '../../base'
 /* COMPONENTS */
 import Pagination from '../Pagination'
 import MovieList from '../MovieList'
+import Spinner from '../Spinner'
 
 class Similar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            movies: []
+            movies: [],
+            isLoading: true
         }
     }
 
@@ -23,7 +25,8 @@ class Similar extends Component {
             this.setState({
                 movies: res.data.results,
                 total: res.data.total_results,
-                current: 1
+                current: 1,
+                isLoading: false
             })
             console.log(this.state.movies);
         },(error => console.log(error)))}
@@ -32,9 +35,11 @@ class Similar extends Component {
         let id = this.props.match.params.movie_id;
         axios.get(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=${pageNum}`)
         .then(res => {
+            window.scrollTo(0, 100);
             this.setState({
                 movies: res.data.results,
-                current: pageNum
+                current: pageNum,
+                isLoading: false
          })
        }, (error => console.log(error)))}
 
@@ -46,10 +51,13 @@ class Similar extends Component {
     const numPages = Math.floor(this.state.total / 20);
     return (
         <Fragment>
-            { this.state.total !== 0 ? 
+            { this.state.total !== 0 ?
                 <div className='similar'>
                 <h2 className = 'listTitle'>Similar Movies</h2>
-                <MovieList movies={this.state.movies} container= "movieListView" /> 
+                {this.state.isLoading ? 
+                    <Spinner />
+                 :   
+                    <MovieList movies={this.state.movies} container= "movieListView" />}
                 </div>
                 : 
                 <div className = 'err'><h3 className ='errorMsg'>Apparently this movie is just so original that no other can compare.</h3>
