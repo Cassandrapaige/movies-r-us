@@ -8,7 +8,8 @@ class Navbar extends Component {
         super(props);
         this.state = {
             active: false,
-            value: ''
+            value: '',
+            activate_search: false
         }
     }
 
@@ -37,6 +38,12 @@ class Navbar extends Component {
         })
     }
 
+    toggleSearch = () => {
+        this.setState({
+            activate_search: !this.state.activate_search
+        })
+    }
+
     render() {
         return (
         <nav className='navbar'>
@@ -59,6 +66,8 @@ class Navbar extends Component {
                 </li>
                 <li className="navbar-item">
                     <Search 
+                        activate_search = {this.state.activate_search}
+                        toggleSearch = {this.toggleSearch}
                         onChange = {this.handleChange}
                         handleSubmit = {this.handleSubmit}
                         value = {this.state.value}

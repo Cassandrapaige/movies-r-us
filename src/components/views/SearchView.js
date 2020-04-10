@@ -6,7 +6,6 @@ import {API_KEY} from '../../base'
 
 /* COMPONENTS */
 import MovieList from '../MovieList'
-import Search from '../Search'
 import Pagination from '../Pagination'
 import Spinner from '../Spinner'
 

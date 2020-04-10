@@ -30,9 +30,12 @@ class MovieView extends Component {
     }, (error => console.log(error)))}
 
     next = (pageNum) => {
+    setTimeout(function () {
+        window.scrollTo(0, 100);
+    },500);
+    
     axios.get(`https://api.themoviedb.org/3/movie/${this.props.view}?api_key=${API_KEY}&page=${pageNum}`)
         .then(res => { 
-            window.scrollTo(0, 100);
             this.setState({
             movies: res.data.results,
             current: pageNum,
