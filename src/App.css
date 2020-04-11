@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #1DB3AE;
+  --primary-color: #1db3ae;
   --secondary-color: #191919;
   --accent-color: #202020;
   --light-color: #696969;
@@ -32,6 +32,11 @@ h2 {
   font-size: 3.2em;
   text-align: center;
   padding: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
 }
 
 

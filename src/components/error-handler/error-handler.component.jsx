@@ -9,34 +9,26 @@ class ErrorHandler extends Component {
       this.state = { hasError: false, redirect: false };
     }
     
-    componentDidCatch(error, info) {
-      this.setState({ 
-        hasError: true
-      })
-    }
+    componentDidCatch = error => this.setState({hasError: true})
 
-    goBack = () =>{
-        this.setState({
-            redirect: true
-        })
-        this.props.history.goBack();
-    }
+    goBack = () => this.setState({redirect: true})
 
     render() {
-        const { redirect } = this.state;
-        if(redirect) {
-            return <Redirect to = {this.goBack} />
-        }
-        if (this.state.hasError) {
-        return (
+
+      const {redirect, hasError} = this.state
+      const {children, history} = this.props
+      
+        if(redirect) return <Redirect to = {history.goBack()} />
+        
+        if (hasError) return (
         <div className= 'err'>
           <h2 className='errorMsg'>Ooops. Looks like something went wrong.</h2>
-          <button onClick = {this.goBack} className = 'back-btn'> <i class="fas fa-arrow-left"></i> Go back </button>
-        </div>
-        )
+          <button onClick = {this.goBack} className = 'back-btn'> 
+            <i class="fas fa-arrow-left"></i> Go back 
+          </button>
+        </div>)
         
-      }
-      return this.props.children;
+        return children;
     }
   }
 

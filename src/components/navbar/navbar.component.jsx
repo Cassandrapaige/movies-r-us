@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from 'react'
-import { withRouter } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
-import Search from '../search-bar/search-bar.component'
+import React, {useState} from 'react'
+import {animated, useSpring, config, useTransition} from 'react-spring'
+import {withRouter} from 'react-router-dom'
 
 import './navbar.styles.scss'
 
-const joinQuery = query => query.split(' ').join('&');
+import NavList from '../nav-list/nav-list.component'
+import Search from '../search-bar/search-bar.component'
 
-const Navbar = (props) => {
+const Navbar = ({history}) => {
     const [isOpen, setIsOpen] = useState(false)
     const [value, setValue] = useState('')
     const [isVisible, setIsVisible] = useState(false)
 
+    const joinQuery = query => query.split(' ').join('&');
     const toggleClass = () => setIsOpen(!isOpen)
 
     const handleSubmit = event => {
         event.preventDefault()
-        props.history.push({
+        history.push({
             pathname: '/search',
             search: joinQuery(value)
         })
@@ -33,36 +34,31 @@ const Navbar = (props) => {
     }
 
     return (
-        <nav className='navbar'>
-        <div className="hamburger_menu">
-            <a href='#' onClick= {toggleClass}>
-               {isOpen ? <i class="fas fa-times"></i> :
-               <i className="fas fa-bars"></i>
-               } </a>
-        </div>
-            <NavLink to= '/' className='navbar-brand'>Movies R Us</NavLink>
-            <ul className="navbar-nav" id={isOpen ? "show" : null}>
-                <li className="navbar-item" onClick= {toggleClass}>
-                    <NavLink to= '/new' className='nav-link'>Now Playing</NavLink>
-                </li>
-                <li className="navbar-item" onClick= {toggleClass}>
-                    <NavLink to= '/popular' className='nav-link'>Most Popular</NavLink>
-                </li>
-                <li className="navbar-item" onClick= {toggleClass}>
-                    <NavLink to= '/top-rated' className='nav-link'>Top Rated</NavLink>
-                </li>
-                <li className="navbar-item">
-                    <Search 
-                        isVisible = {isVisible}
-                        toggleSearch = {toggleSearch}
-                        handleChange = {handleChange}
-                        handleSubmit = {handleSubmit}
-                        value = {value}
-                    />
-                </li>
-            </ul>
+        <>
+        <nav className = 'nav'>
+        <h4 className='logo'>Movies R Us</h4>
+            <animated.div className =  {isOpen ? 'open' : 'hamburger-menu'} onClick = {toggleClass}>
+                <animated.div className = {isOpen ? 'open-top' : 'hamburger-menu-top'}/>
+                <animated.div className = {isOpen ? 'open-middle' : 'hamburger-menu-middle'}/>
+                <animated.div className = {isOpen ? 'open-bottom' : 'hamburger-menu-bottom'}/>
+            </animated.div>
         </nav>
 
-    )}
+        {
+            isOpen ? 
+            <NavList active = {isOpen}>
+                <Search 
+                    isVisible = {isVisible}
+                    toggleSearch = {toggleSearch}
+                    handleChange = {handleChange}
+                    handleSubmit = {handleSubmit}
+                    value = {value}
+                />
+            </NavList>
+            : null
+        }
+        </>
+    )
+}
 
 export default withRouter(Navbar);

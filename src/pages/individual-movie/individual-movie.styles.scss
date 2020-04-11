@@ -110,8 +110,15 @@
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
   }
+
+  .icons8 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:60px 0px 40px 0px;
+  }
   
-  /* --------------------------
+/* --------------------------
      MEDIA QUERIES
 -------------------------- */
 

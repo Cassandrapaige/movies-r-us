@@ -35,6 +35,7 @@ const ShowMovie = ({history, match}) => {
     },(error => console.log(error)))
   },[])
 
+  console.log(movie.homepage)
   const toggleView = () => setShowMovie(!showMovie)
   
   const goBack = () => history.goBack()
@@ -53,7 +54,8 @@ const ShowMovie = ({history, match}) => {
 
               <div className='website-link-div'>{movie.homepage ? (
                   <a href = {movie.homepage} target='_blank' rel='noopener noreferrer' className='website-link'>
-                    <i className="fas fa-link"></i> Website</a> ) : null}
+                    <i className="fas fa-link"></i> Website</a> 
+               ) : null}
                     
                   {video && <button onClick = {toggleView} className = 'trailer'><i class="fas fa-play"></i> Play Trailer </button> }
               </div>
