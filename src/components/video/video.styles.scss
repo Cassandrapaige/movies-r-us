@@ -23,3 +23,18 @@
     background: var(--secondary-color);
     outline: none;
   }
+
+  iframe {
+    width: 560px;
+    height: 315px; 
+  }
+
+  @media (max-width: 600px) {
+    .video {
+      width: 100%;
+      padding: 5px;
+    }
+    iframe {
+      width: 100%
+    }
+  }

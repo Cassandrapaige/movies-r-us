@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { NavLink, withRouter } from 'react-router-dom'
 
 /* MOVIEDB API KEY*/
 import {API_KEY} from '../../base'
@@ -23,7 +24,7 @@ const MovieView = ({history, url, title, error, num = 100}) => {
             setTotal(result.data.total_results)
             setIsLoading(false)
         },(error) => console.log(error))
-    },[current])
+    },[current, url])
 
     const next = pageNum => {
         setTimeout(() => {
@@ -33,7 +34,7 @@ const MovieView = ({history, url, title, error, num = 100}) => {
     }
     
     const goBack = () => history.goBack()
-    
+
     const numPages = Math.floor(total / 20)
 
     return (
@@ -57,4 +58,4 @@ const MovieView = ({history, url, title, error, num = 100}) => {
 }         
     
 
-export default MovieView;
+export default withRouter(MovieView);

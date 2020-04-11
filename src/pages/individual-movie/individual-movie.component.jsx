@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 import axios from 'axios'
 
 import placeholder from '../../images/placeholder.png';
@@ -73,4 +73,4 @@ const ShowMovie = ({history, match}) => {
   )
 }
 
-export default ShowMovie;
+export default withRouter(ShowMovie)
