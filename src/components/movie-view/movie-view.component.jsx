@@ -16,9 +16,6 @@ const MovieView = ({history, url, title, error, num = 100}) => {
     const [total, setTotal] = useState()
 
     useEffect(() => {
-        setTimeout(() => {
-            window.scrollTo(0, num)
-        }, 500)
         setIsLoading(true)
         axios.get(`${url}&page=${current}`)
         .then(result => {
@@ -28,7 +25,12 @@ const MovieView = ({history, url, title, error, num = 100}) => {
         },(error) => console.log(error))
     },[current])
 
-    const next = pageNum => setCurrent(pageNum)
+    const next = pageNum => {
+        setTimeout(() => {
+            window.scrollTo(0, num)
+        }, 500)
+        setCurrent(pageNum)
+    }
     
     const goBack = () => history.goBack()
     

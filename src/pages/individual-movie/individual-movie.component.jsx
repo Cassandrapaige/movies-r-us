@@ -30,8 +30,8 @@ const ShowMovie = ({history, match}) => {
     })
 
     axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
-    .then(res => {
-      setVideo(res.data.results[0].key)
+    .then(result => {
+      setVideo(result.data.results[0].key)
     },(error => console.log(error)))
   },[])
 
