@@ -46,8 +46,11 @@ h2 {
   }
 }
 
-/* MEDIA QUERIES */
 
+  /* --------------------------
+      MEDIA QUERIES
+  -------------------------- */
+  
 @media (max-width: 950px) {
   h2 {
     font-size: 40px;

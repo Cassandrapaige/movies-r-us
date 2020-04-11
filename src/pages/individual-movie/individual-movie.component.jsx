@@ -11,16 +11,18 @@ import Video from '../../components/video/video.component'
 import {switchGenre} from './individula-movie.utils'
 import './individual-movie.styles.scss'
 
-const ShowMovie = (props) => {
+const ShowMovie = ({history, match}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [movie, setMovie] = useState([]);
   const [showMovie, setShowMovie] = useState(false);
   const [video, setVideo] = useState(null)
 
   useEffect(() => {
-    window.scrollTo(0, 100);
+    setTimeout(() => {
+      window.scrollTo(0, 100)
+  }, 500)
     setIsLoading(true);
-    let id = props.match.params.movie_id;
+    let id = match.params.movie_id;
     axios.get('https://api.themoviedb.org/3/movie/' + id + '?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
     .then(result => {
       setMovie(result.data);
@@ -33,13 +35,9 @@ const ShowMovie = (props) => {
     },(error => console.log(error)))
   },[])
 
-  const toggleView = () => {
-    setShowMovie(!showMovie)
-  }
-
-  const goBack = () =>{
-    props.history.goBack();
-  }
+  const toggleView = () => setShowMovie(!showMovie)
+  
+  const goBack = () => history.goBack()
 
   return (
     <div className="show-movie">

@@ -5,6 +5,10 @@
     break-inside: avoid-column;
     margin-bottom: 20px;
   }
+
+  .list-title {
+    margin-top: 50px;
+  }
   
   .movie:hover {
     transform: scale(1.003);
@@ -91,5 +95,9 @@
   
     .movie {
       margin: 10px auto;
+    }
+
+    .list-title {
+      margin-top: 20px;
     }
   }

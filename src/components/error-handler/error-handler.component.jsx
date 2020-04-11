@@ -1,4 +1,4 @@
-import React, {Component } from 'react'
+import React, { Component } from 'react'
 import { NavLink, withRouter, Redirect } from 'react-router-dom'
 
 import './error-handler.styles.scss'

@@ -8,7 +8,7 @@ const Homepage = () => {
     return (
     <Fragment>
         <Header />
-        <NowPlayingView />
+        <NowPlayingView num = {800}/>
     </Fragment>
     )
 }

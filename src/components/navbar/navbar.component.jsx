@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import Search from '../search-bar/search-bar.component'
 
 import './navbar.styles.scss'
+
 const joinQuery = query => query.split(' ').join('&');
 
 const Navbar = (props) => {
@@ -26,7 +27,10 @@ const Navbar = (props) => {
 
     const handleChange = event => setValue(event.target.value)
 
-    const toggleSearch = () => setIsVisible(!isVisible)
+    const toggleSearch = event => {
+        setIsVisible(!isVisible)
+        if(isVisible) event.target.blur();
+    }
 
     return (
         <nav className='navbar'>

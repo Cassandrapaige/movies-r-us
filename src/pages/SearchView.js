@@ -6,10 +6,11 @@ import MovieView from '../components/movie-view/movie-view.component'
 
 const SimilarView = ({history}) => {
     let query = history.location.search.slice(1);
+    let title = query.replace(/&/g, ' ')
 
     return (
         <MovieView 
-            title = {`Search results for '${query}'`}
+            title = {`Search results for '${title}'`}
             error = "Either something went wrong or that movie doesn't exist"
             url = {`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`} />
     )

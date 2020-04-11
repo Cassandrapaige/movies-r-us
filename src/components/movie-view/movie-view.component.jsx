@@ -9,13 +9,16 @@ import Pagination from '../pagination/pagination.component'
 import MovieList from '../movie-list/movie-list.component'
 import Spinner from '../spinner/spinner.component'
 
-const MovieView = ({match, history, url, title, error}) => {
+const MovieView = ({history, url, title, error, num = 100}) => {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [current, setCurrent] = useState(1)
     const [total, setTotal] = useState()
 
     useEffect(() => {
+        setTimeout(() => {
+            window.scrollTo(0, num)
+        }, 500)
         setIsLoading(true)
         axios.get(`${url}&page=${current}`)
         .then(result => {
@@ -23,19 +26,12 @@ const MovieView = ({match, history, url, title, error}) => {
             setTotal(result.data.total_results)
             setIsLoading(false)
         },(error) => console.log(error))
-    },[])
+    },[current])
 
-    const next = pageNum => {
-        setTimeout(() => {
-            window.scrollTo(0, 100)
-        }, 500)
-        setCurrent(pageNum)
-    }
-
-    const goBack = () => {
-        history.goBack()
-    }
-
+    const next = pageNum => setCurrent(pageNum)
+    
+    const goBack = () => history.goBack()
+    
     const numPages = Math.floor(total / 20)
 
     return (

@@ -4,15 +4,27 @@
 
 .zero-rating {
     color: var(--primary-color);
-    font-size: .8em;
+    font-size: 1.2em;
+    padding-top: 10px;
 }
   
 .star {
     padding: 2px;
 }
 
+
+  /* --------------------------
+      MEDIA QUERIES
+  -------------------------- */
+
 @media (max-width: 950px) { 
     .dv-star-rating span {
         font-size: 13px;
+    }
+
+    .zero-rating {
+        color: var(--primary-color);
+        font-size: 1em;
+        padding-top: 10px;
     }
 }

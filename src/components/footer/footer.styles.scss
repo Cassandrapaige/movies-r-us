@@ -81,6 +81,11 @@
     padding-bottom: 150px;
   }
 
+
+  /* --------------------------
+      MEDIA QUERIES
+  -------------------------- */
+  
   @media (max-width: 950px) {
     .footer_info {
       grid-template-columns: 1fr;

@@ -25,8 +25,8 @@ const App = () => {
             <Route exact path= '/popular' component = { PopularView } />
             <Route exact path= '/top-rated' component = { TopRatedView } />
             <Route exact path= '/new' component = { NowPlayingView } />
-             <Route exact path= '/search' component = { SearchView} />
-             <ErrorHandler>
+            <Route exact path= '/search' component = { SearchView} />
+            <ErrorHandler>
               <Route exact path= '/similar/:movie_id' component = { SimilarView } />
               <Route exact path= '/:movie_id' component = { ShowMovie } />
             </ErrorHandler>
