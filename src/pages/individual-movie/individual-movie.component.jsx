@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 
@@ -11,90 +11,67 @@ import Video from '../../components/video/video.component'
 import {switchGenre} from './individula-movie.utils'
 import './individual-movie.styles.scss'
 
-class ShowMovie extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoading: true,
-            movie: null,
-            showMovie: true
-        }
-    }
+const ShowMovie = (props) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [movie, setMovie] = useState([]);
+  const [showMovie, setShowMovie] = useState(false);
+  const [video, setVideo] = useState(null)
 
-    componentDidMount = () => {
-        window.scrollTo(0, 100);
-        let id = this.props.match.params.movie_id;
-        axios.get('https://api.themoviedb.org/3/movie/' + id + '?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
-        .then(res => {
-            this.setState({
-                movie: res.data,
-                isLoading: false        
-            });
-        })
-         axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
-         .then(res => {
-           this.setState({
-             video: res.data.results[0].key
-           })
-         },(error => console.log(error)))
-    };
+  useEffect(() => {
+    setIsLoading(true);
+    let id = props.match.params.movie_id;
+    axios.get('https://api.themoviedb.org/3/movie/' + id + '?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
+    .then(result => {
+      setMovie(result.data);
+      setIsLoading(false)
+    })
 
-    
-    toggleView = () => {
-      console.log('clicking')
-      this.setState({
-        showMovie: !this.state.showMovie
-      })
-    }
+    axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
+    .then(res => {
+      setVideo(res.data.results[0].key)
+    },(error => console.log(error)))
+  },[])
 
-    goBack = () =>{
-      this.props.history.goBack();
-    }
+  const toggleView = () => {
+    setShowMovie(!showMovie)
+  }
 
-    render() {
-        const movie = this.state.movie && !this.state.isLoading ? (
-             <div className='movie-show' style={this.state.showMovie ? {opacity : .2} : {opacity : 1}} key={this.state.movie.id}>
-            { this.state.movie.poster_path !== null ? 
-              <img src={`https://image.tmdb.org/t/p/w500/${this.state.movie.poster_path}`} className='movie-show-img' alt={this.state.movie.original_title}/>
-              : <img src={placeholder} className='movie-show-img' alt={this.state.movie.original_title}/>
-              }
-                <div className='movie-show-content'>
-                    <h3 className='original-title'>{this.state.movie.original_title}</h3>
-                    <h5>Release Date:<span> {this.state.movie.release_date}</span> </h5>
+  const goBack = () =>{
+    props.history.goBack();
+  }
 
-                    <StarRating movie = {this.state.movie} />
-                    <div className='website-link-div'>{this.state.movie.homepage ? (
-                      <a href = {this.state.movie.homepage} target='_blank' rel='noopener noreferrer' className='website-link'><button className='webLink'><i className="fas fa-link"></i> Website</button></a>
-                      ) : null}
-                      {this.state.video && <button onClick = {this.showMovie} className = 'trailer'><i class="fas fa-play"></i> Play Trailer </button> }
-                    </div>
-                      <h6>Overview</h6>
-                      <p className= 'movie-show-overview'>{this.state.movie.overview}</p>
-                      <p className= 'genre-list'>{this.state.movie.genres.map(genre => <li className='genre-list-item' key={genre.id}><img className='genre-icon' src={switchGenre(genre.name)} alt={genre.name}/>{genre.name}</li>)}</p>
-                    <div>
-                    <div className="nav_btns">
-                      <button onClick = {this.goBack} className = 'back-btn'> <i class="fas fa-arrow-left"></i> Go back </button>
-                      <NavLink to={'/similar/'+this.state.movie.id} className ='similarBtn'>See Similar <i class="fas fa-arrow-right"></i></NavLink>
-                    </div>
-                </div>
-              </div> 
-            </div>
-          
-        ) : (
-          <Spinner/>
-        ) 
+  return (
+    <div className="show-movie">
+       <div className='movie-show' style={showMovie ? {opacity : .2} : {opacity : 1}} key={movie.id}>
+            { movie.poster_path !== null ? 
+              <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className='movie-show-img' alt={movie.original_title}/>
+              : <img src={placeholder} className='movie-show-img' alt={movie.original_title}/>}
 
-        return(
-            <div className='show-movie'>
-                 {movie}
-  
-                {
-                  this.state.video && this.state.showMovie && 
-                  <Video video = {this.state.video} toggleView={this.toggleView} />
-                } 
-            </div>
-        )
-    }
+              <div className='movie-show-content'>
+                  <h3 className='original-title'>{movie.original_title}</h3>
+                  <h5>Release Date:<span> {movie.release_date}</span> </h5>
+                  <StarRating movie = {movie} />
+
+              <div className='website-link-div'>{movie.homepage ? (
+                  <a href = {movie.homepage} target='_blank' rel='noopener noreferrer' className='website-link'>
+                    <i className="fas fa-link"></i> Website</a> ) : null}
+                    
+                  {video && <button onClick = {toggleView} className = 'trailer'><i class="fas fa-play"></i> Play Trailer </button> }
+              </div>
+                  <h6>Overview</h6>
+                  <p className= 'movie-show-overview'>{movie.overview}</p>
+              <div>
+              <div className="nav_btns">
+                <button onClick = {goBack} className = 'back-btn'> <i class="fas fa-arrow-left"></i> Go back </button>
+                <NavLink to={'/similar/'+movie.id} className ='similarBtn'>See Similar <i class="fas fa-arrow-right"></i></NavLink>
+              </div>
+          </div>
+      </div>           
+  </div> 
+    { video && showMovie && 
+      <Video video = {video} toggleView={toggleView} /> } 
+  </div>
+  )
 }
 
 export default ShowMovie;
