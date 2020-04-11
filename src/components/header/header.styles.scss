@@ -45,3 +45,25 @@ header h1 {
     flex-direction: column;
   }
   
+
+  /* --------------------------
+      MEDIA QUERIES
+  -------------------------- */
+
+  @media (max-width: 950px) { 
+    header h1 {
+      font-size: 40px;
+      padding: 0px 20px;
+    }
+  }
+
+
+@media (max-width: 650px) { 
+  header h1 {
+    font-size: 30px;
+  }
+  
+  .main-header p {
+    font-size: 19px;
+  }
+}

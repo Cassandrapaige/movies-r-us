@@ -6,10 +6,10 @@ import {API_KEY} from '../../base'
 
 /* COMPONENTS */
 import Pagination from '../pagination/pagination.component'
-import MovieList from '../MovieList'
+import MovieList from '../movie-list/movie-list.component'
 import Spinner from '../spinner/spinner.component'
 
-const FetchMovie = ({match, history, url, title, error}) => {
+const MovieView = ({match, history, url, title, error}) => {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [current, setCurrent] = useState(1)
@@ -45,7 +45,7 @@ const FetchMovie = ({match, history, url, title, error}) => {
             <div className='movie-list'>
                 <h2 className = 'list-title'>{title}</h2>
                 {isLoading ? <Spinner />
-                 : <MovieList movies={movies} container= "movie-list-view" />} </div>
+                 : <MovieList movies={movies} />} </div>
                 : 
                 <div className = 'err'>
                     <h3 className ='errorMsg'>{error}</h3>
@@ -59,4 +59,4 @@ const FetchMovie = ({match, history, url, title, error}) => {
 }         
     
 
-export default FetchMovie;
+export default MovieView;

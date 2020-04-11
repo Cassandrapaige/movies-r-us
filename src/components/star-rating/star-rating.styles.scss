@@ -9,4 +9,10 @@
   
 .star {
     padding: 2px;
-  }
+}
+
+@media (max-width: 950px) { 
+    .dv-star-rating span {
+        font-size: 13px;
+    }
+}

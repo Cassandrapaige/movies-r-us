@@ -111,5 +111,50 @@
     color: var(--primary-color);
   }
   
+  /* --------------------------
+     MEDIA QUERIES
+-------------------------- */
 
+  @media (max-width: 1200px) { 
+    .movie-show-img {
+      width: 100%;
+  }
+}
+
+
+
+@media (max-width: 950px) {
+  .movie-show-img {
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .movie-show {
+    padding: 20px;
+    grid-template-columns: 1fr;
+    flex-wrap: wrap;
+  }
+
+  .movie-show-content p{
+    font-size: 17px;
+  }
+
+  .genre-list-item {
+    font-size: 18px;
+  }
+
+  .original-title {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 650px) { 
+  .movie-show {
+    width: 98%;
+  }
   
+  .movie-show-content {
+    padding: 20px 0;
+  }
+}
