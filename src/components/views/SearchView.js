@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 /* MOVIEDB API KEY*/
@@ -9,61 +9,47 @@ import MovieList from '../MovieList'
 import Pagination from '../pagination/pagination.component'
 import Spinner from '../spinner/spinner.component'
 
-class SearchView extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-          movies: [],
-          query: this.props.history.location.search.slice(1),
-          isLoading: true
-        }
-      }
-    
-      componentDidMount = () => {
-        axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${this.state.query}`)
-        .then(res => {
-          this.setState({
-            movies: res.data.results,
-            total: res.data.total_results,
-            current: 1,
-            query: this.props.history.location.search.slice(1),
-            isLoading: false
-          })
-      },(error => console.log(error)))}
+const SearchView = (props) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [movies, setMovies] = useState([]);
+  const [query, setQuery] = useState(props.history.location.search.slice(1))
+  const [current, setCurrent] = useState(1)
+  const [total, setTotal] = useState()
 
-      next = (pageNum) => {
-        setTimeout(function () {
-          window.scrollTo(0, 100);
-      },500);
+  useEffect(() => {
+    setIsLoading(true)
+    window.scrollTo(0, 100);
+    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}&page=${current}`)
+    .then(result => {
+      setMovies(result.data.results)
+      setTotal(result.data.total_results)
+      setIsLoading(false) 
+    },(error => console.log(error)))
+  }, [query, current])
 
-        axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${this.state.query}&page=${pageNum}`)
-        .then(res => {
-            this.setState({
-                movies: res.data.results,
-                current: pageNum
-        })
-    }, (error => console.log(error)))}
+  const next = (pageNum) => {
+    setTimeout(() => {
+        window.scrollTo(0, 100);
+    },500);
+    setCurrent(pageNum);
+  }
 
-    render() {
-    const numPages = Math.floor(this.state.total / 20);
-    return (
-        <Fragment>
-            <div className='search_results'>
-            <Fragment>
-            <h2 className = 'listTitle'> 
-              {this.state.movies.length ? 'Search results for' : 'No search results for' } '{this.state.query}'</h2>
-              {this.state.isLoading ? 
-              <Spinner />
-              :
-              <MovieList movies={this.state.movies} container= "movieListView" />
-              } 
-            </Fragment>
-            
-            { this.state.total > 20 ? 
-                <Pagination pages= {numPages} next={this.next} current = {this.state.current} /> : '' }    
-            </div>
-        </Fragment>
-        )   
-    }
+const numPages = Math.floor(total / 20);
+
+  return (
+      <div className='search_results'>
+        <>
+          <h2 className = 'listTitle'> 
+            {movies.length ? 'Search results for' : 'No search results for' } '{query}'</h2>
+            {isLoading ? <Spinner />
+            :<MovieList movies={movies} container= "movieListView" />} 
+          </>
+          
+          { total > 20 ? 
+              <Pagination pages= {numPages} next={next} current = {current} /> : '' }    
+      </div>
+)
+
 }
+
 export default SearchView

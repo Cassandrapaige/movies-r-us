@@ -18,6 +18,7 @@ const ShowMovie = (props) => {
   const [video, setVideo] = useState(null)
 
   useEffect(() => {
+    window.scrollTo(0, 100);
     setIsLoading(true);
     let id = props.match.params.movie_id;
     axios.get('https://api.themoviedb.org/3/movie/' + id + '?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
