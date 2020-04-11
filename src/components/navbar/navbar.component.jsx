@@ -24,7 +24,7 @@ const Navbar = (props) => {
         window.location.reload()
     }
 
-    const handleChange = event => { setValue(event.target.value); setIsVisible(!isVisible)}
+    const handleChange = event => setValue(event.target.value)
 
     const toggleSearch = () => setIsVisible(!isVisible)
 
