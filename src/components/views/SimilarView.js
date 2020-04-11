@@ -5,9 +5,9 @@ import axios from 'axios'
 import {API_KEY} from '../../base'
 
 /* COMPONENTS */
-import Pagination from '../Pagination'
+import Pagination from '../pagination/pagination.component'
 import MovieList from '../MovieList'
-import Spinner from '../Spinner'
+import Spinner from '../spinner/spinner.component'
 
 class Similar extends Component {
     constructor(props) {
@@ -32,10 +32,12 @@ class Similar extends Component {
         },(error => console.log(error)))}
     
     next = (pageNum) => {
+        setTimeout(function () {
+            window.scrollTo(0, 100);
+        },500);
         let id = this.props.match.params.movie_id;
         axios.get(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${API_KEY}&language=en-US&page=${pageNum}`)
         .then(res => {
-            window.scrollTo(0, 100);
             this.setState({
                 movies: res.data.results,
                 current: pageNum,

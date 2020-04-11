@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
-import Search from './Search'
+import Search from '../search-bar/search-bar.component'
+
+import './navbar.styles.scss'
 
 class Navbar extends Component {
     constructor(props) {

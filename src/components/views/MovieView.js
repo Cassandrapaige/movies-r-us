@@ -7,7 +7,7 @@ import {API_KEY} from '../../base'
 
 /* COMPONENTS */
 import MovieList from '../MovieList'
-import Pagination from '../Pagination'
+import Pagination from '../pagination/pagination.component'
 
 class MovieView extends Component {
     constructor(props) {

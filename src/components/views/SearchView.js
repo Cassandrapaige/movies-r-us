@@ -6,8 +6,8 @@ import {API_KEY} from '../../base'
 
 /* COMPONENTS */
 import MovieList from '../MovieList'
-import Pagination from '../Pagination'
-import Spinner from '../Spinner'
+import Pagination from '../pagination/pagination.component'
+import Spinner from '../spinner/spinner.component'
 
 class SearchView extends Component {
     constructor(props) {
@@ -31,10 +31,13 @@ class SearchView extends Component {
           })
       },(error => console.log(error)))}
 
-    next = (pageNum) => {
+      next = (pageNum) => {
+        setTimeout(function () {
+          window.scrollTo(0, 100);
+      },500);
+
         axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${this.state.query}&page=${pageNum}`)
         .then(res => {
-          window.scrollTo(0, 100);
             this.setState({
                 movies: res.data.results,
                 current: pageNum

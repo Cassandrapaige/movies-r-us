@@ -1,9 +1,15 @@
 import React, { Component, Fragment } from 'react'
-import axios from 'axios'
 import { NavLink } from 'react-router-dom'
-import placeholder from '../images/placeholder.png';
-import StarRating from './StarRating';
+import axios from 'axios'
 
+import placeholder from '../../images/placeholder.png';
+
+import StarRating from '../../components/star-rating/star-rating.component';
+import Spinner from '../../components/spinner/spinner.component'
+import Video from '../../components/video/video.component'
+
+import {switchGenre} from './individula-movie.utils'
+import './individual-movie.styles.scss'
 
 class ShowMovie extends Component {
     constructor(props) {
@@ -11,7 +17,7 @@ class ShowMovie extends Component {
         this.state = {
             isLoading: true,
             movie: null,
-            showMovie: false
+            showMovie: true
         }
     }
 
@@ -34,7 +40,8 @@ class ShowMovie extends Component {
     };
 
     
-    showMovie = () => {
+    toggleView = () => {
+      console.log('clicking')
       this.setState({
         showMovie: !this.state.showMovie
       })
@@ -43,56 +50,6 @@ class ShowMovie extends Component {
     goBack = () =>{
       this.props.history.goBack();
     }
-
-    /* ADD ICONS DEPENDING ON GENRE ARRAY */
-    switchGenre = (img) => {
-        var genre = "";
-      switch(img) {
-        case 'Drama':
-          genre = 'https://img.icons8.com/color/48/000000/drama.png'
-          break;
-        case 'History':
-          genre= 'https://img.icons8.com/color/48/000000/coliseum.png'
-          break;
-        case 'Romance':
-          genre= 'https://img.icons8.com/offices/48/000000/romantic-movies.png'
-          break;
-        case 'Action':
-          genre = 'https://img.icons8.com/doodle/48/000000/boom.png'
-          break;
-        case 'Horror':
-          genre= 'https://img.icons8.com/color/48/000000/horror.png'
-          break;
-        case 'Comedy':
-          genre= 'https://img.icons8.com/color/48/000000/popeye.png'
-          break;
-        case 'Crime':
-          genre=    'https://img.icons8.com/color/48/000000/walter-white.png'
-          break;
-        case 'Animation':
-          genre= 'https://img.icons8.com/color/48/000000/woody-woodpecker.png'
-          break;
-        case 'Family':
-            genre= 'https://img.icons8.com/color/48/000000/family-two-women.png'
-        break;
-        case 'Music':
-            genre= 'https://img.icons8.com/color/48/000000/us-music.png'
-        break;
-        case 'Thriller':
-            genre= 'https://img.icons8.com/ultraviolet/40/000000/scream.png'
-        break;
-        case 'Mystery':
-            genre= 'https://img.icons8.com/color/48/000000/sherlock-holmes.png'
-        break;
-        case 'Adventure':
-            genre= 'https://img.icons8.com/color/48/000000/hot-air-balloon.png'
-        break;
-        default:
-          genre= 'https://img.icons8.com/doodle/48/000000/documentary.png'
-          break;
-      }
-        return genre;
-      }
 
     render() {
         const movie = this.state.movie && !this.state.isLoading ? (
@@ -113,7 +70,7 @@ class ShowMovie extends Component {
                     </div>
                       <h6>Overview</h6>
                       <p className= 'movie-show-overview'>{this.state.movie.overview}</p>
-                      <p className= 'genre-list'>{this.state.movie.genres.map(genre => <li className='genre-list-item' key={genre.id}><img className='genre-icon' src={this.switchGenre(genre.name)} alt={genre.name}/>{genre.name}</li>)}</p>
+                      <p className= 'genre-list'>{this.state.movie.genres.map(genre => <li className='genre-list-item' key={genre.id}><img className='genre-icon' src={switchGenre(genre.name)} alt={genre.name}/>{genre.name}</li>)}</p>
                     <div>
                     <div className="nav_btns">
                       <button onClick = {this.goBack} className = 'back-btn'> <i class="fas fa-arrow-left"></i> Go back </button>
@@ -124,9 +81,7 @@ class ShowMovie extends Component {
             </div>
           
         ) : (
-            <div className="loading">
-                 <div class="lds-facebook"><div></div><div></div><div></div></div>
-            </div>
+          <Spinner/>
         ) 
 
         return(
@@ -134,16 +89,12 @@ class ShowMovie extends Component {
                  {movie}
   
                 {
-                  this.state.video &&  this.state.showMovie && 
-                  <div className="video">
-                  <button onClick = {this.showMovie}> <i class="fas fa-times"></i></button>
-                  <iframe width="560" height="315" src={`https://www.youtube.com/embed/${this.state.video}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                  </div>
+                  this.state.video && this.state.showMovie && 
+                  <Video video = {this.state.video} toggleView={this.toggleView} />
                 } 
             </div>
         )
     }
-
 }
 
 export default ShowMovie;

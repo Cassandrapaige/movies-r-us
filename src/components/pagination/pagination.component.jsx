@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react'
 
-const Pagination = props => {
+import './pagination.styles.scss'
+
+const Pagination = ({pages, current, next}) => {
     let links = [];
     let display = [];
 
-    for(let i = 1; i <= props.pages; i++) {
-        let active = props.current === i ? 'active' : '';
-        links.push(<li className = {`pageLinks ${active}`} key={i} onClick={() => props.next(i)}>
+    for(let i = 1; i <= pages; i++) {
+        links.push(<li className = {`pageLinks ${current === i ? 'active' : ''}`} key={i} onClick={() => next(i)}>
             <a href="#">{i}</a>
         </li>)
     }
@@ -19,17 +20,17 @@ const Pagination = props => {
         <div className="container">
             <div className="row">
                 <ul className="pagination">
-                    { props.current > 1 ? 
+                    { current > 1 ? 
                     <li className= 'pageLinks' 
-                        onClick={() => props.next(props.current - 1)}>
+                        onClick={() => next(current - 1)}>
                     <a href="#">Prev</a></li> : '' }
 
-                    { props.pages <= 5 ? {links} : <> {display} </> }
-                    { props.current > 5 ? links[props.current-1] : '' }
+                    { pages <= 5 ? {links} : <> {display} </> }
+                    { current > 5 ? links[current-1] : '' }
 
-                    { props.current <= props.pages ? 
+                    { current <= pages ? 
                     <li className= 'pageLinks' 
-                        onClick={() => props.next(props.current + 1)}>
+                        onClick={() => next(current + 1)}>
                     <a href="#">Next</a></li> : '' } 
                 </ul>
             </div>

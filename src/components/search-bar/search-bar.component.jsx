@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './search-bar.styles.scss'
+
 const Search = (props) => {
     return (
         <form className = {props.activate_search ? 'expand_search search_form' : 'search_form' } onSubmit={props.handleSubmit}>

@@ -1,6 +1,8 @@
 import React from 'react'
 import StarRatingComponent from 'react-star-rating-component';
 
+import './star-rating.styles.scss'
+
 const StarRating = (props) => {
     const avg = (num) => {
         return Math.round(num);

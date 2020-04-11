@@ -1,0 +1,17 @@
+.pagination {
+    display: flex;
+    list-style-type: none;
+    flex-wrap: wrap;
+    margin: 50px 0px 100px 0px;
+    justify-content: center;
+  }
+  
+  .pageLinks {
+    margin: 5px;
+    padding: 10px;
+    background-color: #333;
+  }
+
+  li.pageLinks.active {
+    background-color: var(--primary-color);
+  }

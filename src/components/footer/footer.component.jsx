@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './footer.styles.scss'
+
 const Footer = () => {
     return (
         <footer className = 'footer'>
@@ -9,27 +11,27 @@ const Footer = () => {
                     <ul className="contact_list">
                         <li className="contact_list_item">
                             <a href="#">
-                                <i className="fab fa-facebook-f"></i>
+                                <i className="fab fa-facebook-f" />
                             </a>
                         </li> 
                         <li className="contact_list_item">
                             <a href="#">
-                                <i className="fab fa-instagram"></i>
+                                <i className="fab fa-instagram" />
                             </a>
                         </li> 
                         <li className="contact_list_item">
                             <a href="#">
-                                <i className="fab fa-twitter"></i>
+                                <i className="fab fa-twitter" />
                             </a>
                         </li>
                         <li className="contact_list_item">
                             <a href="#">
-                                <i className="fab fa-linkedin-in"></i>
+                                <i className="fab fa-linkedin-in" />
                             </a>
                         </li> 
                         <li className="contact_list_item">
                             <a href="#">
-                                <i className="fab fa-youtube"></i>
+                                <i className="fab fa-youtube" />
                             </a>
                         </li>   
                     </ul>
@@ -43,7 +45,9 @@ const Footer = () => {
                 </div>
                 </div>
                 <div className="mention">
-                    <a href="https://icons8.com/icon/zBivzUu9mkoe/documentary" className='icons8'>Genre icons coutesy of Icons8</a> 
+                    <a href="https://icons8.com/icon/zBivzUu9mkoe/documentary" className='icons8'>
+                        Genre icons coutesy of Icons8
+                    </a> 
                 </div>    
         </footer>
     )

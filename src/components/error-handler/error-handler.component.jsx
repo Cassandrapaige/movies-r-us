@@ -1,7 +1,9 @@
 import React, {Component } from 'react'
 import { NavLink, withRouter, Redirect } from 'react-router-dom'
 
-class ErrorCatch extends Component {
+import './error-handler.styles.scss'
+
+class ErrorHandler extends Component {
     constructor(props) {
       super(props);
       this.state = { hasError: false, redirect: false };
@@ -38,4 +40,4 @@ class ErrorCatch extends Component {
     }
   }
 
-  export default withRouter(ErrorCatch);
+  export default withRouter(ErrorHandler);

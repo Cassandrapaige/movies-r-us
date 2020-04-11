@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
 
-import Header from './Header'
-import NowPlayingView from '../views/NowPlayingView' 
+import Header from '../../components/header/header.component'
+
+import NowPlayingView from '../../components/views/NowPlayingView' 
 
 const Homepage = () => {
     return (

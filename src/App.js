@@ -3,16 +3,16 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import './App.css';
 
 /* COMPONENTS */
-import Homepage from './components/homepage/Homepage'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import Homepage from './pages/homepage/Homepage'
+import Navbar from './components/navbar/navbar.component'
+import Footer from './components/footer/footer.component'
 import PopularView from './components/views/PopularView'
 import TopRatedView from './components/views/TopRatedView'
 import NowPlayingView from './components/views/NowPlayingView'
 import SearchView from './components/views/SearchView'
 import SimilarView from './components/views/SimilarView'
-import ShowMovie from './components/ShowMovie'
-import ErrorHandler from './components/ErrorHandler'
+import ShowMovie from './pages/individual-movie/individual-movie.component'
+import ErrorHandler from './components/error-handler/error-handler.component'
 
 const App = () => {
 

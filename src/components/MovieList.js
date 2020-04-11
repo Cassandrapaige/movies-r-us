@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import StarRating from './StarRating';
+import StarRating from './star-rating/star-rating.component';
 import { NavLink } from 'react-router-dom'
 
 /* PLACEHOLDER IMAGE */
