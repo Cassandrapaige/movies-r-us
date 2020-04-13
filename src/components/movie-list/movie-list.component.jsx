@@ -15,7 +15,7 @@ return (
 {movies.map(movie => 
     <div className='movie' key={movie.id}>
         <div className = 'movie-content'>
-            <NavLink to ={`/` + movie.id}>
+            <NavLink to ={`/movie/` + movie.id}>
                 { movie.poster_path !== null ? 
                 <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} className='movie-img' alt={movie.original_title}/>
                 : <img src={placeholder} className='movie-img' alt={movie.original_title}/>}
@@ -25,11 +25,11 @@ return (
                     <p className = 'movie-overview'>{substringOverview(movie.overview)}</p>
                     <StarRating movie = {movie} />
                 </div>
+                </NavLink>
 
                 <NavLink to = {`/` + movie.id} className='movie-link'>
                     See more<i className ="fas fa-arrow-right sm-arrow"></i>
                 </NavLink>      
-            </NavLink>
         </div>
     </div>
 )}

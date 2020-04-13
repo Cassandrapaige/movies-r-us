@@ -4,10 +4,10 @@ import {API_KEY} from '../base'
 
 import MovieView from '../components/movie-view/movie-view.component'
 
-const SimilarView = ({history}) => {
+const SimilarView = ({history, match}) => {
     let query = history.location.search.slice(1);
     let title = query.replace(/&/g, ' ')
-
+    
     return (
         <MovieView 
             title = {`Search results for '${title}'`}

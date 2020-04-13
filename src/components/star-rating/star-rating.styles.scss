@@ -1,17 +1,17 @@
+.dv-star-rating {
+    padding: 10px 0;
+}
+
 .dv-star-rating span {
     font-size: 18px;
+    padding: 1px;
 }
 
 .zero-rating {
     color: var(--primary-color);
-    font-size: 1.2em;
-    padding-top: 10px;
+    font-size: 17px;
+    padding: 10px 0;
 }
-  
-.star {
-    padding: 2px;
-}
-
 
   /* --------------------------
       MEDIA QUERIES
@@ -26,5 +26,11 @@
         color: var(--primary-color);
         font-size: 1em;
         padding-top: 10px;
+    }
+}
+
+@media (max-width: 500px) {   
+    .dv-star-rating span {
+        font-size: 18px;
     }
 }

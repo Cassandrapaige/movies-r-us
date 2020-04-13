@@ -5,7 +5,7 @@
   --light-color: #696969;
   --text-color: #f3f3f3;
   --shadow: 0 3px 6px -6px #000;
-  --bg-overlay: rgba(19,19,19,0.7);
+  --bg-overlay: rgba(19,19,19,0.5);
 }
 * {
   margin: 0;
@@ -14,6 +14,10 @@
   scroll-behavior: smooth;
 }
 
+::selection {
+  background: var(--primary-color);
+  color: var(--text-color);
+}
 .container {
   max-width: 1600px;
   margin: auto;
@@ -39,6 +43,15 @@ a {
   color: #fff;
 }
 
+.homepage-container {
+  .filter-menu {
+    display: none;
+  }
+
+  .movie-list {
+    grid-column: 1/-1;
+}
+}
 
 /* ANIMATIONS */
 

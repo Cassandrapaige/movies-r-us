@@ -1,0 +1,9 @@
+.movie-list-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+}
+
+.movie-list {
+    grid-column: 2/-1;
+    margin-top: 50px;
+}

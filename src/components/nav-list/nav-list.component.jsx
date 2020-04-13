@@ -14,7 +14,7 @@ const NavList = ({active, children}) => {
         to: {
             width: active ? '100%' : '0%',
         },
-        config: config.gentle
+        config: config.wobbly
     })
     
     return (

@@ -6,10 +6,10 @@ import NowPlayingView from './NowPlayingView'
 
 const Homepage = () => {
     return (
-    <Fragment>
+    <div className = 'homepage-container'>
         <Header />
         <NowPlayingView num = {800}/>
-    </Fragment>
+    </div>
     )
 }
 

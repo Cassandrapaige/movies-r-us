@@ -10,13 +10,13 @@ const NavItem = ({text, link}) => {
         from: {
             color: '#fff',
             fontSize: '40px',
-            opacity: 0
+            opacity: 0,
         },
         config: config.wobbly,
         to: {
             color: onHover ? '#1db3ae' : '#fff',
             fontSize: onHover ? '45px' : '40px',
-            paddingRight: onHover ? '30px' : '0px',
+            paddingRight: onHover ? '10px' : '0px',
             opacity: 1
         }
     })

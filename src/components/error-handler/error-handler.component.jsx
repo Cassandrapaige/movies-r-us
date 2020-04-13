@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink, withRouter, Redirect } from 'react-router-dom'
 
-import './error-handler.styles.scss'
+import ErrorMessage from '../error-message/error-message.component'
 
 class ErrorHandler extends Component {
     constructor(props) {
@@ -21,12 +21,10 @@ class ErrorHandler extends Component {
         if(redirect) return <Redirect to = {history.goBack()} />
         
         if (hasError) return (
-        <div className= 'err'>
-          <h2 className='errorMsg'>Ooops. Looks like something went wrong.</h2>
-          <button onClick = {this.goBack} className = 'back-btn'> 
-            <i class="fas fa-arrow-left"></i> Go back 
-          </button>
-        </div>)
+          <ErrorMessage 
+            goBack = {this.goBack} 
+            error='Ooops. Looks like something went wrong.' />
+        )
         
         return children;
     }

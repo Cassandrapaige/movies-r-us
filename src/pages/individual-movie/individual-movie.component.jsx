@@ -16,6 +16,7 @@ const ShowMovie = ({history, match}) => {
   const [movie, setMovie] = useState([]);
   const [showMovie, setShowMovie] = useState(false);
   const [video, setVideo] = useState(null)
+  const [genres, setGenres] = useState([])
 
   useEffect(() => {
     setTimeout(() => {
@@ -27,15 +28,15 @@ const ShowMovie = ({history, match}) => {
     .then(result => {
       setMovie(result.data);
       setIsLoading(false)
-    })
+      setGenres(result.data.genres)
+      console.log(result.data)
 
+    })
     axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
     .then(result => {
       setVideo(result.data.results[0].key)
     },(error => console.log(error)))
   },[])
-
-  console.log(movie.homepage)
   const toggleView = () => setShowMovie(!showMovie)
   
   const goBack = () => history.goBack()
@@ -61,7 +62,14 @@ const ShowMovie = ({history, match}) => {
               </div>
                   <h6>Overview</h6>
                   <p className= 'movie-show-overview'>{movie.overview}</p>
+                    <p className= 'genre-list'>
+                      {genres.map(genre => (
+                        <li className='genre-list-item' key={genre.id}>
+                        <img className='genre-icon' src={switchGenre(genre.name)} alt={genre.name}/>
+                        {genre.name}</li>))}
+                    </p>
               <div>
+        
               <div className="nav_btns">
                 <button onClick = {goBack} className = 'back-btn'> <i class="fas fa-arrow-left"></i> Go back </button>
                 <NavLink to={'/similar/'+movie.id} className ='similarBtn'>See Similar <i class="fas fa-arrow-right"></i></NavLink>

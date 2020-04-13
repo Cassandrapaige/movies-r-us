@@ -2,7 +2,7 @@
 .nav {
   position: relative;
   padding-top: 10px;
-  min-height: 110px;
+  min-height: 90px;
   top: 0;
   box-shadow: 0px 3px 6px rgba(19, 19, 19, .2);
 
@@ -28,9 +28,8 @@
       height: 35px;
       width: 45px;
       right: 0;
-      top: 50px;
+      top: 28px;
       right: 50px;
-      transform: translatey(-50%);
       display: flex;
       justify-content: flex-end;
       transition: all .5s ease;

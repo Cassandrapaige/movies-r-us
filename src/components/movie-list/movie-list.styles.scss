@@ -1,15 +1,25 @@
   
   .movie {
     transition: all .5s ease;
-    max-width: 300px;
     break-inside: avoid-column;
     margin-bottom: 20px;
+    transform: translateY(50px);
+    opacity: 0;
+    animation: .5s slideUp ease forwards;
   }
 
-  .list-title {
-    margin-top: 50px;
+  @for $i from 1 through 20 {
+    .movie {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * (1s/ 25)
+      }
+    }
   }
   
+@keyframes slideUp {
+    100% { transform: translateY(0); opacity: 1; }
+}
+
   .movie:hover {
     transform: scale(1.003);
   }
@@ -21,7 +31,7 @@
   .movie-list-view {
     width: 90%;
     margin: auto;
-    columns: 200px;
+    columns: 220px;
     column-gap: 20px;
     animation: fadeIn 1s ease-in;
   }
@@ -64,6 +74,7 @@
   
   .movie-img {
     width: 100%;
+    object-fit: cover;
   }
   
   .movie-link {
@@ -81,23 +92,22 @@
   /* --------------------------
       MEDIA QUERIES
   -------------------------- */
-
-  @media (max-width: 950px) { 
-    .fa-arrow-circle-down {
-        display: none;
-    }
-  }
   
-  @media (max-width: 650px) {   
+  @media (max-width: 500px) {   
+
     .movie:hover {
       transform: scale(1);
     }
   
     .movie {
       margin: 10px auto;
+      width: 90%;
     }
 
-    .list-title {
-      margin-top: 20px;
+    .movie-img {
+      object-fit: contain;
+      background: #2222;
+      height: 300px;
+      box-shadow: 1px 3px 3px rgba(0,0,0,0.5);
     }
   }

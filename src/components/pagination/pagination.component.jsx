@@ -17,10 +17,8 @@ const Pagination = ({pages, current, next}) => {
     }
 
     return (
-        <div className="container">
-            <div className="row">
-                <ul className="pagination">
-                    { current > 1 ? 
+            <div className="pagination">
+                <ul>{ current > 1 ? 
                     <li className= 'pageLinks' 
                         onClick={() => next(current - 1)}>
                     <a href="#">Prev</a></li> : '' }
@@ -34,7 +32,6 @@ const Pagination = ({pages, current, next}) => {
                     <a href="#">Next</a></li> : '' } 
                 </ul>
             </div>
-        </div> 
     )
 }
 

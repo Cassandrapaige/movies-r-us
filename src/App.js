@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import './App.css';
+import './App.scss';
 
 /* COMPONENTS */
 import Homepage from './pages/Homepage'
@@ -15,23 +15,23 @@ import SimilarView from './pages/SimilarView'
 import ShowMovie from './pages/individual-movie/individual-movie.component'
 import ErrorHandler from './components/error-handler/error-handler.component'
 
-const App = () => {
+const App = ({query}) => {
 
     return (
       <BrowserRouter>
         <div className="container">
           <Navbar />
           <Switch>
-            <Route exact path = '/' component = { Homepage } />
-            <Route exact path= '/popular' component = { PopularView } />
-            <Route exact path= '/top-rated' component = { TopRatedView } />
-            <Route exact path= '/new' component = { NowPlayingView } />
-            <Route path= '/search' component = { SearchView} />
-            <ErrorHandler>
-              <Route exact path= '/similar/:movie_id' component = { SimilarView } />
-              <Route exact path= '/:movie_id' component = { ShowMovie } />
-            </ErrorHandler>
+              <Route exact path = '/' component = { Homepage } />
+              <Route exact path= '/popular' component = { PopularView } />
+              <Route exact path= '/top-rated' component = { TopRatedView } />
+              <Route exact path= '/new' component = { NowPlayingView } />
+              <ErrorHandler>
 
+                <Route exact path= '/search' component = { SearchView} />
+                <Route exact path= '/similar/:movie_id' component = { SimilarView } />
+                <Route exact path= '/movie/:movie_id' component = { ShowMovie } />
+            </ErrorHandler>
           </Switch>
           <Footer />
         </div>

@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
-import {animated, useSpring, config, useTransition} from 'react-spring'
-import {withRouter} from 'react-router-dom'
+import {withRouter, NavLink} from 'react-router-dom'
 
 import './navbar.styles.scss'
 
@@ -36,12 +35,12 @@ const Navbar = ({history}) => {
     return (
         <>
         <nav className = 'nav'>
-        <h4 className='logo'>Movies R Us</h4>
-            <animated.div className =  {isOpen ? 'open' : 'hamburger-menu'} onClick = {toggleClass}>
-                <animated.div className = {isOpen ? 'open-top' : 'hamburger-menu-top'}/>
-                <animated.div className = {isOpen ? 'open-middle' : 'hamburger-menu-middle'}/>
-                <animated.div className = {isOpen ? 'open-bottom' : 'hamburger-menu-bottom'}/>
-            </animated.div>
+        <NavLink to = '/'><h4 className='logo'>Movies R Us</h4></NavLink>
+            <div className = {isOpen ? 'open' : 'hamburger-menu'} onClick = {toggleClass}>
+                <div  className = {isOpen ? 'open-top' : 'hamburger-menu-top'}/>
+                <div className = {isOpen ? 'open-middle' : 'hamburger-menu-middle'}/>
+                <div className = {isOpen ? 'open-bottom' : 'hamburger-menu-bottom'}/>
+            </div>
         </nav>
 
         {
