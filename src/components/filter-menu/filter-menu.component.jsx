@@ -5,8 +5,7 @@ import Search from '../search-bar/search-bar.component'
 
 import './filter-menu.styles.scss'
 
-const FilterMenu = ({children, handleClick}) => {
-    const [isOpen, setIsOpen] = useState(false)
+const FilterMenu = ({children, handleClick, setIsOpen, isOpen, title}) => {
 
     const props = useSpring({
         config: config.gentle,
@@ -21,6 +20,8 @@ const FilterMenu = ({children, handleClick}) => {
         duration: 2000
     })
 
+    
+
     return (
         <div className = 'filter-menu'>
             {children}
@@ -30,24 +31,24 @@ const FilterMenu = ({children, handleClick}) => {
                 </div>
                     <div className="dropdown">
                         <h4>Sort Results By</h4>
-                        <div className="active-block" onClick = {() => setIsOpen(!isOpen)}>Rating Descending 
+                        <div className="active-block" onClick = {() => setIsOpen(!isOpen)}>{title} 
                             <span className = 'arrow'>▼</span>
                         </div>
                         {isOpen ?  (
                         <animated.ul style={props} className = 'dropdown-list'>
-                            <li onClick = {(e) => handleClick('vote_average', e)} data-type='ascending'>Rating Ascending</li>
-                            <li onClick = {(e) => handleClick('vote_average', e)} data-type='descending'>Rating Descending</li>
-                            <li onClick = {(e) => handleClick('release_date', e)} data-type='ascending'>Release Date Ascending</li>
-                            <li onClick = {(e) => handleClick('release_date', e)} data-type='descending'>Release Date Descending</li>
-                            <li onClick = {(e) => handleClick('original_title', e)} data-type='ascending'>Title (A-Z)</li>
-                            <li onClick = {(e) => handleClick('original_title', e)} data-type='descending'>Title (Z-A)</li>
+                            <li onClick = {(e) => handleClick('vote_average','ascending', e)}>Rating Ascending</li>
+                            <li onClick = {(e) => handleClick('vote_average','descending', e)}>Rating Descending</li>
+                            <li onClick = {(e) => handleClick('release_date','ascending', e)}>Release Date Ascending</li>
+                            <li onClick = {(e) => handleClick('release_date','descending', e)}>Release Date Descending</li>
+                            <li onClick = {(e) => handleClick('original_title','ascending', e)}>Title (A-Z)</li>
+                            <li onClick = {(e) => handleClick('original_title','descending', e)}>Title (Z-A)</li>
                         </animated.ul>
                         
                         ): '' }
                      
                     </div>
                 </div>
-            <Search />
+            <Search/>
         </div>
     )
 }

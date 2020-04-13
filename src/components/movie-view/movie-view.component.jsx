@@ -18,7 +18,9 @@ const MovieView = ({history, url, title, error, num = 100}) => {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [current, setCurrent] = useState(1)
-    const [total, setTotal] = useState()
+    const [total, setTotal] = useState() 
+    const [isOpen, setIsOpen] = useState(false)
+    const [listTitle, setListTitle] = useState('Rating Descending')
 
     useEffect(() => {
         setIsLoading(true)
@@ -26,31 +28,38 @@ const MovieView = ({history, url, title, error, num = 100}) => {
         .then(result => {
             setMovies(result.data.results)
             setTotal(result.data.total_results)
-            console.log(result.data)
             setIsLoading(false)
         },(error) => console.log(error))
-    },[current, url])
+    },[url, current])
 
     const next = pageNum => {
         setTimeout(() => {
             window.scrollTo(0, num)
-        }, 500)
+        }, 50)
         setCurrent(pageNum)
     }
-    
+
+    // const filteredList = movies.sort((a, b) => (a[type] < b[type]) - (a[type] > b[type]))
+
     const goBack = () => history.goBack()
 
     const numPages = Math.floor(total / 20)
 
-    const handleClick = (type, event) => {
-        console.log(type)
-        console.log(event.target.dataset.type)
+    const handleSort = (type, maths, event) => {
+        if(maths === 'ascending') {
+            setMovies(movies.sort((a, b) => (a[type] > b[type]) - (a[type] < b[type])))
+        }
+        else if(maths === 'descending') {
+            setMovies(movies.sort((a, b) => (a[type] < b[type]) - (a[type] > b[type])))
+        } 
+        setIsOpen(!isOpen)       
+        setListTitle(event.target.textContent)
     }
     
     return (
 
         <div className = 'movie-list-container'>
-            <FilterMenu handleClick = {handleClick}>
+            <FilterMenu handleClick = {handleSort} setIsOpen = {setIsOpen} isOpen = {isOpen} title = {listTitle}>
                 <h2 className = 'list-title'>{title}</h2>
             </FilterMenu>
             { total !== 0 ?

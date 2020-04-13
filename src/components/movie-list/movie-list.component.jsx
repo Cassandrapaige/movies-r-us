@@ -14,23 +14,25 @@ return (
 <div className = 'movie-list-view'>
 {movies.map(movie => 
     <div className='movie' key={movie.id}>
-        <div className = 'movie-content'>
-            <NavLink to ={`/movie/` + movie.id}>
-                { movie.poster_path !== null ? 
-                <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} className='movie-img' alt={movie.original_title}/>
-                : <img src={placeholder} className='movie-img' alt={movie.original_title}/>}
-           
-                <div className="about-movie">
-                    <h4 className = 'movie-title'>{movie.original_title}</h4>
-                    <p className = 'movie-overview'>{substringOverview(movie.overview)}</p>
-                    <StarRating movie = {movie} />
-                </div>
-                </NavLink>
+        <NavLink to ={`/movie/` + movie.id}>
 
-                <NavLink to = {`/` + movie.id} className='movie-link'>
-                    See more<i className ="fas fa-arrow-right sm-arrow"></i>
-                </NavLink>      
-        </div>
+        {/* Add a placeholder image if image === null  */}
+        { movie.poster_path !== null ? 
+            <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} className='movie-img' alt={movie.original_title}/>
+            : <img src={placeholder} className='movie-img' alt={movie.original_title}/>}
+           
+            <div className="about-movie">
+                <h4 className = 'movie-title'>{movie.original_title}</h4>
+                <StarRating movie = {movie} />
+                <p className = 'movie-overview'>{substringOverview(movie.overview)}</p>
+                <h5>{movie.release_date}</h5>
+
+            </div>
+        </NavLink>
+
+        <NavLink to = {`/movie/${movie.id}`} className='movie-link'>
+            See more<i className ="fas fa-arrow-right sm-arrow"></i>
+        </NavLink>      
     </div>
 )}
 </div>

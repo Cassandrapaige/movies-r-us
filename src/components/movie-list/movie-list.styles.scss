@@ -1,39 +1,9 @@
-  
-  .movie {
-    transition: all .5s ease;
-    break-inside: avoid-column;
-    margin-bottom: 20px;
-    transform: translateY(50px);
-    opacity: 0;
-    animation: .5s slideUp ease forwards;
-  }
-
-  @for $i from 1 through 20 {
-    .movie {
-      &:nth-child(#{$i}) {
-        animation-delay: $i * (1s/ 25)
-      }
-    }
-  }
-  
-@keyframes slideUp {
-    100% { transform: translateY(0); opacity: 1; }
-}
-
-  .movie:hover {
-    transform: scale(1.003);
-  }
-  
-  .sm-arrow {
-    padding-left: 5px;
-    padding-top: 2px;
-  }
-  
   .movie-list-view {
     width: 90%;
     margin: auto;
-    columns: 220px;
-    column-gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
     animation: fadeIn 1s ease-in;
   }
   
@@ -44,33 +14,53 @@
     height: 20px;
     margin-top: -20px;
   }
+  
+  .movie {
+    transition: all .5s ease;
+    margin-bottom: 20px;
+    transform: translateY(50px);
+    opacity: 0;
+    animation: .5s slideUp ease forwards;
+    padding: 10px;
+    background: #161616;
+    box-shadow: 1px 3px 6px rgba(0,0,0,0.5);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .movie:hover {
+    transform: scale(1.003);
+  }
+  
+  .sm-arrow {
+    padding-left: 5px;
+    padding-top: 2px;
+  }
 
   .about-movie {
     font-size: 1.3em;
     line-height: 100%;
     transition: all .7s ease; 
-    padding: 20px 0px;
+    padding: 10px 0px;
+    width: 100%;
+
+    h5 {
+      padding: 10px 0 5px 0;
+    } 
   }
   
   .movie-title {
     padding-bottom: 5px;
     font-size: 1em;
     line-height: 120%;
+    font-weight: 400;
   }
   
   .movie-overview {
     font-size: .8em;
-    padding: 10px 0;
-  }
-  
-  .movie-content {
-    padding: 10px;
-    background: #161616;
-    box-shadow: 1px 3px 6px rgba(0,0,0,0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    line-height: 25px;
   }
   
   .movie-img {
@@ -85,10 +75,19 @@
     padding: 20px;
     background: var(--primary-color);
     width: 100%;
-    align-self: flex-end;
-    justify-self: flex-end;
   }
   
+  @for $i from 1 through 20 {
+    .movie {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * (1s/ 25)
+      }
+    }
+  }
+  
+@keyframes slideUp {
+    100% { transform: translateY(0); opacity: 1; }
+}
 
   /* --------------------------
       MEDIA QUERIES

@@ -16,7 +16,9 @@ const Search = ({history}) => {
             search: joinQuery(value)
         })
         setValue('')
-        window.location.reload()
+        setTimeout(() => {
+            window.scrollTo(0, 0)
+        }, 50)
     }
 
     const handleChange = event => setValue(event.target.value)
@@ -26,7 +28,6 @@ const Search = ({history}) => {
         if(isVisible) event.target.blur()
     }
 
-    
     return (
         <form className = {`search_form ${isVisible ? 'expand_search' : ''}`} onSubmit={handleSubmit}>
             <div className="input-field">
@@ -39,6 +40,6 @@ const Search = ({history}) => {
             </div>
         </form>
     )
-}
+} 
 
 export default withRouter(Search)

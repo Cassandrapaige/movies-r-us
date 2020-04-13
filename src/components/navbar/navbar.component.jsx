@@ -14,7 +14,7 @@ const Navbar = ({history}) => {
         <NavLink to = '/'><h4 className='logo'>Movies R Us</h4></NavLink>
 
         <div className="nav-links">
-            <Search />
+            <Search/>
             <div className = 'dropdown'>
                <button>Movies</button>
                <NavList />

@@ -21,7 +21,7 @@ const ShowMovie = ({history, match}) => {
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo(0, 100)
-  }, 500)
+  }, 50)
     setIsLoading(true);
     let id = match.params.movie_id;
     axios.get('https://api.themoviedb.org/3/movie/' + id + '?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
@@ -42,13 +42,14 @@ const ShowMovie = ({history, match}) => {
 
   return (
     <div className="show-movie">
+    {movie ? (
        <div className='movie-show' style={showMovie ? {opacity : .2} : {opacity : 1}} key={movie.id}>
             { movie.poster_path !== null ? 
               <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className='movie-show-img' alt={movie.original_title}/>
               : <img src={placeholder} className='movie-show-img' alt={movie.original_title}/>}
 
               <div className='movie-show-content'>
-                  <h3 className='original-title'>{movie.original_title}</h3>
+                  <h3 classNa me='original-title'>{movie.original_title}</h3>
                   <h5>Release Date:<span> {movie.release_date}</span> </h5>
                   <StarRating movie = {movie} />
 
@@ -71,15 +72,15 @@ const ShowMovie = ({history, match}) => {
         
               <div className="nav_btns">
                 <button onClick = {goBack} className = 'back-btn'> <i class="fas fa-arrow-left"></i> Go back </button>
-                <NavLink to={'/similar/'+movie.id} className ='similarBtn'>See Similar <i class="fas fa-arrow-right"></i></NavLink>
+                <NavLink to={`/similar/${movie.id}`} className ='similarBtn'>See Similar <i class="fas fa-arrow-right"></i></NavLink>
               </div>
           </div>
       </div>           
   </div> 
+  ) : 'Nothing here'}
     { video && showMovie && 
       <Video video = {video} toggleView={toggleView} /> } 
   </div>
-  )
-}
+  )}
 
 export default withRouter(ShowMovie)
