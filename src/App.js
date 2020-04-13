@@ -27,7 +27,6 @@ const App = ({query}) => {
               <Route exact path= '/top-rated' component = { TopRatedView } />
               <Route exact path= '/new' component = { NowPlayingView } />
               <ErrorHandler>
-
                 <Route exact path= '/search' component = { SearchView} />
                 <Route exact path= '/similar/:movie_id' component = { SimilarView } />
                 <Route exact path= '/movie/:movie_id' component = { ShowMovie } />

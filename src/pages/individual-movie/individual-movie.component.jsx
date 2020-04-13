@@ -29,14 +29,13 @@ const ShowMovie = ({history, match}) => {
       setMovie(result.data);
       setIsLoading(false)
       setGenres(result.data.genres)
-      console.log(result.data)
-
     })
     axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
     .then(result => {
       setVideo(result.data.results[0].key)
     },(error => console.log(error)))
   },[])
+  
   const toggleView = () => setShowMovie(!showMovie)
   
   const goBack = () => history.goBack()

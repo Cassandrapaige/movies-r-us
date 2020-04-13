@@ -42,18 +42,24 @@ const MovieView = ({history, url, title, error, num = 100}) => {
 
     const numPages = Math.floor(total / 20)
 
+    const handleClick = (type, event) => {
+        console.log(type)
+        console.log(event.target.dataset.type)
+    }
+    
     return (
 
         <div className = 'movie-list-container'>
-            <FilterMenu >
-            <h2 className = 'list-title'>{title}</h2>
+            <FilterMenu handleClick = {handleClick}>
+                <h2 className = 'list-title'>{title}</h2>
             </FilterMenu>
-            {total !== 0 ?
-            <div className='movie-list'>
+            { total !== 0 ?
+
+            <div className='movie-list'>   
+                {isLoading ? <Spinner /> : <MovieList movies={movies} />} 
+            </div>
                 
-                {isLoading ? <Spinner />
-                : <MovieList movies={movies} />} </div>
-                : <ErrorMessage error = {error} goBack={goBack} />}  
+            : <ErrorMessage error = {error} goBack={goBack} />}  
         
             { total > 20 ? 
             <Pagination pages= {numPages} next={next} current = {current} /> : '' }  

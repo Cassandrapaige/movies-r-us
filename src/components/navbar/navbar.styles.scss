@@ -1,17 +1,16 @@
 
 .nav {
-  position: relative;
   padding-top: 10px;
-  min-height: 90px;
+  height: 90px;
+  width: 100%;
   top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   box-shadow: 0px 3px 6px rgba(19, 19, 19, .2);
 
   .logo {
       padding: 40px 20px;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      left: 30px;
       color: #fff;
       font-size: 30px;
       color: var(--primary-color);
@@ -23,72 +22,25 @@
       }
   }
 
-  .hamburger-menu, 
-  .open {
-      height: 35px;
-      width: 45px;
-      right: 0;
-      top: 28px;
-      right: 50px;
-      display: flex;
-      justify-content: flex-end;
-      transition: all .5s ease;
-      z-index: 500000;
-  }
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 
-  .hamburger-menu, 
-  .open {
-      &-top,
-      &-middle,
-      &-bottom {
-          position: absolute;
-          background: #fff;
-          height: 2px;
-          transition: all .3s ease;
+    button {
+      background: none;
+      font-size: 25px;
+      border: none;
+      outline: none;
+      color: #fff;
+      padding-right: 50px;
+      
+      &:hover {
+        .nav-list {
+          display: block !important;
+        }
       }
     }
-
-    .hamburger-menu {
-    position: absolute;
-      &-top {
-          top: 0;
-          width: 80%;
-      }
-      &-middle {
-          top: 50%;
-          transform: translatey(-50%);
-          width: 100%;
-      }
-      &-bottom {
-          bottom: 0;
-          width: 95%;
-      }
-
-      @media (max-width: 550px) { 
-          width: 40px !important;
-          height: 30px !important;
-          right: 30px;
-      }
-  }
-  .open {  
-    position: fixed;     
-      &-top {
-          top: 50%;
-          width: 100%;
-          transform: rotate(-45deg) translateY(-50%);
-      }
-      &-middle {
-          opacity: 0;
-      }
-      &-bottom {
-          top: 50%;
-          width: 100%;
-          transform: rotate(45deg) translateY(-50%);
-      }
-      @media (max-width: 550px) { 
-          width: 40px !important;
-          height: 30px !important;
-          right: 30px;
-      }
   }
 }

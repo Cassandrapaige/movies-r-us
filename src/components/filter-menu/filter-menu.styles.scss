@@ -3,12 +3,20 @@
     background: #161616;
     margin: 50px 0px 20px 0px;
     height: 100vh;
-    box-shadow: 0px 3px 3px rgba(18, 18, 18, .3);
+    box-shadow: 0px 3px 6px rgba(18, 18, 18, .3);
     border-radius: 0px 20px 20px 0px;
     transform: translateX(-500px);
     opacity: 0;
     animation: .5s slideIn ease forwards;
     z-index: 500;
+    position: sticky;
+    top: 0;
+
+    .search_form {
+        position: relative;
+        bottom: 0;
+        margin-top: 50px;
+    }
 
     h3 {
         border-bottom: 1px solid var(--light-color);
@@ -20,11 +28,15 @@
         padding: 20px 0;
         font-size: 22px;
         font-weight: 200;
+        background: #161616;
+        z-index: 500;
+
     }
 
     .dropdown {
         display: flex;
         flex-direction: column;
+        background: #161616;
 
         ul {
             list-style-type: none;
@@ -53,6 +65,7 @@
         margin-bottom: 10px;
         display: flex;
         justify-content: space-between;
+        z-index: 1000;
 
         span {
             font-size: 15px;
@@ -71,5 +84,14 @@
     100% {
         transform: translateX(0);
         opacity: 1
+    }
+}
+
+@media (max-width: 865px) {
+    .filter-menu {
+        position: fixed;
+        width: 50%;
+        margin: 0;
+        top: 130px;
     }
 }
