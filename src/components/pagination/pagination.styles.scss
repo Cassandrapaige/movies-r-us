@@ -20,4 +20,11 @@
   }
 
 }
+
+@media (max-width: 865px) {
+  .pagination {
+
+  grid-column: 1/-1;
+  }
+}
   

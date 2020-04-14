@@ -2,33 +2,31 @@ import React, {useState} from 'react'
 import {useSpring, config, animated} from 'react-spring'
 
 import Search from '../search-bar/search-bar.component'
+import Video from '../video/video.component'
 
 import './filter-menu.styles.scss'
 
-const FilterMenu = ({children, handleClick, setIsOpen, isOpen, title}) => {
+const FilterMenu = ({children, handleClick, setIsOpen, isOpen, title, video}) => {
 
     const props = useSpring({
         config: config.gentle,
         from: {
             height: '0px',
-            transform: 'translateY(-100px)'
+            transform: 'translateY(-100px)',
+            backgroundColor: '#161616'
         },
         to: {
-            height: isOpen ? '100%' : '0px',
+            height: isOpen ? '420px' : '0px',
             transform: isOpen ? 'translateY(0px)' : 'translateY(-100px)'
         },
         duration: 2000
     })
 
-    
-
     return (
         <div className = 'filter-menu'>
             {children}
             <div className = 'filter-card'>
-                <div className="title">
-                    <h3 className="title">Sort</h3>
-                </div>
+                    <h3 className="filter-title">Sort</h3>
                     <div className="dropdown">
                         <h4>Sort Results By</h4>
                         <div className="active-block" onClick = {() => setIsOpen(!isOpen)}>{title} 
@@ -45,8 +43,10 @@ const FilterMenu = ({children, handleClick, setIsOpen, isOpen, title}) => {
                         </animated.ul>
                         
                         ): '' }
-                     
                     </div>
+                </div>
+                <div className="filter_video">
+                    <iframe src={`https://www.youtube.com/embed/${video}`} frameborder="0" autoplay allowfullscreen></iframe>
                 </div>
             <Search/>
         </div>

@@ -14,13 +14,16 @@ import FilterMenu from '../filter-menu/filter-menu.component'
 
 import './movie-view.styles.scss'
 
-const MovieView = ({history, url, title, error, num = 100}) => {
+const MovieView = ({history, url, title, error, num = 330}) => {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [current, setCurrent] = useState(1)
     const [total, setTotal] = useState() 
     const [isOpen, setIsOpen] = useState(false)
     const [listTitle, setListTitle] = useState('Rating Descending')
+    const [video, setVideo] = useState(null)
+    const [id, setId] = useState(454626)
+    // const filteredMovies = data => data.filter(e => e.genre_ids.includes(35))
 
     useEffect(() => {
         setIsLoading(true)
@@ -28,18 +31,22 @@ const MovieView = ({history, url, title, error, num = 100}) => {
         .then(result => {
             setMovies(result.data.results)
             setTotal(result.data.total_results)
-            setIsLoading(false)
-        },(error) => console.log(error))
+            setTimeout(() => {
+                setIsLoading(false)
+                window.scrollTo(0, num)
+            }, 500)
+        })
+         axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
+        .then(result => {
+            if(result.data.results[0].key.length) {
+                setVideo(result.data.results[0].key)
+            }
+        },(error => console.log(error)))
     },[url, current])
 
     const next = pageNum => {
-        setTimeout(() => {
-            window.scrollTo(0, num)
-        }, 50)
         setCurrent(pageNum)
     }
-
-    // const filteredList = movies.sort((a, b) => (a[type] < b[type]) - (a[type] > b[type]))
 
     const goBack = () => history.goBack()
 
@@ -54,18 +61,35 @@ const MovieView = ({history, url, title, error, num = 100}) => {
         } 
         setIsOpen(!isOpen)       
         setListTitle(event.target.textContent)
+        setTimeout(() => {
+            window.scrollTo(0, num)
+        }, 50)
+    }
+
+    const handleMouseEnter = type => {
+        // axios.get('https://api.themoviedb.org/3/movie/' + type + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
+        // .then(result => {
+        //     if(result.data.results[0].key.length) {
+        //         setVideo(result.data.results[0].key)
+        //     }
+        // },(error => console.log(error)))
     }
     
     return (
 
         <div className = 'movie-list-container'>
-            <FilterMenu handleClick = {handleSort} setIsOpen = {setIsOpen} isOpen = {isOpen} title = {listTitle}>
+            <FilterMenu 
+                handleClick = {handleSort} 
+                setIsOpen = {setIsOpen} 
+                isOpen = {isOpen} 
+                video = {video}
+                title = {listTitle}>
                 <h2 className = 'list-title'>{title}</h2>
             </FilterMenu>
             { total !== 0 ?
 
             <div className='movie-list'>   
-                {isLoading ? <Spinner /> : <MovieList movies={movies} />} 
+                {isLoading ? <Spinner /> : <MovieList movies={movies} handleMouseEnter = {handleMouseEnter} />} 
             </div>
                 
             : <ErrorMessage error = {error} goBack={goBack} />}  

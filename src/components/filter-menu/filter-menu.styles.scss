@@ -12,6 +12,15 @@
     position: sticky;
     top: 0;
 
+    .filter_video iframe{
+        transform: translateX(-500px);
+        opacity: 0; 
+        position: absolute;
+        width: 300px;
+        bottom: 90px;
+        animation: .5s slideIn ease forwards;
+    }
+
     .search_form {
         position: absolute;
         bottom: 20px;
@@ -42,16 +51,20 @@
 
         &-list {
             list-style-type: none;
+            height: 900px;
+            width: 100%;
+            z-index: 50;
+            bottom: -100px;
 
             li {
-            padding: 8px;
+            padding: 10px;
             font-size: 19px;
             font-weight: 300;
             cursor: pointer;
+            background: #161616;
 
             &:hover {
                 background: #232323;
-                border-radius: 5px;
             }
         }
         }
@@ -91,9 +104,27 @@
 
 @media (max-width: 865px) {
     .filter-menu {
-        position: fixed;
-        width: 50%;
-        margin: 0;
-        top: 130px;
+        grid-column: 1/-1;
+        margin: auto;
+        width: 90% !important;
+        position: static;
+        height: auto;
+        border-radius: 0;
+        padding-bottom: 80px;
+        box-shadow: 0px -12px -10px rgba(18, 18, 18, .9);
+        
+        iframe {
+            display: none;
+        }
+
+        .filter-title {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .filter-menu {
+        width: 100%;
     }
 }

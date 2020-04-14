@@ -8,12 +8,12 @@ import {substringOverview} from './movie-list.utils'
 
 import './movie-list.styles.scss'
 
-const MovieList = ({movies}) => {
+const MovieList = ({movies, handleMouseEnter}) => {
     
 return (
 <div className = 'movie-list-view'>
 {movies.map(movie => 
-    <div className='movie' key={movie.id}>
+    <div className='movie' key={movie.id} onMouseEnter = {() => handleMouseEnter(movie.id)}>
         <NavLink to ={`/movie/` + movie.id}>
 
         {/* Add a placeholder image if image === null  */}
