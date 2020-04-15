@@ -7,9 +7,11 @@ import placeholder from '../../images/placeholder.png';
 import StarRating from '../../components/star-rating/star-rating.component';
 import Spinner from '../../components/spinner/spinner.component'
 import Video from '../../components/video/video.component'
+import {DateString, GetYear} from '../../components/date-string/date-string.component'
+import GenreItem from '../../components/genre-item/genre-item.component'
+import BackButton from '../../components/back-button/back-button.component'
+import ImageWithPlaceholder from '../../components/image-with-placeholder/image-with-placeholder.component';
 
-import {stringDate} from '../../App'
-import {switchGenre} from './individula-movie.utils'
 import './individual-movie.styles.scss'
 
 const ShowMovie = ({history, match}) => {
@@ -39,19 +41,14 @@ const ShowMovie = ({history, match}) => {
   
   const toggleView = () => setShowMovie(!showMovie)
   
-  const goBack = () => history.goBack()
-
   return (
     <div className="show-movie">
     {movie && !isLoading ? (
        <div className='movie-show' style={showMovie ? {opacity : .2} : {opacity : 1}} key={movie.id}>
-            { movie.poster_path !== null ? 
-              <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className='movie-show-img' alt={movie.original_title}/>
-              : <img src={placeholder} className='movie-show-img' alt={movie.original_title}/>}
-
+           <ImageWithPlaceholder movie = {movie}/>
               <div className='movie-show-content'>
                   <h3 className='original-title'>{movie.original_title}</h3>
-                  <h5>{movie.release_date !== null && 'Release Date:'}<span> {stringDate(movie.release_date)}</span> </h5>
+                  <DateString date = {movie.release_date}>Release date:</DateString>
                   <StarRating movie = {movie} />
 
               <div className='website-link-div'>{movie.homepage ? (
@@ -65,14 +62,12 @@ const ShowMovie = ({history, match}) => {
                   <p className= 'movie-show-overview'>{movie.overview}</p>
                     <p className= 'genre-list'>
                       {genres.map(genre => (
-                        <li className='genre-list-item' key={genre.id}>
-                        <img className='genre-icon' src={switchGenre(genre.name)} alt={genre.name}/>
-                        {genre.name}</li>))}
+                        <GenreItem genre = {genre} />))}
                     </p>
               <div>
         
               <div className="nav_btns">
-                <button onClick = {goBack} className = 'back-btn'> <i className="fas fa-arrow-left"></i> Go back </button>
+                <BackButton />
                 <NavLink to={`/similar/${movie.id}`} className ='similarBtn'>See Similar <i className="fas fa-arrow-right"></i></NavLink>
               </div>
           </div>

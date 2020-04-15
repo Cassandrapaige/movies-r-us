@@ -45,7 +45,7 @@ const MovieView = ({history, url, title, error, num = 0}) => {
         .then(result => {
             setVideo(result.data.results[0].key)
         },(error => console.log(error)))
-    },[])
+    },[url])
 
     const next = pageNum => {
         setIsLoading(true)
@@ -56,8 +56,6 @@ const MovieView = ({history, url, title, error, num = 0}) => {
             setIsLoading(false)
         }, 500)
     }
-
-    const goBack = () => history.goBack()
 
     const numPages = Math.floor(total / 20)
 
@@ -109,7 +107,7 @@ const MovieView = ({history, url, title, error, num = 0}) => {
                     video = {video} />} 
             </div>
                 
-            : <ErrorMessage error = {error} goBack={goBack} />}  
+            : <ErrorMessage error = {error} />}  
         
             { total > 20 ? 
             <Pagination pages= {numPages} next={next} current = {current} /> : '' }  

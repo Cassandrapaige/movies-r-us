@@ -29,7 +29,7 @@ const Search = ({history}) => {
     }
 
     return (
-        <form className = {`search_form ${isVisible ? 'expand_search' : ''}`} onSubmit={handleSubmit}>
+        <form className = {`search_form ${isVisible ? 'expand_search' : 'closed_search'}`} onSubmit={handleSubmit}>
             <div className="input-field">
                 <input 
                     onClick = {toggleClass}

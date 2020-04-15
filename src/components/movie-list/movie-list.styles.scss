@@ -1,39 +1,4 @@
-  .movie-list-view {
-    width: 90%;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    animation: fadeIn 1s ease-in;
-  }
-  
-  .movie-list-view:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 20px;
-    margin-top: -20px;
-  }
-  
-  .movie {
-    transition: all .5s ease;
-    margin-bottom: 20px;
-    transform: translateY(50px);
-    opacity: 0;
-    animation: .5s slideUp ease forwards;
-    padding: 10px;
-    background: #161616;
-    box-shadow: 1px 3px 6px rgba(0,0,0,0.5);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
 
-  .movie:hover {
-    transform: scale(1.003);
-  }
-  
   .sm-arrow {
     padding-left: 5px;
     padding-top: 2px;
@@ -69,16 +34,19 @@
   
   .movie-img {
     width: 100%;
+    height: 300px;
     object-fit: cover;
   }
   
   .movie-link {
-    display: flex;
     color: var(--secondary-color);
     text-decoration: none;
     padding: 20px;
     background: var(--primary-color);
     width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 
     .fas {
       transition: all .5s ease;
@@ -131,14 +99,6 @@
   }
 
   
-  @for $i from 1 through 20 {
-    .movie {
-      &:nth-child(#{$i}) {
-        animation-delay: $i * (1s/ 25)
-      }
-    }
-  }
-  
 @keyframes slideUp {
     100% { transform: translateY(0); opacity: 1; }
 }
@@ -146,61 +106,6 @@
   /* --------------------------
       MEDIA QUERIES
   -------------------------- */
-  @media (max-width: 500px) {   
-    .movie:hover {
-      transform: scale(1);
-    }
-  
-    .movie {
-      margin: 10px auto;
-      height: auto;
-      padding: 0;
-      justify-content: start;
-
-      h5,
-      .movie-overview,
-      .movie-link,
-      .dv-star-rating, 
-      .dv-star-rating span, 
-      .zero-rating {
-        display: none;
-      }
-
-      .year-date {
-        display: block;
-        padding: 0;
-        justify-self: end;
-        font-size: 13px;
-      }    
-
-      .movie-link, h5{
-        display: none;
-      }
-    }
-
-    .movie-img {
-      height: 150px;
-    }
-
-    .movie-list-view {
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    }
-
-    .about-movie {
-      padding: 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-direction: column;
-      margin-bottom: -20px;
-    }
-
-    .movie-title {
-      font-size: 12px;
-      padding: 10px 3px;
-    }
-  }
-
 
   @media (max-width: 865px) {
     .play-button {

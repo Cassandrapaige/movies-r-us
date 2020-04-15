@@ -21,9 +21,7 @@ class ErrorHandler extends Component {
         if(redirect) return <Redirect to = {history.goBack()} />
         
         if (hasError) return (
-          <ErrorMessage 
-            goBack = {this.goBack} 
-            error='Ooops. Looks like something went wrong.' />
+          <ErrorMessage error='Ooops. Looks like something went wrong.' />
         )
         
         return children;
