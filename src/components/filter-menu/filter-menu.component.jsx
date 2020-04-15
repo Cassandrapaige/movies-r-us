@@ -6,7 +6,7 @@ import Video from '../video/video.component'
 
 import './filter-menu.styles.scss'
 
-const FilterMenu = ({children, handleClick, setIsOpen, isOpen, title, video}) => {
+const FilterMenu = ({children, handleClick, setIsOpen, isOpen, title, video, active}) => {
 
     const props = useSpring({
         config: config.gentle,
@@ -46,7 +46,10 @@ const FilterMenu = ({children, handleClick, setIsOpen, isOpen, title, video}) =>
                     </div>
                 </div>
                 <div className="filter_video">
-                    <iframe src={`https://www.youtube.com/embed/${video}`} autoplay='true'></iframe>
+                    {active ?
+                        <iframe src={`https://www.youtube.com/embed/${video}?autoplay=1&loop=1&autopause=0`} frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        :<iframe src={`https://www.youtube.com/embed/${video}?autoplay=1&loop=1&autopause=0`} frameborder="0" allowfullscreen></iframe>
+                    }
                 </div>
             <Search/>
         </div>

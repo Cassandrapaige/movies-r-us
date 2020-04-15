@@ -14,7 +14,7 @@ import FilterMenu from '../filter-menu/filter-menu.component'
 
 import './movie-view.styles.scss'
 
-const MovieView = ({history, url, title, error, num = 330}) => {
+const MovieView = ({history, url, title, error, num = 100}) => {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [current, setCurrent] = useState(1)
@@ -22,8 +22,9 @@ const MovieView = ({history, url, title, error, num = 330}) => {
     const [isOpen, setIsOpen] = useState(false)
     const [listTitle, setListTitle] = useState('Rating Descending')
     const [video, setVideo] = useState(null)
-    const [id, setId] = useState(454626)
-    // const filteredMovies = data => data.filter(e => e.genre_ids.includes(35))
+    const [id, setId] = useState(557)
+    const [isActive, setIsActive] = useState(false)
+
 
     useEffect(() => {
         setIsLoading(true)
@@ -36,13 +37,18 @@ const MovieView = ({history, url, title, error, num = 330}) => {
                 window.scrollTo(0, num)
             }, 500)
         })
-         axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
+         axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US`)
         .then(result => {
             setVideo(result.data.results[0].key)
         },(error => console.log(error)))
-    },[url, current])
+    },[url])
 
     const next = pageNum => {
+        setIsLoading(true)
+        setTimeout(() => {
+            window.scrollTo(0, num)
+            setIsLoading(false)
+        }, 500)
         setCurrent(pageNum)
     }
 
@@ -65,7 +71,8 @@ const MovieView = ({history, url, title, error, num = 330}) => {
     }
 
     const handleAutoPlay = id => {
-        axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
+        setIsActive(true)
+        axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US`)
         .then(result => {
             setVideo(result.data.results[0].key)
         })
@@ -75,6 +82,7 @@ const MovieView = ({history, url, title, error, num = 330}) => {
 
         <div className = 'movie-list-container'>
             <FilterMenu 
+                active = {isActive}
                 handleClick = {handleSort} 
                 setIsOpen = {setIsOpen} 
                 isOpen = {isOpen} 
@@ -85,7 +93,11 @@ const MovieView = ({history, url, title, error, num = 330}) => {
             { total !== 0 ?
 
             <div className='movie-list'>   
-                {isLoading ? <Spinner /> : <MovieList movies={movies} playVideo = {handleAutoPlay} video = {video} />} 
+                {isLoading ? <Spinner /> 
+                : <MovieList 
+                    movies={movies} 
+                    playVideo = {handleAutoPlay} 
+                    video = {video} />} 
             </div>
                 
             : <ErrorMessage error = {error} goBack={goBack} />}  

@@ -21,7 +21,7 @@ return (
                 <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} className='movie-img' alt={movie.original_title}/>
                 : <img src={placeholder} className='movie-img' alt={movie.original_title}/>}
             
-            {video?    
+            {video ?    
                 <div className="play-button">
                     <i class="far fa-play-circle" onClick = {() => playVideo(movie.id)}></i>
                 </div> : '' }

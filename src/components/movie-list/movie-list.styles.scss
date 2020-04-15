@@ -87,6 +87,44 @@
       }
     }
   }
+
+  .image {
+    position: relative;
+  }
+
+  .play-button {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    &:hover {
+        display: flex;
+        background: rgba(0,0,0,0.5);
+
+        .far {
+          animation: .5s grow ease forwards;
+        }
+    }
+
+    .far {
+      font-size: 70px;
+      opacity: 0;
+      transform: scale(.8);
+    }
+  }
+
+  @keyframes grow {
+    100% {
+      opacity: 1;
+      transform: scale(1)
+    }
+  }
+
   
   @for $i from 1 through 20 {
     .movie {
@@ -146,18 +184,9 @@
     }
   }
 
-  .image {
-    position: relative;
-  }
 
-  .play-button {
-    background: rgba(0,0,0,0.5);
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 60px;
+  @media (max-width: 865px) {
+    .play-button {
+      display: none;
+    }
   }
