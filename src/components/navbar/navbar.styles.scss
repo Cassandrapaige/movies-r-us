@@ -33,14 +33,8 @@
       height: 80px;
       display: flex;
       align-items: center;
-
-      &:hover {
-        .dropdown-content {
-          display: flex;
-          flex-direction: column;
-        }
-      }
-
+      transition: all .5s ease;
+      
     .dropBtn {
       background: none;
       font-size: 25px;
@@ -62,9 +56,7 @@
 }
 
 .nav-links {
-  .dropdown {
-    display: none !important;
-  }
+    display: flex;
 }
 }
 

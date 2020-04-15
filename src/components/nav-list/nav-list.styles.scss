@@ -2,10 +2,17 @@
     position: absolute;
     background: var(--secondary-color);
     z-index: 5000;
-    right: 30px;
+    right: 0px;
     padding: 30px;
     border-radius: 0px 0px 20px 20px;
     top: 80px;
+    transform: translateX(100%);
+    display: flex;
+    flex-direction: column;
+    transition: all 1s ease;
     box-shadow: 0px 3px 6px rgba(18, 18, 18, .5);
-    display: none;
+}
+
+.slide_in {
+    animation: .5s slideIn ease forwards;
 }

@@ -38,9 +38,7 @@ const MovieView = ({history, url, title, error, num = 330}) => {
         })
          axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
         .then(result => {
-            if(result.data.results[0].key.length) {
-                setVideo(result.data.results[0].key)
-            }
+            setVideo(result.data.results[0].key)
         },(error => console.log(error)))
     },[url, current])
 
@@ -66,13 +64,11 @@ const MovieView = ({history, url, title, error, num = 330}) => {
         }, 50)
     }
 
-    const handleMouseEnter = type => {
-        // axios.get('https://api.themoviedb.org/3/movie/' + type + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
-        // .then(result => {
-        //     if(result.data.results[0].key.length) {
-        //         setVideo(result.data.results[0].key)
-        //     }
-        // },(error => console.log(error)))
+    const handleAutoPlay = id => {
+        axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
+        .then(result => {
+            setVideo(result.data.results[0].key)
+        })
     }
     
     return (
@@ -89,7 +85,7 @@ const MovieView = ({history, url, title, error, num = 330}) => {
             { total !== 0 ?
 
             <div className='movie-list'>   
-                {isLoading ? <Spinner /> : <MovieList movies={movies} handleMouseEnter = {handleMouseEnter} />} 
+                {isLoading ? <Spinner /> : <MovieList movies={movies} playVideo = {handleAutoPlay} video = {video} />} 
             </div>
                 
             : <ErrorMessage error = {error} goBack={goBack} />}  

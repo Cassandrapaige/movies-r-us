@@ -9,8 +9,7 @@
       z-index: 500000;
   }
 
-  .hamburger-menu, 
-  .open {
+  .hamburger-menu {
       &-top,
       &-middle,
       &-bottom {
@@ -20,6 +19,18 @@
           transition: all .3s ease;
           display: none;
       }
+    }
+
+    .open {
+        &-top,
+        &-middle,
+        &-bottom {
+            position: absolute;
+            background: #fff;
+            height: 2px;
+            transition: all .3s ease;
+            display: none;
+        }
     }
 
     .hamburger-menu {
@@ -71,5 +82,4 @@
             display: block;
         }
       }
-  
   }

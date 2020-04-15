@@ -2,7 +2,7 @@
     width: 90%;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     animation: fadeIn 1s ease-in;
   }
@@ -144,4 +144,20 @@
     .movie-title {
       font-size: 12px;
     }
+  }
+
+  .image {
+    position: relative;
+  }
+
+  .play-button {
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
   }

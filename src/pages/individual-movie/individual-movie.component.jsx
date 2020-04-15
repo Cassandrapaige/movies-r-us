@@ -4,6 +4,8 @@ import axios from 'axios'
 
 import placeholder from '../../images/placeholder.png';
 
+import {stringDate} from '../../App'
+
 import StarRating from '../../components/star-rating/star-rating.component';
 import Spinner from '../../components/spinner/spinner.component'
 import Video from '../../components/video/video.component'
@@ -50,7 +52,7 @@ const ShowMovie = ({history, match}) => {
 
               <div className='movie-show-content'>
                   <h3 classNa me='original-title'>{movie.original_title}</h3>
-                  <h5>Release Date:<span> {movie.release_date}</span> </h5>
+                  <h5>{movie.release_date !== null && 'Release Date:'}<span> {stringDate(movie.release_date)}</span> </h5>
                   <StarRating movie = {movie} />
 
               <div className='website-link-div'>{movie.homepage ? (

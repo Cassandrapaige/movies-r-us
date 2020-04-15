@@ -46,7 +46,7 @@ const FilterMenu = ({children, handleClick, setIsOpen, isOpen, title, video}) =>
                     </div>
                 </div>
                 <div className="filter_video">
-                    <iframe src={`https://www.youtube.com/embed/${video}`} frameborder="0" autoplay allowfullscreen></iframe>
+                    <iframe src={`https://www.youtube.com/embed/${video}`} autoplay='true'></iframe>
                 </div>
             <Search/>
         </div>

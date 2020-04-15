@@ -10,8 +10,12 @@ import HamburgerMenu from '../hamburger-menu/hamburger-menu.component'
 const Navbar = ({history}) => {
 
     const [isOpen, setIsOpen] = useState(false)
+    const [isActive, setIsActive] = useState(false)
 
-    const toggleClass = () => setIsOpen(!isOpen)
+    const toggleClass = () => {
+        setIsOpen(!isOpen);
+        setIsActive(!isActive)
+    }
     return (
         <nav className = 'nav'>
         <NavLink to = '/'><h4 className='logo'>Movies R Us</h4></NavLink>
@@ -20,8 +24,8 @@ const Navbar = ({history}) => {
             <Search/>
             <HamburgerMenu isOpen = {isOpen} toggleClass= {toggleClass}/>
             <div className = 'dropdown'>
-               <button className = 'dropBtn'>Movies</button>
-               <NavList />
+               <button className = 'dropBtn' onClick = {toggleClass}>Movies</button>
+               <NavList active = {isActive} />
             </div>
        </div>       
     </nav>

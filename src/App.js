@@ -15,6 +15,15 @@ import SimilarView from './pages/SimilarView'
 import ShowMovie from './pages/individual-movie/individual-movie.component'
 import ErrorHandler from './components/error-handler/error-handler.component'
 
+export const stringDate = date => {
+  let splitDate = String(date).split('-')
+  let year = splitDate[0];
+  let month = Number(splitDate[1]);
+  let day = splitDate[2];
+  const months = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+  return `${months[month -1]} ${day} ${year}`
+}
+
 const App = ({query}) => {
 
     return (
