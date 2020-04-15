@@ -14,7 +14,7 @@ import FilterMenu from '../filter-menu/filter-menu.component'
 
 import './movie-view.styles.scss'
 
-const MovieView = ({history, url, title, error, num = 100}) => {
+const MovieView = ({history, url, title, error, num = 0}) => {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [current, setCurrent] = useState(1)
@@ -27,20 +27,20 @@ const MovieView = ({history, url, title, error, num = 100}) => {
 
 
     const getData = () => {
-        setIsLoading(true)
         axios.get(`${url}&page=${current}`)
         .then(result => {
             setMovies(result.data.results)
             setTotal(result.data.total_results)
-            setTimeout(() => {
-                setIsLoading(false)
-                window.scrollTo(0, num)
-            }, 500)
         },(error => console.log(error)))
     }
 
     useEffect(() => {
+        setIsLoading(true)
         getData();
+        setTimeout(() => {
+            setIsLoading(false)
+            window.scrollTo(0, 0)
+        }, 500)
          axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US`)
         .then(result => {
             setVideo(result.data.results[0].key)
@@ -48,8 +48,13 @@ const MovieView = ({history, url, title, error, num = 100}) => {
     },[])
 
     const next = pageNum => {
+        setIsLoading(true)
         getData()
         setCurrent(pageNum)
+        setTimeout(() => {
+            window.scrollTo(0, num)
+            setIsLoading(false)
+        }, 500)
     }
 
     const goBack = () => history.goBack()

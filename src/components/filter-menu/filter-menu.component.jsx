@@ -13,7 +13,7 @@ const FilterMenu = ({children, handleClick, setIsOpen, isOpen, title, video, act
         from: {
             height: '0px',
             transform: 'translateY(-100px)',
-            backgroundColor: '#161616'
+            backgroundColor: '#161616',
         },
         to: {
             height: isOpen ? '100%' : '0px',

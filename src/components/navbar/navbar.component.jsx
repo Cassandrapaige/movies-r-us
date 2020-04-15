@@ -16,6 +16,7 @@ const Navbar = ({history}) => {
         setIsOpen(!isOpen);
         setIsActive(!isActive)
     }
+    
     return (
         <nav className = 'nav'>
         <NavLink to = '/'><h4 className='logo'>Movies R Us</h4></NavLink>

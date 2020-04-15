@@ -12,6 +12,11 @@ import './movie-list.styles.scss'
 
 const MovieList = ({movies, playVideo, video}) => {
     
+const getYear = date => {
+    let splitDate = String(date).split('-')
+    return splitDate[0];
+}
+
 return (
 <div className = 'movie-list-view'>
 {movies.map(movie => 
@@ -33,7 +38,8 @@ return (
         <NavLink to ={`/movie/` + movie.id}> 
             <div className="about-movie">
                 <h4 className = 'movie-title'>{movie.original_title}</h4>
-                <h5>{stringDate(movie.release_date)}</h5>
+                <h5 className = 'string-date'>{stringDate(movie.release_date)}</h5>
+                <h5 className = 'year-date'>{getYear(movie.release_date)}</h5>
                 <StarRating movie = {movie} />
                 <p className = 'movie-overview'>{substringOverview(movie.overview)}</p>
             </div>

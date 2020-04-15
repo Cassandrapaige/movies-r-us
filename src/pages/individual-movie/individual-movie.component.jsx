@@ -4,12 +4,11 @@ import axios from 'axios'
 
 import placeholder from '../../images/placeholder.png';
 
-import {stringDate} from '../../App'
-
 import StarRating from '../../components/star-rating/star-rating.component';
 import Spinner from '../../components/spinner/spinner.component'
 import Video from '../../components/video/video.component'
 
+import {stringDate} from '../../App'
 import {switchGenre} from './individula-movie.utils'
 import './individual-movie.styles.scss'
 

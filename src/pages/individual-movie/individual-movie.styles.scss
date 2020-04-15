@@ -27,11 +27,11 @@
 
   .movie-show-img {
     transform-origin: bottom right;
-    animation: .5s fader ease forwards .9s;
+    animation: .5s fader ease forwards .5s;
     transform: scale(.7)
   }
   .movie-show-content {
-    animation: .5s fader ease forwards .5s;
+    animation: .5s fader ease forwards .9s;
     transform: translateY(100px)
   }
   @keyframes fader {
@@ -63,6 +63,7 @@
     font-size: 17px;
     padding: 10px 0 5px 0;
     color: var(--light-color);
+    font-weight: 500;
   }
 
   .movie-show-content p {
@@ -124,8 +125,7 @@
     border: 1px solid #fff;
     color: #fff;
     font-size: 17px;
-    margin-right: 15px;
-    padding: 12px 25px;
+    padding: 12px 18px;
     border-radius: 30px;
     outline: none;
     margin-top: 10px;
@@ -135,6 +135,7 @@
     text-transform: uppercase;
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
+    margin-left: 15px;
   }
 
   .icons8 {
@@ -152,8 +153,6 @@
       width: 100%;
   }
 }
-
-
 
 @media (max-width: 950px) {
   .movie-show-img {
@@ -188,5 +187,10 @@
   
   .movie-show-content {
     padding: 20px 0;
+  }
+
+  .original-title {
+    font-size: 22px;
+    line-height: 24px;
   }
 }

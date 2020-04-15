@@ -28,7 +28,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
   }
 
   .movie:hover {
@@ -52,6 +51,10 @@
     } 
   }
   
+  .year-date {
+    display: none;
+  }
+
   .movie-title {
     padding-bottom: 5px;
     font-size: 1em;
@@ -152,24 +155,31 @@
       margin: 10px auto;
       height: auto;
       padding: 0;
+      justify-content: start;
+
+      h5,
+      .movie-overview,
+      .movie-link,
+      .dv-star-rating, 
+      .dv-star-rating span, 
+      .zero-rating {
+        display: none;
+      }
+
+      .year-date {
+        display: block;
+        padding: 0;
+        justify-self: end;
+        font-size: 13px;
+      }    
+
+      .movie-link, h5{
+        display: none;
+      }
     }
 
     .movie-img {
-      object-fit: contain;
-      background: #2222;
-    }
-
-    h5,
-    .movie-overview,
-    .movie-link,
-    .dv-star-rating, 
-    .dv-star-rating span, 
-    .zero-rating {
-      display: none;
-    }
-
-    .movie-link, h5{
-      display: none;
+      height: 150px;
     }
 
     .movie-list-view {
@@ -178,11 +188,16 @@
 
     .about-movie {
       padding: 5px;
-      padding-top: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-direction: column;
+      margin-bottom: -20px;
     }
 
     .movie-title {
       font-size: 12px;
+      padding: 10px 3px;
     }
   }
 
