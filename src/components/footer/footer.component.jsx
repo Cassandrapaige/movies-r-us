@@ -40,7 +40,7 @@ const Footer = () => {
                     <h4>Join our newsletter</h4>
                     <form>
                         <input type="email" placeholder='E-mail' className='signUpForm'/>
-                        <input type="submit" value="Submit" className='submit'/>
+                        <button type="submit" className='submit'>Submit</button>
                     </form>
                 </div>
                 </div>

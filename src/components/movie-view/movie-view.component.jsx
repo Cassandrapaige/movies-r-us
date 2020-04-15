@@ -26,7 +26,7 @@ const MovieView = ({history, url, title, error, num = 100}) => {
     const [isActive, setIsActive] = useState(false)
 
 
-    useEffect(() => {
+    const getData = () => {
         setIsLoading(true)
         axios.get(`${url}&page=${current}`)
         .then(result => {
@@ -36,19 +36,19 @@ const MovieView = ({history, url, title, error, num = 100}) => {
                 setIsLoading(false)
                 window.scrollTo(0, num)
             }, 500)
-        })
+        },(error => console.log(error)))
+    }
+
+    useEffect(() => {
+        getData();
          axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US`)
         .then(result => {
             setVideo(result.data.results[0].key)
         },(error => console.log(error)))
-    },[url])
+    },[])
 
     const next = pageNum => {
-        setIsLoading(true)
-        setTimeout(() => {
-            window.scrollTo(0, num)
-            setIsLoading(false)
-        }, 500)
+        getData()
         setCurrent(pageNum)
     }
 
@@ -56,13 +56,17 @@ const MovieView = ({history, url, title, error, num = 100}) => {
 
     const numPages = Math.floor(total / 20)
 
-    const handleSort = (type, maths, event) => {
+    const sortByType = (type, maths, event) => {
         if(maths === 'ascending') {
             setMovies(movies.sort((a, b) => (a[type] > b[type]) - (a[type] < b[type])))
         }
         else if(maths === 'descending') {
             setMovies(movies.sort((a, b) => (a[type] < b[type]) - (a[type] > b[type])))
         } 
+    }
+
+    const handleSort = (type, maths, event) => {
+        sortByType(type, maths, event);
         setIsOpen(!isOpen)       
         setListTitle(event.target.textContent)
         setTimeout(() => {

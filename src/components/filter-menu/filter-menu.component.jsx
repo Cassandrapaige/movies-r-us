@@ -16,10 +16,10 @@ const FilterMenu = ({children, handleClick, setIsOpen, isOpen, title, video, act
             backgroundColor: '#161616'
         },
         to: {
-            height: isOpen ? '420px' : '0px',
+            height: isOpen ? '100%' : '0px',
             transform: isOpen ? 'translateY(0px)' : 'translateY(-100px)'
         },
-        duration: 2000
+        duration: 500
     })
 
     return (
@@ -48,7 +48,7 @@ const FilterMenu = ({children, handleClick, setIsOpen, isOpen, title, video, act
                 <div className="filter_video">
                     {active ?
                         <iframe src={`https://www.youtube.com/embed/${video}?autoplay=1&loop=1&autopause=0`} frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                        :<iframe src={`https://www.youtube.com/embed/${video}?autoplay=1&loop=1&autopause=0`} frameborder="0" allowfullscreen></iframe>
+                        :<iframe src={`https://www.youtube.com/embed/${video}`}></iframe>
                     }
                 </div>
             <Search/>

@@ -21,18 +21,18 @@ const ShowMovie = ({history, match}) => {
   const [genres, setGenres] = useState([])
 
   useEffect(() => {
+    setIsLoading(true);
     setTimeout(() => {
       window.scrollTo(0, 100)
-  }, 50)
-    setIsLoading(true);
+  }, 100)
     let id = match.params.movie_id;
-    axios.get('https://api.themoviedb.org/3/movie/' + id + '?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
+    axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US`)
     .then(result => {
       setMovie(result.data);
-      setIsLoading(false)
       setGenres(result.data.genres)
+      setIsLoading(false)
     })
-    axios.get('https://api.themoviedb.org/3/movie/' + id + '/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US')
+    axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US`)
     .then(result => {
       setVideo(result.data.results[0].key)
     },(error => console.log(error)))
@@ -44,14 +44,14 @@ const ShowMovie = ({history, match}) => {
 
   return (
     <div className="show-movie">
-    {movie ? (
+    {movie && !isLoading ? (
        <div className='movie-show' style={showMovie ? {opacity : .2} : {opacity : 1}} key={movie.id}>
             { movie.poster_path !== null ? 
               <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className='movie-show-img' alt={movie.original_title}/>
               : <img src={placeholder} className='movie-show-img' alt={movie.original_title}/>}
 
               <div className='movie-show-content'>
-                  <h3 classNa me='original-title'>{movie.original_title}</h3>
+                  <h3 className='original-title'>{movie.original_title}</h3>
                   <h5>{movie.release_date !== null && 'Release Date:'}<span> {stringDate(movie.release_date)}</span> </h5>
                   <StarRating movie = {movie} />
 
@@ -60,7 +60,7 @@ const ShowMovie = ({history, match}) => {
                     <i className="fas fa-link"></i> Website</a> 
                ) : null}
                     
-                  {video && <button onClick = {toggleView} className = 'trailer'><i class="fas fa-play"></i> Play Trailer </button> }
+                  {video && <button onClick = {toggleView} className = 'trailer'><i className="fas fa-play"></i> Play Trailer </button> }
               </div>
                   <h6>Overview</h6>
                   <p className= 'movie-show-overview'>{movie.overview}</p>
@@ -73,13 +73,13 @@ const ShowMovie = ({history, match}) => {
               <div>
         
               <div className="nav_btns">
-                <button onClick = {goBack} className = 'back-btn'> <i class="fas fa-arrow-left"></i> Go back </button>
-                <NavLink to={`/similar/${movie.id}`} className ='similarBtn'>See Similar <i class="fas fa-arrow-right"></i></NavLink>
+                <button onClick = {goBack} className = 'back-btn'> <i className="fas fa-arrow-left"></i> Go back </button>
+                <NavLink to={`/similar/${movie.id}`} className ='similarBtn'>See Similar <i className="fas fa-arrow-right"></i></NavLink>
               </div>
           </div>
       </div>           
   </div> 
-  ) : 'Nothing here'}
+  ) : <Spinner />}
     { video && showMovie && 
       <Video video = {video} toggleView={toggleView} /> } 
   </div>

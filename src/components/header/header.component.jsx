@@ -11,7 +11,7 @@ const Header = () => {
         axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`)
         .then(result => {
             setMovies(result.data.results[2])
-        }).catch(error => console.log(error))
+        },(error => console.log(error)))
     },[])
 
     return (
