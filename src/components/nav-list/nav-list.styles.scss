@@ -16,13 +16,5 @@
 }
 
 .slide_in {
-    animation: .5s scaler ease forwards;
-}
-
-
-@keyframes scaler {
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+    animation: .5s grow ease forwards;
 }

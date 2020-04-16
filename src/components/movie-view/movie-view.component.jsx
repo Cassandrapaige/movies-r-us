@@ -13,6 +13,7 @@ import MovieList from '../movie-list/movie-list.component'
 import Spinner from '../spinner/spinner.component'
 import ErrorMessage from '../error-message/error-message.component'
 import FilterMenu from '../filter-menu/filter-menu.component'
+import BackButton from '../back-button/back-button.component'
 
 import './movie-view.styles.scss'
 
@@ -43,14 +44,14 @@ const MovieView = ({history, url, title, error, num = 0}) => {
     useEffect(() => {
         setIsLoading(true)
         getData()
-        scrollToTop(0, 500, {setIsLoading})
+        scrollToTop(0, 500, setIsLoading)
     },[url])
 
     const next = pageNum => {
         setIsLoading(true)
         getData()
         setCurrent(pageNum)
-        scrollToTop(num, 500, {setIsLoading})
+        scrollToTop(num, 500, setIsLoading)
     }
 
     const sortByType = (type, maths, event) => {
@@ -65,7 +66,7 @@ const MovieView = ({history, url, title, error, num = 0}) => {
 
         setIsOpen(!isOpen)       
         setListTitle(event.target.textContent)
-        scrollToTop(num, 50, {setIsLoading})
+        scrollToTop(num, 50, setIsLoading)
     }
 
     const numPages = Math.floor(total / 20)
@@ -86,7 +87,10 @@ const MovieView = ({history, url, title, error, num = 0}) => {
                 isLoading= {isLoading}
                 movies={movies} 
                 action = {fetchVideo}/>               
-            : <ErrorMessage error = {error} />}  
+            : 
+            <ErrorMessage error = {error}> 
+                <BackButton />
+            </ErrorMessage>}  
         
             { total > 20 ? 
             <Pagination pages= {numPages} next={next} current = {current} /> : '' }  

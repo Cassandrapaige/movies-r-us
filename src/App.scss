@@ -18,6 +18,7 @@
   background: var(--primary-color);
   color: var(--text-color);
 }
+
 .container {
   max-width: 1600px;
   margin: auto;
@@ -45,19 +46,6 @@ a {
   color: #fff;
 }
 
-// .homepage-container {
-//   .filter-menu {
-//     display: none;
-//   }
-
-//   .movie-list {
-//     grid-column: 1/-1;
-// }
-
-//   .pagination {
-//     grid-column: 1/-1;
-//   }
-// }
 
 /* ANIMATIONS */
 
@@ -70,6 +58,26 @@ a {
   }
 }
 
+@keyframes fader {
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1)
+  }
+}
+
+@keyframes slideIn {
+  100% {
+      transform: translate(0, 0);
+      opacity: 1
+  }
+}
+
+@keyframes grow {
+  100% {
+    opacity: 1;
+    transform: scale(1)
+  }
+}
 
   /* --------------------------
       MEDIA QUERIES

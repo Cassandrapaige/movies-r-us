@@ -1,0 +1,63 @@
+.movie {
+    transition: all .5s ease;
+    transform: translate(0, 50px);
+    opacity: 0;
+    animation: .5s slideIn ease forwards;
+    padding: 10px;
+    background: #161616;
+    box-shadow: 1px 3px 6px rgba(0,0,0,0.5);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 60px;
+
+    &:hover {
+        transform: scale(1.003);
+    }
+  }
+
+  @for $i from 1 through 20 {
+    .movie {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * (1s/ 25);
+      }
+    }
+  }
+
+  @media (max-width: 500px) {  
+
+    .movie {
+      margin: 5px auto;
+      height: auto;
+      padding-bottom: 28px;
+      justify-content: start;
+      padding: 0;
+
+      .year-date {
+        display: block;
+        padding: 5px;
+        font-size: 13px;
+        position: absolute;
+        bottom: 5px;
+      } 
+
+      img {
+        height: 150px;
+      }
+  
+      .movie-title {
+        font-size: 12px;
+        padding: 5px;
+      }
+
+      h5,
+      .movie-overview,
+      .movie-link,
+      .dv-star-rating, 
+      .dv-star-rating span, 
+      .zero-rating{
+        display: none;
+      }
+    }
+  }
+

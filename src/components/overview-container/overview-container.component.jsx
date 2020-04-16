@@ -4,6 +4,8 @@ import StarRating from '../star-rating/star-rating.component';
 import Substring from '../substring-text/substring-text.component'
 import {DateString, GetYear} from '../date-string/date-string.component'
 
+import './overview-container.styles.scss'
+
 const OverviewContainer = ({movie}) => {
     return (
         <section className="about-movie">

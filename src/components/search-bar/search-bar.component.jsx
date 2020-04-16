@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {withRouter, NavLink} from 'react-router-dom'
+import {scrollToTop} from '../../App'
 
 import './search-bar.styles.scss'
 
@@ -16,9 +17,7 @@ const Search = ({history}) => {
             search: joinQuery(value)
         })
         setValue('')
-        setTimeout(() => {
-            window.scrollTo(0, 0)
-        }, 50)
+        scrollToTop(0, 50)
     }
 
     const handleChange = event => setValue(event.target.value)
@@ -29,7 +28,7 @@ const Search = ({history}) => {
     }
 
     return (
-        <form className = {`search_form ${isVisible ? 'expand_search' : 'closed_search'}`} onSubmit={handleSubmit}>
+        <form className = {`search_form ${isVisible && 'expand_search'}`} onSubmit={handleSubmit}>
             <div className="input-field">
                 <input 
                     onClick = {toggleClass}

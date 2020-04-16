@@ -3,11 +3,6 @@
     grid-template-columns: 350px 1fr;
 }
 
-.movie-list {
-    grid-column: 2/-1;
-    margin-top: 50px;
-}
-
 .list-title {
     font-weight: 600;
     margin-left: 50px;
@@ -22,12 +17,6 @@
         left: -50px;
         top: 50%;
         transform: translateY(-50%)
-    }
-}
-
-@media (max-width: 865px) {
-    .movie-list {
-        grid-column: 1/-1;
     }
 }
 

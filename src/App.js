@@ -15,9 +15,9 @@ import SimilarView from './pages/SimilarView'
 import ShowMovie from './pages/individual-movie/individual-movie.component'
 import ErrorHandler from './components/error-handler/error-handler.component'
 
-export const scrollToTop = (num, timeout, {setIsLoading}) => {
+export const scrollToTop = (num, timeout, setIsLoading) => {
  return setTimeout(() => {
-    setIsLoading(false)
+    if(setIsLoading) setIsLoading(false)
     window.scrollTo(0, num)
 }, timeout)
 }
@@ -28,14 +28,14 @@ const App = () => {
         <div className="container">
           <Navbar />
           <Switch>
+            <ErrorHandler>
               <Route exact path = '/' component = { Homepage } />
               <Route exact path= '/popular' component = { PopularView } />
               <Route exact path= '/top-rated' component = { TopRatedView } />
               <Route exact path= '/new' component = { NowPlayingView } />
-              <ErrorHandler>
-                <Route exact path= '/search' component = { SearchView} />
-                <Route exact path= '/similar/:movie_id' component = { SimilarView } />
-                <Route exact path= '/movie/:movie_id' component = { ShowMovie } />
+              <Route exact path= '/search' component = { SearchView} />
+              <Route exact path= '/similar/:movie_id' component = { SimilarView } />
+              <Route exact path= '/movie/:movie_id' component = { ShowMovie } />
             </ErrorHandler>
           </Switch>
           <Footer />

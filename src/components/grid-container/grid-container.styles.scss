@@ -2,11 +2,14 @@
     width: 90%;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
     animation: fadeIn 1s ease-in;
+    grid-column: 2/-1;
+    margin-top: 50px;
+    min-height: 100vh;
   }
-  
+
   .grid-container:after {
     content: '';
     display: block;
@@ -15,10 +18,16 @@
     margin-top: -20px;
   }
   
+  @media (max-width: 865px) {
+    .grid-container {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        grid-column: 1/-1;
+    }
+  }
+  
   @media (max-width: 500px) {   
     .grid-container {
       grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       gap: 5px;
     }
-
   }
