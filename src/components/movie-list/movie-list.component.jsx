@@ -5,14 +5,13 @@ import PlayButton from '../play-button/play-button.component'
 import ImageWithPlaceholder from '../image-with-placeholder/image-with-placeholder.component';
 import Spinner from '../spinner/spinner.component'
 import OverviewContainer from '../overview-container/overview-container.component'
-import GridContainer from '../grid-container/grid-container.component'
 import CardContainer from '../card-container/card-container.component'
 
 import './movie-list.styles.scss'
 
 const MovieList = ({movies, action, isLoading}) => {
 return (
-    <GridContainer>
+    <section className="grid-container">
     {isLoading ? <Spinner /> :
         <>{movies.map(movie => 
             <CardContainer key={movie.id}>
@@ -30,7 +29,7 @@ return (
                 </NavLink>      
             </CardContainer>
         )}</>}
-        </GridContainer>
+        </section>
 )}
 
 export default MovieList;
