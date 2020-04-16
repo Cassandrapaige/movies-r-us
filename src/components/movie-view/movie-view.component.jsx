@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { NavLink, withRouter } from 'react-router-dom'
 
+import { scrollToTop } from '../../App'
+
 /* MOVIEDB API KEY*/
 import {API_KEY} from '../../base'
 
@@ -19,12 +21,9 @@ const MovieView = ({history, url, title, error, num = 0}) => {
     const [isLoading, setIsLoading] = useState(false)
     const [current, setCurrent] = useState(1)
     const [total, setTotal] = useState() 
+    const [video, setVideo] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
     const [listTitle, setListTitle] = useState('Rating Descending')
-    const [video, setVideo] = useState(null)
-    const [id, setId] = useState(557)
-    const [isActive, setIsActive] = useState(false)
-
 
     const getData = () => {
         axios.get(`${url}&page=${current}`)
@@ -34,79 +33,59 @@ const MovieView = ({history, url, title, error, num = 0}) => {
         },(error => console.log(error)))
     }
 
-    useEffect(() => {
-        setIsLoading(true)
-        getData();
-        setTimeout(() => {
-            setIsLoading(false)
-            window.scrollTo(0, 0)
-        }, 500)
-         axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US`)
+    const fetchVideo = id => {
+        axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
         .then(result => {
             setVideo(result.data.results[0].key)
         },(error => console.log(error)))
+    }
+
+    useEffect(() => {
+        setIsLoading(true)
+        getData()
+        scrollToTop(0, 500, {setIsLoading})
     },[url])
 
     const next = pageNum => {
         setIsLoading(true)
         getData()
         setCurrent(pageNum)
-        setTimeout(() => {
-            window.scrollTo(0, num)
-            setIsLoading(false)
-        }, 500)
+        scrollToTop(num, 500, {setIsLoading})
     }
 
-    const numPages = Math.floor(total / 20)
-
     const sortByType = (type, maths, event) => {
+        setIsLoading(true)
+
         if(maths === 'ascending') {
             setMovies(movies.sort((a, b) => (a[type] > b[type]) - (a[type] < b[type])))
         }
         else if(maths === 'descending') {
             setMovies(movies.sort((a, b) => (a[type] < b[type]) - (a[type] > b[type])))
         } 
-    }
 
-    const handleSort = (type, maths, event) => {
-        sortByType(type, maths, event);
         setIsOpen(!isOpen)       
         setListTitle(event.target.textContent)
-        setTimeout(() => {
-            window.scrollTo(0, num)
-        }, 50)
+        scrollToTop(num, 50, {setIsLoading})
     }
 
-    const handleAutoPlay = id => {
-        setIsActive(true)
-        axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=70dcc58955640e84f5c3ea8e6d2b9ade&language=en-US`)
-        .then(result => {
-            setVideo(result.data.results[0].key)
-        })
-    }
-    
+    const numPages = Math.floor(total / 20)
+
     return (
-
         <div className = 'movie-list-container'>
             <FilterMenu 
-                active = {isActive}
-                handleClick = {handleSort} 
-                setIsOpen = {setIsOpen} 
-                isOpen = {isOpen} 
+                action = {sortByType}
                 video = {video}
+                setIsOpen ={setIsOpen}
+                isOpen = {isOpen}
                 title = {listTitle}>
                 <h2 className = 'list-title'>{title}</h2>
             </FilterMenu>
+            
             { total !== 0 ?
-
-            <div className='movie-list'>   
-                {isLoading ? <Spinner /> 
-                : <MovieList 
-                    movies={movies} 
-                    playVideo = {handleAutoPlay} 
-                    video = {video} />} 
-            </div>
-                
+            <MovieList 
+                isLoading= {isLoading}
+                movies={movies} 
+                action = {fetchVideo}/>               
             : <ErrorMessage error = {error} />}  
         
             { total > 20 ? 

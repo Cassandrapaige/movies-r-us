@@ -4,9 +4,10 @@ import {useSpring, config, animated} from 'react-spring'
 import Search from '../search-bar/search-bar.component'
 import Video from '../video/video.component'
 
+import scrollToTop from '../../App'
 import './filter-menu.styles.scss'
 
-const FilterMenu = ({children, handleClick, setIsOpen, isOpen, title, video, active}) => {
+const FilterMenu = ({children, video, action, setIsOpen, isOpen, title}) => {
 
     const props = useSpring({
         config: config.gentle,
@@ -34,22 +35,19 @@ const FilterMenu = ({children, handleClick, setIsOpen, isOpen, title, video, act
                         </div>
                         {isOpen ?  (
                         <animated.ul style={props} className = 'dropdown-list'>
-                            <li onClick = {(e) => handleClick('vote_average','ascending', e)}>Rating Ascending</li>
-                            <li onClick = {(e) => handleClick('vote_average','descending', e)}>Rating Descending</li>
-                            <li onClick = {(e) => handleClick('release_date','ascending', e)}>Release Date Ascending</li>
-                            <li onClick = {(e) => handleClick('release_date','descending', e)}>Release Date Descending</li>
-                            <li onClick = {(e) => handleClick('original_title','ascending', e)}>Title (A-Z)</li>
-                            <li onClick = {(e) => handleClick('original_title','descending', e)}>Title (Z-A)</li>
+                            <li onClick = {(e) => action('vote_average','ascending', e)}>Rating Ascending</li>
+                            <li onClick = {(e) => action('vote_average','descending', e)}>Rating Descending</li>
+                            <li onClick = {(e) => action('release_date','ascending', e)}>Release Date Ascending</li>
+                            <li onClick = {(e) => action('release_date','descending', e)}>Release Date Descending</li>
+                            <li onClick = {(e) => action('original_title','ascending', e)}>Title (A-Z)</li>
+                            <li onClick = {(e) => action('original_title','descending', e)}>Title (Z-A)</li>
                         </animated.ul>
                         
                         ): '' }
                     </div>
                 </div>
                 <div className="filter_video">
-                    {active ?
-                        <iframe src={`https://www.youtube.com/embed/${video}?autoplay=1&loop=1&autopause=0`} frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                        :<iframe src={`https://www.youtube.com/embed/${video}`}></iframe>
-                    }
+                    <iframe src={`https://www.youtube.com/embed/${video}?autoplay=1&loop=1&autopause=0`} frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
                 </div>
             <Search/>
         </div>

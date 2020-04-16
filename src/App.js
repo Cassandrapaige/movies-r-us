@@ -15,6 +15,12 @@ import SimilarView from './pages/SimilarView'
 import ShowMovie from './pages/individual-movie/individual-movie.component'
 import ErrorHandler from './components/error-handler/error-handler.component'
 
+export const scrollToTop = (num, timeout, {setIsLoading}) => {
+ return setTimeout(() => {
+    setIsLoading(false)
+    window.scrollTo(0, num)
+}, timeout)
+}
 const App = () => {
 
     return (

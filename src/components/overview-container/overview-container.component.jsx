@@ -1,9 +1,18 @@
 import React from 'react'
 
-const OverviewContainer = ({children}) => {
+import StarRating from '../star-rating/star-rating.component';
+import Substring from '../substring-text/substring-text.component'
+import {DateString, GetYear} from '../date-string/date-string.component'
+
+const OverviewContainer = ({movie}) => {
     return (
         <section className="about-movie">
-            {children}
+            <h4 className = 'movie-title'>{movie.original_title}</h4>
+            <DateString date = {movie.release_date} />
+            {/* Only show year on mobile view */}
+            <GetYear date = {movie.release_date} />
+            <StarRating movie = {movie} />
+            <Substring text = {movie.overview} />
         </section>
     )
 }

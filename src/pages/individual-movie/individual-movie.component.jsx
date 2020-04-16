@@ -44,7 +44,7 @@ const ShowMovie = ({history, match}) => {
   return (
     <div className="show-movie">
     {movie && !isLoading ? (
-       <div className='movie-show' style={showMovie ? {opacity : .2} : {opacity : 1}} key={movie.id}>
+       <div className='movie-show' key={movie.id}>
            <ImageWithPlaceholder movie = {movie}/>
               <div className='movie-show-content'>
                   <h3 className='original-title'>{movie.original_title}</h3>
