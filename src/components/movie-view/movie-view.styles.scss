@@ -1,6 +1,15 @@
 .movie-list-container {
-    display: grid;
-    grid-template-columns: 350px 1fr;
+    .video {
+        position: fixed;
+        bottom: -20%;
+        left: 0;
+        transform: translate(0, 0);
+        height: 350px;
+    }
+
+    iframe {
+        width: 450px;
+    }
 }
 
 .list-title {

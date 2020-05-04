@@ -3,12 +3,17 @@
   margin: 50px 0px 100px 0px;
   grid-column: 2/-1;
   width: 100%;
+
   ul {
     list-style-type: none;
     display: flex;
     justify-content: center;
   }
 
+  li {
+    cursor: pointer;
+  }
+  
   .pageLinks {
     margin: 5px;
     padding: 10px;

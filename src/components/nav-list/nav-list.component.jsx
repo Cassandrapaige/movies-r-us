@@ -9,9 +9,9 @@ const NavList = ({active}) => {
 
     return (
     <animated.div className = {`dropdown-content ${active && 'slide_in'}`}>
-        <NavItem text = 'Now Playing' link='/new' />
-        <NavItem text = 'Most Popular' link='/popular' />
-        <NavItem text = 'Top Rated' link='/top-rated'/>
+        <NavItem text = 'Now Playing' link='/movies/new' />
+        <NavItem text = 'Most Popular' link='/movies/popular' />
+        <NavItem text = 'Top Rated' link='/movies/top-rated'/>
     </animated.div>
 )
 }

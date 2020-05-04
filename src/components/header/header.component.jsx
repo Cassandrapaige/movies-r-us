@@ -15,7 +15,7 @@ const Header = () => {
     },[])
 
     return (
-        <header className = 'main-header' style= {{ backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movies.poster_path})`}}>
+        <header className = 'main-header' style= {{ backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movies.backdrop_path})`}}>
             <div className = 'header-content'>
                 <h1 className='header-title'>Where <span className= 'slogan'>Movies</span> Are A Big Deal</h1>
                 <p>Browse through hundreds of movies or search for your favourites to find ones that are similar</p>

@@ -9,9 +9,10 @@ import CardContainer from '../card-container/card-container.component'
 
 import './movie-list.styles.scss'
 
-const MovieList = ({movies, action, isLoading}) => {
+const MovieList = ({movies, action, isLoading,children}) => {
 return (
     <section className="grid-container">
+    {children}
     {isLoading ? <Spinner /> :
         <>{movies.map(movie => 
             <CardContainer key={movie.id}>

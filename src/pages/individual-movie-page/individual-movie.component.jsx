@@ -31,7 +31,7 @@ const ShowMovie = ({history, match}) => {
     .then(result => {
       setMovie(result.data);
       setGenres(result.data.genres)
-      scrollToTop(100, 50, setIsLoading)
+      scrollToTop(100, 500, setIsLoading)
     })
     axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
     .then(result => {

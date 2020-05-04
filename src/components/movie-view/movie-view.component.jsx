@@ -14,6 +14,7 @@ import Spinner from '../spinner/spinner.component'
 import ErrorMessage from '../error-message/error-message.component'
 import FilterMenu from '../filter-menu/filter-menu.component'
 import BackButton from '../back-button/back-button.component'
+import Video from '../video/video.component'
 
 import './movie-view.styles.scss'
 
@@ -38,21 +39,17 @@ const MovieView = ({history, url, title, error, num = 0}) => {
         axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
         .then(result => {
             setVideo(result.data.results[0].key)
+            setIsOpen(true)
         },(error => console.log(error)))
     }
 
     useEffect(() => {
         setIsLoading(true)
         getData()
-        scrollToTop(0, 500, setIsLoading)
-    },[url])
+        scrollToTop(0, 50, setIsLoading)
+    },[url, current])
 
-    const next = pageNum => {
-        setIsLoading(true)
-        getData()
-        setCurrent(pageNum)
-        scrollToTop(num, 500, setIsLoading)
-    }
+    const next = pageNum => setCurrent(pageNum)
 
     const sortByType = (type, maths, event) => {
         setIsLoading(true)
@@ -73,20 +70,19 @@ const MovieView = ({history, url, title, error, num = 0}) => {
 
     return (
         <div className = 'movie-list-container'>
-            <FilterMenu 
-                action = {sortByType}
-                video = {video}
-                setIsOpen ={setIsOpen}
-                isOpen = {isOpen}
-                title = {listTitle}>
-                <h2 className = 'list-title'>{title}</h2>
-            </FilterMenu>
-            
+            {
+                isOpen &&
+                <Video video = {video} toggleView = {() => setIsOpen(!isOpen)}/>
+            }
+
             { total !== 0 ?
+            
             <MovieList 
                 isLoading= {isLoading}
                 movies={movies} 
-                action = {fetchVideo}/>               
+                action = {fetchVideo}>
+                <h1>{title}</h1>
+            </MovieList>              
             : 
             <ErrorMessage error = {error}> 
                 <BackButton />
@@ -98,5 +94,4 @@ const MovieView = ({history, url, title, error, num = 0}) => {
     )
 }         
     
-
 export default withRouter(MovieView);
