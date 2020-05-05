@@ -16,15 +16,7 @@ import SimilarView from './pages/similar-movies-page'
 import ShowMovie from './pages/individual-movie-page/individual-movie.component'
 import MoviesPage from './pages/movies-page/movies-page.component';
 
-export const scrollToTop = (num, timeout, setIsLoading) => {
-
- return setTimeout(() => {
-    if(setIsLoading) setIsLoading(false)
-    window.scrollTo(0, num)
-}, timeout)
-}
 const App = () => {
-
     return (
       <BrowserRouter>
         <div className="container">

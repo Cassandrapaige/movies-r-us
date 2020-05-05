@@ -1,4 +1,7 @@
 .movie-list-container {
+    min-height: 100vh;
+    margin-bottom: 50px;
+    
     .video {
         position: fixed;
         bottom: -20%;

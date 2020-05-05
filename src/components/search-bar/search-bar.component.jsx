@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import {withRouter, NavLink} from 'react-router-dom'
-import {scrollToTop} from '../../App'
 
 import './search-bar.styles.scss'
 
@@ -17,7 +16,6 @@ const Search = ({history}) => {
             search: joinQuery(value)
         })
         setValue('')
-        scrollToTop(0, 50)
     }
 
     const handleChange = event => setValue(event.target.value)

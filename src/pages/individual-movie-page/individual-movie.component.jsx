@@ -13,7 +13,6 @@ import {DateString} from '../../components/date-string/date-string.component'
 import GenreItems from '../../components/genre-items/genre-items.component'
 import BackButton from '../../components/back-button/back-button.component'
 import ImageWithPlaceholder from '../../components/image-with-placeholder/image-with-placeholder.component';
-import {scrollToTop} from '../../App'
 
 import './individual-movie.styles.scss'
 
@@ -31,7 +30,10 @@ const ShowMovie = ({history, match}) => {
     .then(result => {
       setMovie(result.data);
       setGenres(result.data.genres)
-      scrollToTop(100, 500, setIsLoading)
+      window.scrollTo(0, 0);
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 500)
     })
     axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
     .then(result => {

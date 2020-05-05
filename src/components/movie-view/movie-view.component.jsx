@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { NavLink, withRouter } from 'react-router-dom'
 
-import { scrollToTop } from '../../App'
-
 /* MOVIEDB API KEY*/
 import {API_KEY} from '../../base'
 
@@ -12,7 +10,6 @@ import Pagination from '../pagination/pagination.component'
 import MovieList from '../movie-list/movie-list.component'
 import Spinner from '../spinner/spinner.component'
 import ErrorMessage from '../error-message/error-message.component'
-import FilterMenu from '../filter-menu/filter-menu.component'
 import BackButton from '../back-button/back-button.component'
 import Video from '../video/video.component'
 
@@ -28,10 +25,12 @@ const MovieView = ({history, url, title, error, num = 0}) => {
     const [listTitle, setListTitle] = useState('Rating Descending')
 
     const getData = () => {
+        setIsLoading(true)
         axios.get(`${url}&page=${current}`)
         .then(result => {
             setMovies(result.data.results)
             setTotal(result.data.total_results)
+            setIsLoading(false)
         },(error => console.log(error)))
     }
 
@@ -45,26 +44,28 @@ const MovieView = ({history, url, title, error, num = 0}) => {
 
     useEffect(() => {
         setIsLoading(true)
-        getData()
-        scrollToTop(0, 50, setIsLoading)
-    },[url, current])
+        axios.get(`${url}&page=${current}`)
+        .then(result => {
+            setMovies(result.data.results)
+            setTotal(result.data.total_results)
+
+        // Account for landing on homepage for first time
+        // num will be set to scroll to 800px (past header image) when navigating using pagination
+        if(current > 1) {
+            window.scrollTo(0, num);
+            setTimeout(() => {
+              setIsLoading(false)
+            }, 500)
+        } else {
+            window.scrollTo(0, 0);
+            setTimeout(() => {
+              setIsLoading(false)
+            }, 500)
+        }
+        },(error => console.log(error)))
+    },[current, url])
 
     const next = pageNum => setCurrent(pageNum)
-
-    const sortByType = (type, maths, event) => {
-        setIsLoading(true)
-
-        if(maths === 'ascending') {
-            setMovies(movies.sort((a, b) => (a[type] > b[type]) - (a[type] < b[type])))
-        }
-        else if(maths === 'descending') {
-            setMovies(movies.sort((a, b) => (a[type] < b[type]) - (a[type] > b[type])))
-        } 
-
-        setIsOpen(!isOpen)       
-        setListTitle(event.target.textContent)
-        scrollToTop(num, 50, setIsLoading)
-    }
 
     const numPages = Math.floor(total / 20)
 
