@@ -13,3 +13,9 @@
         color: var(--primary-color);
     }
 }
+
+@media (max-width: 900px) { 
+    .genres-btn {
+        display: none;
+    }
+}

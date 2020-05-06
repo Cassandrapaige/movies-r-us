@@ -21,6 +21,7 @@ const App = () => {
     return (
       <BrowserRouter>
         <div className="container">
+          <div className="inner-container">
           <Navbar />
           <Switch>
             <ErrorHandler>
@@ -32,6 +33,7 @@ const App = () => {
               <Route exact path= '/movie/:movie_id' component = { ShowMovie } />
             </ErrorHandler>
           </Switch>
+          </div>
           <Footer />
         </div>
       </BrowserRouter>

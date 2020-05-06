@@ -38,20 +38,10 @@ const MovieView = ({history, url, title, error, num = 120}) => {
         .then(result => {
             setMovies(result.data.results)
             setTotal(result.data.total_results)
-
-        // Account for landing on homepage for first time
-        // num will be set to scroll to 800px (past header image) when navigating using pagination
-        if(current > 1) {
-            window.scrollTo(0, num);
-            setTimeout(() => {
-              setIsLoading(false)
-            }, 500)
-        } else {
             window.scrollTo(0, 0);
             setTimeout(() => {
               setIsLoading(false)
-            }, 50)
-        }
+            }, 500)
         },(error => console.log(error)))
     },[current, url])
 

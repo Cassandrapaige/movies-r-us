@@ -3,10 +3,10 @@
       height: 35px;
       width: 45px;
       top: 28px;
-      display: flex;
+      display: none;
       justify-content: flex-end;
       transition: all .5s ease;
-      z-index: 500000;
+      z-index: 500;
   }
 
   .hamburger-menu {
@@ -66,13 +66,14 @@
       }
   }
 
-  @media (max-width: 550px) { 
+  @media (max-width: 900px) { 
 
     .hamburger-menu, 
     .open {
         width: 40px;
         height: 30px;
         right: 30px;
+        display: flex;
     }
     .hamburger-menu, 
     .open {

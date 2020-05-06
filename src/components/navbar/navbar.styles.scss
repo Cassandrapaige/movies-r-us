@@ -53,11 +53,6 @@
 @media (max-width: 550px) { 
   .nav {
     padding: 0;
-    
-    .dropBtn{
-      display: none;
-      height: 0px;
-  }
 }
 
 .nav-links {
@@ -65,12 +60,10 @@
 }
 }
 
-@media (max-width: 865px) { 
+@media (max-width: 900px) { 
   .nav {
     .search_form input {
       display: none;
   }
 }
-
-
 }

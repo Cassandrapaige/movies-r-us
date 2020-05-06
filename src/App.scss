@@ -24,6 +24,10 @@
   margin: auto;
 }
 
+.inner-container {
+  min-height: 100vh;
+}
+
 body {
   font-family: 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
