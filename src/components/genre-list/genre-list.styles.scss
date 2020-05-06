@@ -1,0 +1,10 @@
+.genre-list {
+    display: flex;
+    margin-top: 20px;
+    flex-wrap: wrap;
+
+    .genre-list-item {
+        padding-right: 20px;
+    }
+}
+  

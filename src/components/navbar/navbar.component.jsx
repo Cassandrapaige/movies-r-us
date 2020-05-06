@@ -6,9 +6,9 @@ import './navbar.styles.scss'
 import NavList from '../nav-list/nav-list.component'
 import Search from '../search-bar/search-bar.component'
 import HamburgerMenu from '../hamburger-menu/hamburger-menu.component'
+import GenreButton from '../genre-button/genre-button.component'
 
 const Navbar = ({history}) => {
-
     const [isOpen, setIsOpen] = useState(false)
     const [isActive, setIsActive] = useState(false)
 
@@ -19,15 +19,14 @@ const Navbar = ({history}) => {
     
     return (
         <nav className = 'nav'>
-        <NavLink to = '/'><h4 className='logo'>Movies R Us</h4></NavLink>
-
+            <div className = 'left-nav'>
+                <NavLink to = '/'><h4 className='logo'>Movies R Us</h4></NavLink>
+                <GenreButton />
+            </div>
         <div className="nav-links">
             <Search/>
             <HamburgerMenu isOpen = {isOpen} toggleClass= {toggleClass}/>
-            <div className = 'dropdown'>
-               <button className = 'dropBtn' onClick = {toggleClass}>Movies</button>
-               <NavList active = {isActive} />
-            </div>
+            <NavList />
        </div>       
     </nav>
     )

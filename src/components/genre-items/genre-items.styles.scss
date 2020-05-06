@@ -1,20 +1,12 @@
-.genre-list {
-    display: flex;
-    margin-top: 20px;
-    flex-wrap: wrap;
-  }
-  
   .genre-list-item {
     list-style-type: none;
     display: flex;
-    justify-content: center;
     align-items: center;
     text-transform: uppercase;
-    padding-right: 20px;
-    flex-wrap: wrap;
   }
   
   .genre-icon {
     width: 30px;
+    margin-right: 10px;
   }
   

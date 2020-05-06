@@ -9,8 +9,8 @@ import placeholder from '../../images/placeholder.png';
 import StarRating from '../../components/star-rating/star-rating.component';
 import Spinner from '../../components/spinner/spinner.component'
 import Video from '../../components/video/video.component'
+import GenreList from '../../components/genre-list/genre-list.component';
 import {DateString} from '../../components/date-string/date-string.component'
-import GenreItems from '../../components/genre-items/genre-items.component'
 import BackButton from '../../components/back-button/back-button.component'
 import ImageWithPlaceholder from '../../components/image-with-placeholder/image-with-placeholder.component';
 
@@ -30,7 +30,7 @@ const ShowMovie = ({history, match}) => {
     .then(result => {
       setMovie(result.data);
       setGenres(result.data.genres)
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 120);
       setTimeout(() => {
         setIsLoading(false)
       }, 500)
@@ -41,14 +41,14 @@ const ShowMovie = ({history, match}) => {
     },(error => console.log(error)))
   },[])
   
-  const toggleView = () => setShowMovie(!showMovie)
+  const toggleView = () =>  setShowMovie(!showMovie)
   
   return (
     <div className="show-movie">
     {movie && !isLoading ? (
        <div className='movie-show' key={movie.id}>
-           <ImageWithPlaceholder movie = {movie}/>
-              <div className='movie-show-content'>
+           <ImageWithPlaceholder movie = {movie} active = {showMovie}/>
+              <div className='movie-show-content' style = {{opacity: `${showMovie ? '0.5' : '1'}`}}>
                   <h3 className='original-title'>{movie.original_title}</h3>
                   <DateString date = {movie.release_date}>Release date:</DateString>
                   <StarRating movie = {movie} />
@@ -62,7 +62,7 @@ const ShowMovie = ({history, match}) => {
 
                   <h6>Overview</h6>
                   <p className= 'movie-show-overview'>{movie.overview}</p>
-                  <GenreItems genres = {genres} />
+                  <GenreList data = {genres} />
               <div>
         
               <div className="nav_btns">

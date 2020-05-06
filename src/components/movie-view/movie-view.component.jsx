@@ -14,25 +14,15 @@ import BackButton from '../back-button/back-button.component'
 import Video from '../video/video.component'
 
 import './movie-view.styles.scss'
+import { GenreNav } from '../genre-nav/genre-nav.compponent'
 
-const MovieView = ({history, url, title, error, num = 0}) => {
+const MovieView = ({history, url, title, error, num = 120}) => {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [current, setCurrent] = useState(1)
     const [total, setTotal] = useState() 
     const [video, setVideo] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
-    const [listTitle, setListTitle] = useState('Rating Descending')
-
-    const getData = () => {
-        setIsLoading(true)
-        axios.get(`${url}&page=${current}`)
-        .then(result => {
-            setMovies(result.data.results)
-            setTotal(result.data.total_results)
-            setIsLoading(false)
-        },(error => console.log(error)))
-    }
 
     const fetchVideo = id => {
         axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
@@ -40,7 +30,7 @@ const MovieView = ({history, url, title, error, num = 0}) => {
             setVideo(result.data.results[0].key)
             setIsOpen(true)
         },(error => console.log(error)))
-    }
+    } 
 
     useEffect(() => {
         setIsLoading(true)
@@ -60,7 +50,7 @@ const MovieView = ({history, url, title, error, num = 0}) => {
             window.scrollTo(0, 0);
             setTimeout(() => {
               setIsLoading(false)
-            }, 500)
+            }, 50)
         }
         },(error => console.log(error)))
     },[current, url])
@@ -76,13 +66,12 @@ const MovieView = ({history, url, title, error, num = 0}) => {
                 <Video video = {video} toggleView = {() => setIsOpen(!isOpen)}/>
             }
 
-            { total !== 0 ?
-            
+            { total !== 0 ?   
             <MovieList 
                 isLoading= {isLoading}
                 movies={movies} 
                 action = {fetchVideo}>
-                <h1>{title}</h1>
+                <h1 className = 'list-title'>{title}</h1>
             </MovieList>              
             : 
             <ErrorMessage error = {error}> 
