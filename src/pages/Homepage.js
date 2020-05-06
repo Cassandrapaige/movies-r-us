@@ -1,14 +1,13 @@
 import React from 'react'
 
 import Header from '../components/header/header.component'
-import ScrollingListContainer from '../components/scrolling-list-container/scrolling-list-container.component'
-
+import ContainerWithVideo from '../components/container-with-video/container-with-video.component'
 
 const Homepage = () => {
     return (
     <div className = 'homepage-container'>
         <Header/>
-        <ScrollingListContainer />
+        <ContainerWithVideo scrollingListContainer/>
     </div>
     )
 }

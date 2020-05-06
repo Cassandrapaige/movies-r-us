@@ -1,10 +1,10 @@
 import React from 'react'
 
-import './substring-text.styles.scss'
+import {SubstringContainer} from './substring-text.styles'
 
-/* DISPLAY MAX 80 CHARACTERS OF MOVIE-OVERVIEW */
+ /* DISPLAY MAX 80 CHARACTERS OF MOVIE-OVERVIEW */
 
-const substring = (desc, limit= 80) => {
+const substring = (desc, limit) => {
     const fullDesc = [];
     if(desc.length > limit) {
         desc.split(' ').reduce((acc, cur) => {
@@ -17,8 +17,8 @@ const substring = (desc, limit= 80) => {
     return desc;
 }
 
-const Substring = ({text}) => {
-    return <p className = 'movie-overview'>{substring(text)}</p>
+const Substring = ({text, limit, ...props}) => {
+    return <SubstringContainer {...props}>{substring(text, limit)}</SubstringContainer>
     
 }
 

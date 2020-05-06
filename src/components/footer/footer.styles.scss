@@ -3,7 +3,7 @@
     color: var(--text-color);
     position: relative;
     bottom: 0;
-    z-index: 10;
+    z-index: -1;
   }
   
   .footer_info {
@@ -72,6 +72,11 @@
     border: 3px solid var(--light-color);
   }
 
+  .mention {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
   /* --------------------------
       MEDIA QUERIES
   -------------------------- */

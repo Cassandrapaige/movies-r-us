@@ -4,9 +4,8 @@ import StarRatingComponent from 'react-star-rating-component';
 import './star-rating.styles.scss'
 
 const StarRating = ({movie}) => {
-    const avg = (num) => {
-        return Math.round(num);
-    }
+    const avg = (num) => Math.round(num);
+    
     return (
         <div>{avg(movie.vote_average) > 0 ? (
             <div>

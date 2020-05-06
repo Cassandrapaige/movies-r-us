@@ -15,6 +15,7 @@ import BackButton from '../../components/back-button/back-button.component'
 import ImageWithPlaceholder from '../../components/image-with-placeholder/image-with-placeholder.component';
 
 import './individual-movie.styles.scss'
+import PlayButton from '../../components/play-button/play-button.component';
 
 const ShowMovie = ({history, match}) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +31,7 @@ const ShowMovie = ({history, match}) => {
     .then(result => {
       setMovie(result.data);
       setGenres(result.data.genres)
-      window.scrollTo(0, 120);
+      window.scrollTo(0, 80);
       setTimeout(() => {
         setIsLoading(false)
       }, 500)
@@ -41,13 +42,13 @@ const ShowMovie = ({history, match}) => {
     },(error => console.log(error)))
   },[])
   
+  console.log(movie)
   const toggleView = () =>  setShowMovie(!showMovie)
   
   return (
-    <div className="show-movie">
+    <div className="show-movie" style= {{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie.backdrop_path})`}}>
     {movie && !isLoading ? (
        <div className='movie-show' key={movie.id}>
-           <ImageWithPlaceholder movie = {movie} active = {showMovie}/>
               <div className='movie-show-content' style = {{opacity: `${showMovie ? '0.5' : '1'}`}}>
                   <h3 className='original-title'>{movie.original_title}</h3>
                   <DateString date = {movie.release_date}>Release date:</DateString>
@@ -57,7 +58,7 @@ const ShowMovie = ({history, match}) => {
                   <a href = {movie.homepage} target='_blank' rel='noopener noreferrer' className='website-link'>
                     <i className="fas fa-link"></i> Website</a> 
                ) : null}    
-                  {video && <button onClick = {toggleView} className = 'trailer'><i className="fas fa-play"></i> Play Trailer </button> }
+                  {video && <PlayButton /> }
               </div>
 
                   <h6>Overview</h6>
@@ -71,6 +72,7 @@ const ShowMovie = ({history, match}) => {
               </div>
           </div>
       </div>           
+      <ImageWithPlaceholder movie = {movie}/>
   </div> 
   ) : <Spinner />}
     { video && showMovie && 

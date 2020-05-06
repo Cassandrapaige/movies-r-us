@@ -1,13 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
+import axios from 'axios'
+
+import {API_KEY} from '../../base'
+
 
 import './play-button.styles.scss'
 
-const PlayButton = ({action, id}) => {
+const PlayButton = ({id, action}) => {
     return (
          <div className="play-button" onClick = {() => action(id)}>
-            <i className="far fa-play-circle"></i>
+            <i class="fas fa-play"></i>Play Trailer
         </div>
     )
 }
 
 export default PlayButton
+
