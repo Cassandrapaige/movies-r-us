@@ -4,7 +4,6 @@ import {withRouter, NavLink} from 'react-router-dom'
 import './navbar.styles.scss'
 
 import NavList from '../nav-list/nav-list.component'
-import Search from '../search-bar/search-bar.component'
 import HamburgerMenu from '../hamburger-menu/hamburger-menu.component'
 import GenreButton from '../genre-button/genre-button.component'
 
@@ -24,7 +23,6 @@ const Navbar = ({history}) => {
                 <GenreButton />
             </div>
         <div className="nav-links">
-            <Search/>
             <HamburgerMenu isOpen = {isOpen} toggleClass= {toggleClass}/>
             <NavList />
        </div>       
