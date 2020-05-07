@@ -2,12 +2,13 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import {API_KEY} from '../../base'
 import MovieView from '../movie-view/movie-view.component'
-import ScrollingListContainer from '../scrolling-list-container/scrolling-list-container.component'
+import GenreListsContainer from '../genre-lists-container/genre-lists-container.component'
 
 import Video from '../video/video.component'
-const ContainerWithVideo = ({scrollingListContainer, movieView, ...props}) => {
+const ContainerWithVideo = ({genreListsContainer, movieView, ...props}) => {
     const [video, setVideo] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
+    let container;
 
     const fetchVideo = id => {
         axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
@@ -17,9 +18,8 @@ const ContainerWithVideo = ({scrollingListContainer, movieView, ...props}) => {
         },(error => console.log(error)))
     } 
 
-    let container;
-    if(scrollingListContainer) {
-        container = <ScrollingListContainer action = {fetchVideo} {...props}/>
+    if(genreListsContainer) {
+        container = <GenreListsContainer action = {fetchVideo} {...props}/>
     }
 
     if(movieView) {

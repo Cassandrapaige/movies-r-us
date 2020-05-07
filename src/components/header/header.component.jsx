@@ -57,6 +57,13 @@ const Header = ({history}) => {
     const [inView, setInView] = useState(false)
     const textInput = createRef()
 
+    useEffect(() => {
+      axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`)
+        .then(result => {
+          setData(result.data.results[2])
+        },(error => console.log(error)))        
+    }, [])
+    
     const searchComponentScroll = () => {
         let searchComponent = document.querySelector('.main-header');   
         let searchComponentInView = searchComponent.getBoundingClientRect() 
@@ -74,13 +81,6 @@ const Header = ({history}) => {
         window.addEventListener('scroll', searchComponentScroll)
         return () => window.removeEventListener('scroll', searchComponentScroll)
     },[])
-
-    useEffect(() => {
-        axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`)
-          .then(result => {
-            setData(result.data.results[2])
-          },(error => console.log(error)))        
-      }, [])
 
     useEffect(() => {
       if (movieSuggestions.length && downPress) {

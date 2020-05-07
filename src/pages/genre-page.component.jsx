@@ -7,8 +7,8 @@ import {GENRE_DATA} from '../constants'
 import ContainerWithVideo from '../components/container-with-video/container-with-video.component'
 
 const GenrePage = ({match}) => {
-    let id = match.params.genre_id
-    let title = Object.keys(GENRE_DATA).map(key => GENRE_DATA[id].genre)
+    const id = match.params.genre_id
+    const title = Object.keys(GENRE_DATA).map(key => GENRE_DATA[id].genre)
 
     return (
         <ContainerWithVideo movieView 

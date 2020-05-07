@@ -14,6 +14,7 @@ import {DateString} from '../../components/date-string/date-string.component'
 import BackButton from '../../components/back-button/back-button.component'
 import ImageWithPlaceholder from '../../components/image-with-placeholder/image-with-placeholder.component';
 
+import ScrollingWrapper from '../../components/scrolling-wrapper/scrolling-wrapper.component'
 import './individual-movie.styles.scss'
 import PlayButton from '../../components/play-button/play-button.component';
 

@@ -7,7 +7,7 @@ const Homepage = () => {
     return (
     <div className = 'homepage-container'>
         <Header/>
-        <ContainerWithVideo scrollingListContainer/>
+        <ContainerWithVideo genreListsContainer/>
     </div>
     )
 }

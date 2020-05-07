@@ -9,6 +9,10 @@
     background-repeat: no-repeat;
     background-position: center;
     box-shadow:inset 0 0 0 2000px rgba(19, 19, 19, 0.8);
+
+    .loading {
+      margin-top: 0;
+    }
   }
   
   .movie-show {
