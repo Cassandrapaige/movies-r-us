@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink, withRouter, Redirect } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 
 import ErrorMessage from '../error-message/error-message.component'
 
@@ -11,7 +11,10 @@ class ErrorHandler extends Component {
     
     componentDidCatch = error => this.setState({hasError: true})
 
-    goBack = () => this.setState({redirect: true})
+    goBack = () => {
+      this.setState({redirect: true})
+      window.location.reload()
+    }
 
     render() {
 

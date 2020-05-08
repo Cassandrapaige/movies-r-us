@@ -10,28 +10,28 @@ const Footer = () => {
                 <h4>Find Us Online</h4>
                     <ul className="contact_list">
                         <li className="contact_list_item">
-                            <a href="#">
+                            <a href="https://www.facebook.com/cassandra.rossall/">
                                 <i className="fab fa-facebook-f" />
                             </a>
                         </li> 
                         <li className="contact_list_item">
-                            <a href="#">
+                            <a href="https://www.instagram.com/cassiecasserole/">
                                 <i className="fab fa-instagram" />
                             </a>
                         </li> 
                         <li className="contact_list_item">
-                            <a href="#">
+                            <a href="https://twitter.com/CassandraPaigee">
                                 <i className="fab fa-twitter" />
                             </a>
                         </li>
                         <li className="contact_list_item">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/cassandra-rossall-084a90b4/">
                                 <i className="fab fa-linkedin-in" />
                             </a>
                         </li> 
                         <li className="contact_list_item">
-                            <a href="#">
-                                <i className="fab fa-youtube" />
+                            <a href="https://github.com/Cassandrapaige">
+                                <i class="fab fa-github"></i>
                             </a>
                         </li>   
                     </ul>

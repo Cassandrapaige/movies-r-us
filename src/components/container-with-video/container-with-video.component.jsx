@@ -1,12 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 import {API_KEY} from '../../base'
 import MovieView from '../movie-view/movie-view.component'
 import GenreListsContainer from '../genre-lists-container/genre-lists-container.component'
+import MovieDetails from '../movie-details/movie-details.component'
 
 import Video from '../video/video.component'
-const ContainerWithVideo = ({genreListsContainer, movieView, ...props}) => {
-    const [video, setVideo] = useState(null)
+const ContainerWithVideo = ({genreListsContainer, movieView, movieDetails, match, ...props}) => {
+    const [video, setVideo] = useState()
     const [isOpen, setIsOpen] = useState(false)
     let container;
 
@@ -18,6 +20,8 @@ const ContainerWithVideo = ({genreListsContainer, movieView, ...props}) => {
         },(error => console.log(error)))
     } 
 
+    console.log(video)
+
     if(genreListsContainer) {
         container = <GenreListsContainer action = {fetchVideo} {...props}/>
     }
@@ -25,6 +29,11 @@ const ContainerWithVideo = ({genreListsContainer, movieView, ...props}) => {
     if(movieView) {
         container = <MovieView action = {fetchVideo} {...props}/>
     }
+
+    if(movieDetails) {
+        container = <MovieDetails action = {fetchVideo} video = {video} {...props} />
+    }
+
     return (
         <div>
             {container}
@@ -36,4 +45,4 @@ const ContainerWithVideo = ({genreListsContainer, movieView, ...props}) => {
     )
 }
 
-export default ContainerWithVideo
+export default withRouter(ContainerWithVideo)

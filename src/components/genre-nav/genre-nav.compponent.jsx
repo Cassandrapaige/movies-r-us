@@ -3,9 +3,12 @@ import axios from 'axios'
 
 import {API_KEY} from '../../base'
 
+import {GENRE_DATA} from '../../constants'
 import GenreItems from '../genre-items/genre-items.component'
 
 import './genre-nav.styles.scss'
+
+let data = Object.keys(GENRE_DATA).map(key => GENRE_DATA[key].genre);
 
 const GenreNav = ({setIsActive}) => {
     const [data, setData] = useState([])

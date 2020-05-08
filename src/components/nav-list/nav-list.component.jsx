@@ -1,5 +1,4 @@
 import React from 'react'
-import {animated, useSpring, config, useTransition} from 'react-spring'
 
 import NavItem from '../nav-item/nav-item.component'
 

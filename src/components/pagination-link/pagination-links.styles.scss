@@ -1,0 +1,10 @@
+.pageLinks {
+    margin: 5px;
+    padding: 10px;
+    background-color: #333;
+    cursor: pointer;
+
+    &.active {
+        background-color: var(--primary-color);
+    }
+  }

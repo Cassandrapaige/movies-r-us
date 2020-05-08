@@ -3,14 +3,11 @@ import axios from 'axios'
 import {NavLink} from 'react-router-dom'
 import {animated, config, useSpring} from 'react-spring'
 
-import {GENRE_DATA} from '../../constants'
-import {API_KEY} from '../../base'
-
 import MovieOverview from '../movie-overview-container/movie-overview-container.component'
 
 import './scrolling-wrapper.styles.scss'
 
-const ScrollingWrapper = ({id, linkRel, title, url, children, ...props}) => {
+const ScrollingWrapper = ({id, linkRel, url, children, ...props}) => {
     const [isScrolling, setIsScrolling] = useState(false)
     const [showLeftNav, setShowLeftNav] = useState(false)
     const [showRightNav, setShowRightNav] = useState(true)
@@ -25,7 +22,7 @@ const ScrollingWrapper = ({id, linkRel, title, url, children, ...props}) => {
             setData(result.data.results)
             setIsLoading(false)
         })
-    }, [])
+    }, [url])
 
     const scrollStyles = useSpring({
         config: {
@@ -71,8 +68,7 @@ const ScrollingWrapper = ({id, linkRel, title, url, children, ...props}) => {
     }
 
     return (
-    <animated.div style = {scrollStyles} onMouseLeave = {() => setIsScrolling(false)} className="genre-scroll-wrapper">
-        <h3>{title}</h3>
+    <animated.div style = {scrollStyles} onMouseLeave = {() => setIsScrolling(false)} className="scrolling-wrapper-container">
         <div className="scrolling-wrapper">
 
         {data.map(movie => (

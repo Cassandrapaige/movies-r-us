@@ -1,44 +1,57 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+
+import PaginationLink from '../pagination-link/pagination-link.component'
 
 import './pagination.styles.scss'
 
 const Pagination = ({pages, current, next}) => {
     let links = [];
-    let display = [];
-
+    let paginationLiks;
+    
     for(let i = 1; i <= pages; i++) {
         links.push(
-            <li className = {`pageLinks ${current === i ? 'active' : ''}`} 
-                key={i} 
-                onClick={() => next(i)}>
-                {i}
-            </li>)
+            <PaginationLink 
+            key = {i}
+            i = {i}
+            handleClick = {() => next(i)}
+            current = {current}
+            text = {i}
+            />)
     }
 
-    for(let i = 0; i < 5; i++) {
-        display.push(links[i]);
+    if(pages <= 5) {
+        paginationLiks = {links}
+    } else {
+        paginationLiks = links.slice(0, 5)
     }
+
+    let prevButton =  ( 
+        <PaginationLink 
+        handleClick = {() => next(current - 1)}
+        current = {current}
+        text = 'Prev'
+        />)
+
+    let nextButton = (  
+        <PaginationLink 
+        handleClick = {() => next(current + 1)}
+        current = {current}
+        text = 'Next'
+        />)
 
     return (
             <div className="pagination">
-                <ul>{ current > 1 && 
-                    <li className= 'pageLinks' 
-                        onClick={() => next(current - 1)}>
-                        Prev
-                    </li> }
+                <ul>
+                    {current > 1 && prevButton}
 
-                    { pages <= 5 ? {links} : <> {display} </> }
-                    { current > 5 ? links[current-1] : '' }
+                    {paginationLiks}
 
-                    { current <= pages &&
-                    <li 
-                        className= 'pageLinks' 
-                        onClick={() => next(current + 1)}>
-                        Next
-                    </li> } 
+                    {current > 5 && links[current-1]}
+
+                    {current <= pages && nextButton} 
                 </ul>
             </div>
     )
 }
 
-export default Pagination;
+export default Pagination

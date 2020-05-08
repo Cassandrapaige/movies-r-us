@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { NavLink, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import axios from 'axios'
-
-import {API_KEY} from '../../base'
 
 import Pagination from '../pagination/pagination.component'
 import Spinner from '../spinner/spinner.component'
 import ErrorMessage from '../error-message/error-message.component'
 import BackButton from '../back-button/back-button.component'
-import Video from '../video/video.component'
 import MovieOverview from '../movie-overview-container/movie-overview-container.component'
 
 import './movie-view.styles.scss'
 
-const MovieView = ({history, url, title, error, ...props}) => {
+const MovieView = ({history, url, id, title, genre, error, ...props}) => {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [current, setCurrent] = useState(1)
@@ -27,10 +24,11 @@ const MovieView = ({history, url, title, error, ...props}) => {
             setTotal(result.data.total_results)
             window.scrollTo(0, 0);
             setTimeout(() => {
-              setIsLoading(false)
-            }, 600)
+                setIsLoading(false)
+            }, 1000)
+
         },(error => console.log(error)))
-    },[current, url])
+    },[current, url, genre])
 
     const next = pageNum => setCurrent(pageNum)
 
@@ -46,19 +44,19 @@ const MovieView = ({history, url, title, error, ...props}) => {
                     <p>Click on an image to read more or see movies that are similar</p>
                 </div>
 
-            {isLoading ? <Spinner /> :
-                movies.map(movie => 
-                    <MovieOverview movie = {movie} {...props}/>
-                )   
-            }
+                {isLoading ? <Spinner />
+                :movies.map((movie, i) => 
+                    <MovieOverview movie= {movie} key= {i} {...props}/>
+                )}
+                {total > 20 &&
+                    <Pagination pages= {numPages} next={next} current = {current} id= {id}/> }
+                 
             </section>             
             : 
             <ErrorMessage error = {error}> 
                 <BackButton />
             </ErrorMessage>
             }  
-            { total > 20 ? 
-            <Pagination pages= {numPages} next={next} current = {current} /> : '' }  
         </div> 
     )
 }         

@@ -1,11 +1,12 @@
 .loading {
     width: 100%;
-    min-height: 90vh;
+    min-height: 1200px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
+    padding-top: 200px;
     grid-column: 1/-1;
-    margin-top: -200px;
+    background: rgba(16, 16, 16, .6);
   }
   
   .lds-facebook {

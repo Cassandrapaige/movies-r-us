@@ -1,7 +1,7 @@
 
 :root {
   --primary-color: #1DB3AE;
-  --secondary-color: #191919;
+  --secondary-color: #161616;
   --accent-color: #202020;
   --light-color: #696969;
   --text-color: #f3f3f3;
@@ -23,14 +23,11 @@
 .container {
   max-width: 1600px;
   margin: auto;
-}
-
-.inner-container {
   min-height: 100vh;
 }
 
 body {
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: 'Helvetica', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--secondary-color);

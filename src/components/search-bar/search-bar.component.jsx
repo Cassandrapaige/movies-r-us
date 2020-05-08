@@ -1,5 +1,5 @@
 import React, {useState, useEffect, createRef } from 'react'
-import {withRouter, NavLink} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import axios from 'axios';
 
 import {API_KEY} from '../../base'
@@ -13,7 +13,7 @@ const Search = ({history, stickySearch}) => {
     const [cursor, setCursor] = useState(0);
 
     const textInput = createRef()
-    useEffect(() => textInput.current.focus(), [])
+    useEffect(() => textInput.current.focus(), [textInput])
 
     const getUserInput = event => setUserInput(event.target.value)
 
@@ -21,16 +21,17 @@ const Search = ({history, stickySearch}) => {
 
     /* --------------------------------------------------------
 
-    --HANDLE SUBMIT-- 
-    Need to handle submit for both user input and list selection
+    --STICKY SEARCH BAR-- 
+    Make search bar stick to top when no longer in view by listening to users scroll position
+    Pass 'stickySearch' as props to use this feature
     
     --------------------------------------------------------*/
 
     const [inView, setInView] = useState(false)
 
-    const searchComponentScroll = (elem) => {
+    const searchComponentScroll = () => {
         if(stickySearch) {
-            let searchComponent = document.querySelector(elem);   
+            let searchComponent = document.querySelector('.main-header');   
             let searchComponentInView = searchComponent.getBoundingClientRect() 
             
             searchComponentInView.bottom < window.innerHeight / 2 ?
@@ -40,8 +41,8 @@ const Search = ({history, stickySearch}) => {
     }
 
     useEffect(() => {
-        window.addEventListener('scroll',searchComponentScroll('.main-header'))
-        return () => window.removeEventListener('scroll', searchComponentScroll('.main-header'))
+        window.addEventListener('scroll',searchComponentScroll)
+        return () => window.removeEventListener('scroll',searchComponentScroll)
     },[])
     
     /* --------------------------------------------------------
@@ -105,11 +106,11 @@ const Search = ({history, stickySearch}) => {
     const useKeyPress = target => {
         const [keyPressed, setKeyPressed] = useState(false)
       
-        const downHandler = ({ key }) => 
-            key === target && setKeyPressed(true) 
+        const downHandler = ({ key }) => {
+            if(key === target) setKeyPressed(true)}
         
-        const upHandler = ({ key }) => 
-            key === target && setKeyPressed(false)
+        const upHandler = ({ key }) => {
+            if(key === target) setKeyPressed(false)}
     
         useEffect(() => {
             window.addEventListener('keydown', downHandler)
@@ -130,7 +131,7 @@ const Search = ({history, stickySearch}) => {
             setCursor(prevState =>
                 prevState < movieSuggestions.length - 1 ? prevState + 1 : prevState
       )
-    }, [downPress])
+    }, [downPress, movieSuggestions.length])
 
     const upPress = useKeyPress('ArrowUp')
 
@@ -144,16 +145,16 @@ const Search = ({history, stickySearch}) => {
     useEffect(() => {
         movieSuggestions.length && enterPress &&
             setSelected(movieSuggestions[cursor])
-    }, [cursor, enterPress])
+    }, [cursor, enterPress, movieSuggestions])
 
     return (
-        <form className = {`header-search ${inView && 'fixed-search-bar'}`} onSubmit = {handleSubmit}>
+        <form className = {`search-form ${inView && 'fixed-search-bar'}`} onSubmit = {handleSubmit}>
             <input 
                 ref = {textInput}
                 type="text" 
                 value = {userInput}
                 placeholder='&#xF002; Search movie' 
-                onChange = {event => {
+                onChange = {(event) => {
                     getUserInput(event)
                     getMovieSuggestions()
                 }}/>  
@@ -164,7 +165,7 @@ const Search = ({history, stickySearch}) => {
                         {movieSuggestions.map((suggestion, i) => (
                         <li className={`auto-suggestion ${i === cursor && 'active'}`}
                             key = {suggestion.id} 
-                            onClick = {e => handleSelected(e, suggestion)}>
+                            onClick = {(e) => handleSelected(e, suggestion)}>
                                 {suggestion.title}
                         </li>
                         ))}

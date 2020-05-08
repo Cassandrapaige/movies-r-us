@@ -1,15 +1,21 @@
 .nav {
-  height: 80px;
+  height: 85px;
   width: 100%;
   padding: 0 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0px 3px 6px rgba(19, 19, 19, .2);
+  box-shadow: 0px 13px 6px rgba(19, 19, 19, .2);
   transition: all .5s ease;
   
   .left-nav {
     display: flex;
+  }
+
+  .fa-search {
+    font-size: 23px;
+    padding-left: 10px;
+    cursor: pointer;
   }
 
   .logo {
@@ -53,17 +59,13 @@
 @media (max-width: 550px) { 
   .nav {
     padding: 0;
-}
 
-.nav-links {
-    display: flex;
-}
-}
+    .logo {
+      padding-left: 20px;
+    }
 
-@media (max-width: 900px) { 
-  .nav {
-    .search_form input {
+    .fa-search {
       display: none;
-  }
+    }
 }
 }
