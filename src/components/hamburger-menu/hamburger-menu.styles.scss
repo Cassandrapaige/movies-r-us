@@ -6,7 +6,7 @@
       display: none;
       justify-content: flex-end;
       transition: all .5s ease;
-      z-index: 500;
+      z-index: 5000;
   }
 
   .hamburger-menu {
@@ -50,7 +50,7 @@
       }
   }
   .open {  
-    position: absolute;     
+    position: fixed;     
       &-top {
           top: 50%;
           width: 100%;

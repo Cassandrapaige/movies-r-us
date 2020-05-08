@@ -1,9 +1,6 @@
 .movie-overview-container {
   width: 100%;
   position: relative;
-  transform: translateY(100px);
-  opacity: 0;
-  animation: 1s slideIn ease forwards;
   
   .image-overlay {
     position: absolute;
@@ -42,8 +39,27 @@
   }
 }
 
+.slide-up-container {
+  transform: translateY(100px);
+  opacity: 0;
+  animation: 1s slideIn ease forwards;
+}
+
+.fade-in-container {
+  opacity: 0;
+  animation: 1s slideIn ease forwards;
+}
+
 @for $i from 1 through 25 {
-  .movie-overview-container {
+  .slide-up-container {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * (1s/ 15);
+    }
+  }
+}
+
+@for $i from 1 through 25 {
+  .fade-in-container {
     &:nth-child(#{$i}) {
       animation-delay: $i * (1s/ 15);
     }

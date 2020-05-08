@@ -27,7 +27,7 @@ const ContainerWithVideo = ({genreListsContainer, movieView, movieDetails, match
     }
 
     if(movieView) {
-        container = <MovieView action = {fetchVideo} {...props}/>
+        container = <MovieView action = {fetchVideo} video = {video} {...props}/>
     }
 
     if(movieDetails) {

@@ -1,6 +1,6 @@
 .movie-view-container {
     background: #111;
-    padding: 50px 0 150px 0;
+    padding: 1px 0 200px 0;
     position: relative;
     min-height: 100vh;
 }
@@ -53,6 +53,10 @@
     .movie-list-container {
       grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
       gap: 5px;
+    }
+
+    .movie-view-header {
+      padding-bottom: 20px;
     }
   }
   

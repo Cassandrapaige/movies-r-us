@@ -1,10 +1,13 @@
-  .genre-list-item {
+  .genre-list-item, 
+  .dropdown-genre-item {
     list-style-type: none;
-    display: flex;
-    align-items: center;
-    text-transform: uppercase;
   }
 
+  .genre-list-item {
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+  }
   .genre-icon {
     width: 30px;
     margin-right: 2px;

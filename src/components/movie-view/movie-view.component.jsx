@@ -23,10 +23,16 @@ const MovieView = ({history, url, id, title, genre, error, ...props}) => {
             setMovies(result.data.results)
             setTotal(result.data.total_results)
             window.scrollTo(0, 0);
-            setTimeout(() => {
-                setIsLoading(false)
-            }, 1000)
-
+            if(current > 1) {
+                setTimeout(() => {
+                    setIsLoading(false)
+                }, 500)
+            }
+            else {
+                setTimeout(() => {
+                    setIsLoading(false)
+                }, 1000)
+            }
         },(error => console.log(error)))
     },[current, url, genre])
 

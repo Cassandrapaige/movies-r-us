@@ -7,6 +7,7 @@
   justify-content: space-between;
   box-shadow: 0px 13px 6px rgba(19, 19, 19, .2);
   transition: all .5s ease;
+  z-index: 100;
   
   .left-nav {
     display: flex;
@@ -36,27 +37,10 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-
-    .dropdown {
-      position: relative;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      transition: all .5s ease;
-      
-    .dropBtn {
-      background: none;
-      font-size: 25px;
-      border: none;
-      outline: none;
-      color: #fff;
-      padding: 0 30px 0 10px;
-    }
-  }
 }
 }
 
-@media (max-width: 550px) { 
+@media (max-width: 900px) { 
   .nav {
     padding: 0;
 

@@ -1,6 +1,7 @@
 .genre-list-nav {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 0 15px;
     background: var(--secondary-color);
     padding: 20px;
     position: absolute;

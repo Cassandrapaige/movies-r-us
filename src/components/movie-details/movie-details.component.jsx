@@ -15,15 +15,15 @@ import PlayButton from '../../components/play-button/play-button.component';
 
 import './movie-details.styles.scss'
 
-const MovieDetails = ({history, match, video, ...props}) => {
+const MovieDetails = ({history, match, ...props}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [movie, setMovie] = useState([]);
-  const [showMovie, setShowMovie] = useState(false);
   const [genres, setGenres] = useState([])
+
+  let id = match.params.movie_id;
 
   useEffect(() => {
     setIsLoading(true);
-    let id = match.params.movie_id;
     axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`)
     .then(result => {
       setMovie(result.data);
@@ -34,43 +34,45 @@ const MovieDetails = ({history, match, video, ...props}) => {
       }, 500)
     })
   },[]) 
-  
-  const toggleView = () =>  setShowMovie(!showMovie)
-  
+    
   return (
     <div className="individual-movie" style= {{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie.backdrop_path})`}}>
     {movie && !isLoading ? (
-       <div className='individual-movie-container' key={movie.id}>
-          <div className="individual-movie-image">
-            <ImageWithPlaceholder movie = {movie}/>
-          </div>     
-              <div className='individual-movie-content'>
-                  <div className="individual-movie-header">
-                    <h2 className='original-title'>{movie.original_title}</h2>
-                    <StarRating movie = {movie} />
-                  </div>
+      <div className='individual-movie-container' key={movie.id}>
+          <div className='individual-movie-content'>
+            
+            <div className="individual-movie-header">
+              <h2 className='original-title'>{movie.original_title}</h2>
+              <StarRating movie = {movie} />
+            </div>
 
-              <div className='action-links'>{movie.homepage ? (
-                  <a href = {movie.homepage} target='_blank' rel='noopener noreferrer' className='website-link'>
-                    <i className="fas fa-link"></i> Website
-                  </a> 
-               ) : null}    
-                {video !== '' && <PlayButton id = {movie.id} {...props}/> } 
-              </div>
+            <div className='action-links'>{movie.homepage && 
+              <a href = {movie.homepage} target='_blank' rel='noopener noreferrer' className='website-link'>
+                <i className="fas fa-link"></i> Website
+              </a>}    
+              <PlayButton id = {movie.id} {...props}/>
+            </div>
 
-                <div className="individual-movie-overview">
-                  <h3>Overview</h3>
-                  <p>{movie.overview}</p>
-                  <DateString date = {movie.release_date}>Release date:</DateString>
-                </div>
+            <div className="individual-movie-overview">
+              <h3>Overview</h3>
+              <p>{movie.overview}</p>
+              <DateString date = {movie.release_date}>Release date:</DateString>
+            </div>
 
-                  <GenreList data = {genres} />
+            <GenreList data = {genres} />
         
-              <div className="individual-movie-navigation-btns">
-                <BackButton />
-                <NavLink to={`/similar/${movie.id}`} className ='similar-btn'>See Similar <i className="fas fa-arrow-right"></i></NavLink>
-              </div>
-      </div>      
+            <div className="individual-movie-navigation-btns">
+              <BackButton />
+              <NavLink to={`/similar/${movie.id}`} className ='similar-btn'>
+                See Similar <i className="fas fa-arrow-right"></i>
+              </NavLink>
+           </div>
+
+          </div> 
+              
+        <div className="individual-movie-image">
+          <ImageWithPlaceholder movie = {movie}/>
+        </div>  
   </div> 
   ) 
   

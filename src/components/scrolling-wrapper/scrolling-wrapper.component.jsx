@@ -7,7 +7,7 @@ import MovieOverview from '../movie-overview-container/movie-overview-container.
 
 import './scrolling-wrapper.styles.scss'
 
-const ScrollingWrapper = ({id, linkRel, url, children, ...props}) => {
+const ScrollingWrapper = ({id, linkRel, url,  children, ...props}) => {
     const [isScrolling, setIsScrolling] = useState(false)
     const [showLeftNav, setShowLeftNav] = useState(false)
     const [showRightNav, setShowRightNav] = useState(true)
@@ -36,7 +36,9 @@ const ScrollingWrapper = ({id, linkRel, url, children, ...props}) => {
     const [scrollPosition, setScrollPosition] = useState(getScrollPosition)
 
     useEffect(() => {
-        window.addEventListener('resize', () => setScrollPosition(getScrollPosition))
+        window.addEventListener('resize', () => {setScrollPosition(window.innerWidth / 1.2);
+        })
+        return () => window.removeEventListener('resize', () => setScrollPosition())
     },[])
 
     const toggleScrollerArrows = elem => {
@@ -69,11 +71,13 @@ const ScrollingWrapper = ({id, linkRel, url, children, ...props}) => {
 
     return (
     <animated.div style = {scrollStyles} onMouseLeave = {() => setIsScrolling(false)} className="scrolling-wrapper-container">
-        <div className="scrolling-wrapper">
+        {isLoading ? <div className = 'loading-wrapper'></div>
+        :
+        <div className='scrolling-wrapper'>
 
         {data.map(movie => (
             movie.backdrop_path == null ? '' : 
-                <MovieOverview movie = {movie} {...props}/>
+                <MovieOverview fadeIn movie = {movie} {...props}/>
             ))
         }
             <div className="see-more-scroller">
@@ -81,11 +85,11 @@ const ScrollingWrapper = ({id, linkRel, url, children, ...props}) => {
                 See more
                 </NavLink>  
             </div>
-            {showLeftNav && 
-                <div className="left-arrow" onClick = {(el) => scrollWrapper(el, 'left')}><i class="fas fa-chevron-left"></i></div>}
+            {showLeftNav 
+                && <div className="left-arrow" onClick = {(el) => scrollWrapper(el, 'left')}><i class="fas fa-chevron-left"></i></div>}
             {showRightNav 
                 && <div className="right-arrow" onClick = {(el) => scrollWrapper(el, 'right')}><i class="fas fa-chevron-right"></i></div> }
-        </div>
+        </div>}
     </animated.div>
     )
 }

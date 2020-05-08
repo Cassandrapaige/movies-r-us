@@ -2,3 +2,9 @@
   font-size: 16px;
   font-weight: 300;
 }
+
+@media(max-width: 700px) {
+  .string-date {
+    font-weight: 800;
+  }
+}

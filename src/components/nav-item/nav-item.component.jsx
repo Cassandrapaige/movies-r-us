@@ -2,8 +2,8 @@ import React from 'react'
 
 import './nav-item.styles.scss'
 
-const NavItem = ({text, link}) => (
-        <a href = {link} className='nav-link'>
+const NavItem = ({text, link, isDropdown}) => (
+        <a href = {link} className={`${isDropdown ? 'dropdown-link' : 'nav-link'}`}>
             {text}
         </a>
     )

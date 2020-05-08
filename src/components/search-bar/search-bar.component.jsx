@@ -30,7 +30,7 @@ const Search = ({history, stickySearch}) => {
     const [inView, setInView] = useState(false)
 
     const searchComponentScroll = () => {
-        if(stickySearch) {
+        if(stickySearch && window.innerWidth > 570) {
             let searchComponent = document.querySelector('.main-header');   
             let searchComponentInView = searchComponent.getBoundingClientRect() 
             

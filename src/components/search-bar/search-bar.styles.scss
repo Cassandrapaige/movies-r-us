@@ -32,7 +32,7 @@
 
 .search-query-results {
   position: absolute;
-  bottom: -420px;
+  top: 60px;
   left: 0;
   right: 0;
   z-index: 5000;
@@ -41,7 +41,7 @@
     list-style-type: none;
     overflow: scroll;
     width: 100%;
-    background: #131313;
+    background: #191919;
     padding: 20px 10px;
     box-shadow: 0px 6px 16px rgba(19, 19, 19, .5);
 
