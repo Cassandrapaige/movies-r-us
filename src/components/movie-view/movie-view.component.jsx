@@ -10,7 +10,7 @@ import MovieOverview from '../movie-overview-container/movie-overview-container.
 
 import './movie-view.styles.scss'
 
-const MovieView = ({history, url, id, title, genre,error, ...props}) => {
+const MovieView = ({history, url, match, id, title, genre,error, ...props}) => {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [current, setCurrent] = useState(1)
@@ -24,9 +24,7 @@ const MovieView = ({history, url, id, title, genre,error, ...props}) => {
             setTotal(result.data.total_results)
             window.scrollTo(0, 0);
             if(current > 1) {
-                setTimeout(() => {
-                    setIsLoading(false)
-                }, 500)
+                setIsLoading(false)
             }
             else {
                 setTimeout(() => {
@@ -55,7 +53,7 @@ const MovieView = ({history, url, id, title, genre,error, ...props}) => {
                     <MovieOverview movie= {movie} key= {i} {...props}/>
                 )}
                 {total > 20 &&
-                    <Pagination pages= {numPages} next={next} current = {current} id= {id}/> }
+                    <Pagination pages= {numPages} next={next} current = {current} id= {match.params.movie_id} movie = {movies.map(movie => movie)}/> }
                  
             </section>             
             : 

@@ -66,7 +66,7 @@ const MovieDetails = ({history, match, ...props}) => {
         
             <div className="individual-movie-navigation-btns">
               <BackButton />
-              <NavLink to={`/similar/${movie.id}`} className ='similar-btn'>
+              <NavLink to={`/similar/${movie.id}&page=1`} className ='similar-btn'>
                 See Similar <i className="fas fa-arrow-right"></i>
               </NavLink>
            </div>

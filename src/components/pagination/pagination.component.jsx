@@ -13,7 +13,7 @@ const Pagination = ({pages, current, next}) => {
             <PaginationLink 
             key = {i}
             i = {i}
-            handleClick = {() => next(i)}
+            handleClick = {() => {next(i)}}
             current = {current}
             text = {i}
             />)
