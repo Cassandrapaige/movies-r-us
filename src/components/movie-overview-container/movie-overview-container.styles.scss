@@ -40,7 +40,7 @@
 }
 
 .slide-up-container {
-  transform: translateY(100px);
+  transform: translateY(80px);
   opacity: 0;
   animation: 1s slideIn ease forwards;
 }
@@ -51,20 +51,15 @@
 }
 
 @for $i from 1 through 25 {
-  .slide-up-container {
+  .slide-up-container,
+  .fade-in-container {
     &:nth-child(#{$i}) {
-      animation-delay: $i * (1s/ 15);
+      animation-delay: $i * (1s/ 20);
     }
   }
 }
 
-@for $i from 1 through 25 {
-  .fade-in-container {
-    &:nth-child(#{$i}) {
-      animation-delay: $i * (1s/ 15);
-    }
-  }
-}
+
 
 @keyframes slideIn {
   to {

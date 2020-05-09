@@ -23,7 +23,8 @@ const GenreListsContainer = ({...props}) => {
                         id = {id} 
                         linkRel = {`/movies/genre/${id}`}
                         url = {url} 
-                        {...props} />                </>
+                        {...props} />                
+                    </>
 
                 )})
             }

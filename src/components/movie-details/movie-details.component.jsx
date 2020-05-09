@@ -39,6 +39,9 @@ const MovieDetails = ({history, match, ...props}) => {
     <div className="individual-movie" style= {{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie.backdrop_path})`}}>
     {movie && !isLoading ? (
       <div className='individual-movie-container' key={movie.id}>
+      <div className="individual-movie-image">
+          <ImageWithPlaceholder movie = {movie}/>
+        </div>  
           <div className='individual-movie-content'>
             
             <div className="individual-movie-header">
@@ -69,10 +72,6 @@ const MovieDetails = ({history, match, ...props}) => {
            </div>
 
           </div> 
-              
-        <div className="individual-movie-image">
-          <ImageWithPlaceholder movie = {movie}/>
-        </div>  
   </div> 
   ) 
   

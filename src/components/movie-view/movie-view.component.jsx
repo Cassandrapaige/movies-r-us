@@ -10,7 +10,7 @@ import MovieOverview from '../movie-overview-container/movie-overview-container.
 
 import './movie-view.styles.scss'
 
-const MovieView = ({history, url, id, title, genre, error, ...props}) => {
+const MovieView = ({history, url, id, title, genre,error, ...props}) => {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [current, setCurrent] = useState(1)
@@ -44,7 +44,7 @@ const MovieView = ({history, url, id, title, genre, error, ...props}) => {
         <div className = 'movie-view-container'>
             { total !== 0 || undefined ?   
 
-            <section className="movie-list-container">
+            <section className="movie-list-container" style = {{minHeight: `${total > 20 ? '100vh' : 'auto'}`}}>
                 <div className="movie-view-header">
                     <h1 className = 'list-title'>{title}</h1>
                     <p>Click on an image to read more or see movies that are similar</p>
@@ -67,4 +67,4 @@ const MovieView = ({history, url, id, title, genre, error, ...props}) => {
     )
 }         
     
-export default withRouter(MovieView);
+export default withRouter(MovieView)

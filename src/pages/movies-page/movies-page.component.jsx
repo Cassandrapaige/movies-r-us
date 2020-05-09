@@ -2,15 +2,18 @@ import React from 'react'
 import {Route} from 'react-router-dom'
 
 import {API_KEY} from '../../base'
-import ContainerWithVideo from '../../components/container-with-video/container-with-video.component'
 
-const MoviesPage = ({match}) => {
+import MovieView from '../../components/movie-view/movie-view.component'
+import withVideo from '../../withVideo'
+
+const MoviesPage = ({action}) => {
     return (
         <div>
             <Route 
             exact path= '/movies/popular' 
             render = {() => 
-            <ContainerWithVideo movieView 
+            <MovieView
+                action = {action}
                 url = {`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`}
                 title = 'Most Popular'
                 />} 
@@ -18,7 +21,8 @@ const MoviesPage = ({match}) => {
             <Route 
             exact path= '/movies/top-rated' 
             render = {() => 
-            <ContainerWithVideo movieView 
+            <MovieView
+                action = {action}
                 url = {`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`}
                 title = 'Top Rated'
                 />} 
@@ -26,7 +30,8 @@ const MoviesPage = ({match}) => {
             <Route 
             exact path= '/movies/new' 
             render = {() => 
-            <ContainerWithVideo movieView 
+            <MovieView
+                action = {action}
                 url = {`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`}
                 title = 'Now Playing'
                 />} 
@@ -35,4 +40,4 @@ const MoviesPage = ({match}) => {
     )
 }
 
-export default MoviesPage;
+export default withVideo(MoviesPage);

@@ -8,14 +8,27 @@
   margin-bottom: 25px;
 }
 
-.fixed-search-bar {
+.fixed-search-bar, 
+.expand-search-bar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  z-index: 19000;
+  z-index: 1900;
   right: 0;
   margin: auto;
+}
+
+.expand-search-bar input[type = 'text']{
+  height: 80px;
+}
+
+.expand-search-bar {
+  transition: all .5s ease;
+
+  .search-query-results  {
+    top: 80px;
+  }
 }
 
 .search-form input[type = 'text'] {
@@ -35,7 +48,7 @@
   top: 60px;
   left: 0;
   right: 0;
-  z-index: 5000;
+  z-index: 50;
 
   ul {
     list-style-type: none;

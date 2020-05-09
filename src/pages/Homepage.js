@@ -1,15 +1,18 @@
 import React from 'react'
 
-import Header from '../components/header/header.component'
-import ContainerWithVideo from '../components/container-with-video/container-with-video.component'
+import withVideo from '../withVideo'
 
-const Homepage = () => {
+import Header from '../components/header/header.component'
+import GenreListsContainer from '../components/genre-lists-container/genre-lists-container.component'
+
+
+const Homepage = ({action}) => {
     return (
     <div className = 'homepage-container'>
         <Header/>
-        <ContainerWithVideo genreListsContainer/>
+        <GenreListsContainer action = {action} />
     </div>
     )
 }
 
-export default Homepage
+export default withVideo(Homepage)

@@ -6,7 +6,7 @@ import {API_KEY} from '../../base'
 
 import './search-bar.styles.scss'
 
-const Search = ({history, stickySearch}) => {
+const Search = ({history, stickySearch, expand, setExpandSearch, handleClick}) => {
     const [movieSuggestions, setMovieSuggestions] = useState([])
     const [userInput, setUserInput] = useState('')
     const [selected, setSelected] = useState(null);
@@ -71,6 +71,7 @@ const Search = ({history, stickySearch}) => {
         }
         setUserInput('')
         window.scrollTo(0, 0);
+        if(setExpandSearch)setExpandSearch(false)
     }
 
     const handleSelected = (event, target) => {
@@ -79,6 +80,7 @@ const Search = ({history, stickySearch}) => {
             pathname: '/search',
             search: joinQuery(event.target.textContent)
         })
+        if(setExpandSearch)setExpandSearch(false)
     }
 
     /* --------------------------------------------------------
@@ -122,7 +124,7 @@ const Search = ({history, stickySearch}) => {
           }
         })
         return keyPressed;
-      }
+    }
 
     const downPress = useKeyPress('ArrowDown')
 
@@ -148,11 +150,12 @@ const Search = ({history, stickySearch}) => {
     }, [cursor, enterPress, movieSuggestions])
 
     return (
-        <form className = {`search-form ${inView && 'fixed-search-bar'}`} onSubmit = {handleSubmit}>
+        <form className = {`search-form ${inView && 'fixed-search-bar'} ${expand && 'expand-search-bar'}`} onSubmit = {handleSubmit}>
             <input 
                 ref = {textInput}
                 type="text" 
                 value = {userInput}
+                onClick = {handleClick}
                 placeholder='&#xF002; Search movie' 
                 onChange = {(event) => {
                     getUserInput(event)
@@ -160,7 +163,7 @@ const Search = ({history, stickySearch}) => {
                 }}/>  
 
             <div className='search-query-results'>
-                {userInput !== '' &&
+                {userInput !== '' && movieSuggestions.length  ?
                     <ul>
                         {movieSuggestions.map((suggestion, i) => (
                         <li className={`auto-suggestion ${i === cursor && 'active'}`}
@@ -170,7 +173,7 @@ const Search = ({history, stickySearch}) => {
                         </li>
                         ))}
                     </ul>
-                    }
+                    : ''}
                 </div>       
         </form>
     ) 

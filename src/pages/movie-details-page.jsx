@@ -1,16 +1,20 @@
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 
 import {API_KEY} from '../base'
 
-import ContainerWithVideo from '../components/container-with-video/container-with-video.component'
+import MovieDetails from '../components/movie-details/movie-details.component'
 
-const MovieDetailsPage = ({match}) => {
+import withVideo from '../withVideo'
+
+const MovieDetailsPage = ({action, match}) => {
     const id = match.params.genre_id
 
     return (
-        <ContainerWithVideo movieDetails 
+        <MovieDetails
+            action = {action}
             url = {`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`} />
     )
 }   
 
-export default MovieDetailsPage
+export default withVideo(withRouter(MovieDetailsPage))

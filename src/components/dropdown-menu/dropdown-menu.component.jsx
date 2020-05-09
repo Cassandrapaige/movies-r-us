@@ -7,10 +7,10 @@ import NavItem from '../nav-item/nav-item.component'
 
 import './dropdown-menu.styles.scss'
 
-const DropdownMenu = ({setIsActive}) => {
+const DropdownMenu = ({setIsActive, ...props}) => {
     return (
         <div className = 'dropdown-menu'>
-            <Search />
+            <Search {...props}/>
             <div className="dropdown-menu-items">
                 <NavItem text = 'Now Playing' link='/movies/new' isDropdown/>
                 <NavItem text = 'Most Popular' link='/movies/popular' isDropdown/>

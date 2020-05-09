@@ -8,14 +8,13 @@ import './play-button.styles.scss'
 const PlayButton = ({id, action}) => {
     const [video, setVideo] = useState(null)
     useEffect(() => {
-        if(window.innerWidth > 570) {
         axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
         .then(result => {
             if(result.data.results[0].key !== undefined) {
                 setVideo(result.data.results[0].key)
             }
         },(error => console.log(error)))
-    }},[])
+    },[])
 
     return (
        

@@ -19,21 +19,21 @@ const App = () => {
     return (
       <BrowserRouter>
         <div className="container">
-          <Navbar />
+          <Navbar/>
           <Switch>
             <ErrorHandler>
               <Route exact path = '/' component = { Homepage } />
               <Route path= '/search' component = { SearchView} />
               <Route path = '/movies' component = {MoviesPage} />
               <Route exact path= '/movies/genre/:genre_id' component = { GenrePage } />
-              <Route exact path= '/similar/:movie_id' component = {SimilarView} />
+              <Route exact path= '/similar/:movie_id' component = {SimilarView}/>
               <Route exact path= '/movie/:movie_id' component = { MovieDetailsPage } />
             </ErrorHandler>
           </Switch>
           </div>
         <Footer />
       </BrowserRouter>
-    );
+    )
   }
 
 

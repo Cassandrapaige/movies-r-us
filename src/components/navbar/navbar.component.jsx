@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {withRouter, NavLink} from 'react-router-dom'
 
 import './navbar.styles.scss'
@@ -11,11 +11,9 @@ import DropdownMenu from '../dropdown-menu/dropdown-menu.component'
 
 const Navbar = ({history}) => {
     const [isOpen, setIsOpen] = useState(false)
+    const [expandSearch, setExpandSearch] = useState(false)
+    const toggleClass = () => setIsOpen(!isOpen);
 
-    const toggleClass = () => {
-        setIsOpen(!isOpen);
-    }
-    
     return (
         <>
         <nav className = 'nav'>
@@ -26,11 +24,15 @@ const Navbar = ({history}) => {
             <div className="nav-links">
                 <HamburgerMenu isOpen = {isOpen} toggleClass= {toggleClass}/>
                 <NavList />
-                {window.location.pathname !== '/' && <i class="fas fa-search"></i>}
-            </div>     
+                {
+                    window.location.pathname !== '/' && 
+                        <i className="fas fa-search" onClick={() => setExpandSearch(true)} ></i>
+                }
+            </div>  
+            {expandSearch && <Search expand = {expandSearch} setExpandSearch = {setExpandSearch} handleClick = {() => setExpandSearch(false)}/>}   
         </nav>
          {isOpen &&
-            <DropdownMenu setIsActive = {setIsOpen} />
+            <DropdownMenu setIsActive = {setIsOpen} setExpandSearch = {setIsOpen}/>
         }  
         </>
     )
