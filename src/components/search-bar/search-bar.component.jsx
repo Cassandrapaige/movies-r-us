@@ -6,7 +6,7 @@ import {API_KEY} from '../../base'
 
 import './search-bar.styles.scss'
 
-const Search = ({history, stickySearch, expand, setExpandSearch, handleClick}) => {
+const Search = ({history, stickySearch, expand, setIsActive, setExpandSearch, handleClick}) => {
     const [movieSuggestions, setMovieSuggestions] = useState([])
     const [userInput, setUserInput] = useState('')
     const [selected, setSelected] = useState(null);
@@ -72,6 +72,7 @@ const Search = ({history, stickySearch, expand, setExpandSearch, handleClick}) =
         setUserInput('')
         window.scrollTo(0, 0);
         if(setExpandSearch)setExpandSearch(false)
+        if(setIsActive)setIsActive(false)
     }
 
     const handleSelected = (event, target) => {
@@ -81,6 +82,7 @@ const Search = ({history, stickySearch, expand, setExpandSearch, handleClick}) =
             search: joinQuery(event.target.textContent)
         })
         if(setExpandSearch)setExpandSearch(false)
+        if(setIsActive)setIsActive(false)
     }
 
     /* --------------------------------------------------------
