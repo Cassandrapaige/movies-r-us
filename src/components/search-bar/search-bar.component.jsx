@@ -156,7 +156,7 @@ const Search = ({history, stickySearch, expand, setExpandSearch, handleClick}) =
                 type="text" 
                 value = {userInput}
                 onClick = {handleClick}
-                placeholder='&#xF002; Search movie' 
+                placeholder='&#xF002; Search for a movie' 
                 onChange = {(event) => {
                     getUserInput(event)
                     getMovieSuggestions()

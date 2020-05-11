@@ -32,7 +32,7 @@ const Navbar = ({history}) => {
             {expandSearch && <Search expand = {expandSearch} setExpandSearch = {setExpandSearch} handleClick = {() => setExpandSearch(false)}/>}   
         </nav>
          {isOpen &&
-            <DropdownMenu setIsActive = {setIsOpen} setExpandSearch = {setIsOpen}/>
+            <DropdownMenu setIsActive = {setIsOpen} setExpandSearch = {setIsOpen} isOpen = {isOpen} />
         }  
         </>
     )

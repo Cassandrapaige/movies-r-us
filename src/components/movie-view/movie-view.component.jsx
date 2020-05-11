@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 
@@ -10,11 +10,11 @@ import MovieOverview from '../movie-overview-container/movie-overview-container.
 
 import './movie-view.styles.scss'
 
-const MovieView = ({history, url, match, id, title, genre,error, ...props}) => {
+const MovieView = ({url, title, genre, error, ...props}) => {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [current, setCurrent] = useState(1)
-    const [total, setTotal] = useState() 
+    const [total, setTotal] = useState()     
 
     useEffect(() => {
         setIsLoading(true)
@@ -23,17 +23,11 @@ const MovieView = ({history, url, match, id, title, genre,error, ...props}) => {
             setMovies(result.data.results)
             setTotal(result.data.total_results)
             window.scrollTo(0, 0);
-            if(current > 1) {
-                setIsLoading(false)
-            }
-            else {
-                setTimeout(() => {
-                    setIsLoading(false)
-                }, 1000)
-            }
+            setIsLoading(false)
         },(error => console.log(error)))
-    },[current, url, genre])
-
+    },[current, url])
+    console.log(total)
+    console.log(movies)
     const next = pageNum => setCurrent(pageNum)
 
     const numPages = Math.floor(total / 20)
@@ -48,12 +42,12 @@ const MovieView = ({history, url, match, id, title, genre,error, ...props}) => {
                     <p>Click on an image to read more or see movies that are similar</p>
                 </div>
 
-                {isLoading ? <Spinner />
-                :movies.map((movie, i) => 
-                    <MovieOverview movie= {movie} key= {i} {...props}/>
-                )}
+                {isLoading && <Spinner />}
+                {movies !== null || undefined ? movies.map(movie => 
+                    <MovieOverview movie= {movie} key= {movie.id} {...props}/>
+                ) : null }
                 {total > 20 &&
-                    <Pagination pages= {numPages} next={next} current = {current} id= {match.params.movie_id} movie = {movies.map(movie => movie)}/> }
+                    <Pagination pages= {numPages} next={next} current = {current}/> }
                  
             </section>             
             : 
@@ -65,4 +59,4 @@ const MovieView = ({history, url, match, id, title, genre,error, ...props}) => {
     )
 }         
     
-export default withRouter(MovieView)
+export default MovieView

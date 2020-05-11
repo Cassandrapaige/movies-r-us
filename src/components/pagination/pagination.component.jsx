@@ -6,7 +6,7 @@ import './pagination.styles.scss'
 
 const Pagination = ({pages, current, next}) => {
     let links = [];
-    let paginationLiks;
+    let paginationLinks;
     
     for(let i = 1; i <= pages; i++) {
         links.push(
@@ -20,9 +20,9 @@ const Pagination = ({pages, current, next}) => {
     }
 
     if(pages <= 5) {
-        paginationLiks = {links}
+        paginationLinks = links
     } else {
-        paginationLiks = links.slice(0, 5)
+        paginationLinks = links.slice(0, 5)
     }
 
     let prevButton =  ( 
@@ -44,7 +44,7 @@ const Pagination = ({pages, current, next}) => {
                 <ul>
                     {current > 1 && prevButton}
 
-                    {paginationLiks}
+                    {paginationLinks}
 
                     {current > 5 && links[current-1]}
 
@@ -53,5 +53,5 @@ const Pagination = ({pages, current, next}) => {
             </div>
     )
 }
-
+ 
 export default Pagination

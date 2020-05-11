@@ -9,8 +9,8 @@ import withVideo from '../withVideo'
 
 const SimilarView = ({action, match}) => {
     let id = match.params.movie_id
-    console.log(match)
-    return (
+
+return (
         <MovieView 
             action = {action}
             title = 'Similar movies'

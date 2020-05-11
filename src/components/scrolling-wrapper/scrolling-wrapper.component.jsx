@@ -25,9 +25,7 @@ const ScrollingWrapper = ({id, linkRel, url,  children, ...props}) => {
     }, [url])
 
     const scrollStyles = useSpring({
-        config: {
-            config: config.wobbly
-        },
+        config: config.wobbly,
         paddingLeft: isScrolling ? '0px' : '50px'
     })
 
