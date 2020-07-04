@@ -12,18 +12,12 @@ const DropdownMenu = ({setIsActive, isOpen, ...props}) => {
 
     const transitions = useTransition(isOpen, null, {
         config: config.default,
-        from: {
-            transform:'translateX(500px)',
-        },
-        enter: {
-            transform:'translateX(0px)',
-        },
-        leave: {
-            transform:'translateX(500px)',
-        }
+        from: { transform:'translateX(500px)'},
+        enter: { transform:'translateX(0px)'},
+        leave: { transform:'translateX(500px)'}
     })
 
-    return transitions.map(({ item, props}) => item &&(
+    return transitions.map(({ item, props}) => item && (
         <animated.div style = {props} className = 'dropdown-menu'>
             <Search setIsActive = {setIsActive} {...props}/>
             <div className="dropdown-menu-items">

@@ -12,7 +12,7 @@
     transition: all .5s ease;
 
     .loading {
-      margin-top: 0;
+      padding-top: 300px;
     }
 
     &-container {
@@ -148,6 +148,15 @@
 
     &-navigation-btns {
       padding: 40px 0 30px 0;
+    }
+  }
+}
+
+@media(max-width: 500px) {
+
+  .individual-movie {
+    .loading {
+      padding-top: 100px;
     }
   }
 }

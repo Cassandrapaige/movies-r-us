@@ -14,7 +14,7 @@ const Header = () => {
   useEffect(() => {
     axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`)
       .then(result => {
-        setData(result.data.results[2])
+        setData(result.data.results[9])
       },(error => console.log(error)))        
   }, [])
    

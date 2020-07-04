@@ -6,7 +6,7 @@ import MovieView from '../components/movie-view/movie-view.component'
 
 import withVideo from '../withVideo'
 
-const SimilarView = ({action, history, match}) => {
+const SearchResults = ({action, history, match}) => {
     let query = history.location.search.slice(1);
     let title = query.replace(/&/g, ' ')
     
@@ -19,4 +19,4 @@ const SimilarView = ({action, history, match}) => {
     )
 }
 
-export default withVideo(SimilarView)
+export default withVideo(SearchResults)

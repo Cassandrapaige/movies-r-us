@@ -23,11 +23,12 @@ const MovieView = ({url, title, genre, error, ...props}) => {
             setMovies(result.data.results)
             setTotal(result.data.total_results)
             window.scrollTo(0, 0);
-            setIsLoading(false)
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 1000)
         },(error => console.log(error)))
     },[current, url])
-    console.log(total)
-    console.log(movies)
+  
     const next = pageNum => setCurrent(pageNum)
 
     const numPages = Math.floor(total / 20)
@@ -42,13 +43,13 @@ const MovieView = ({url, title, genre, error, ...props}) => {
                     <p>Click on an image to read more or see movies that are similar</p>
                 </div>
 
-                {isLoading && <Spinner />}
-                {movies !== null || undefined ? movies.map(movie => 
-                    <MovieOverview movie= {movie} key= {movie.id} {...props}/>
-                ) : null }
+                {isLoading ?  <Spinner />
+                     : movies.map(movie => 
+                        <MovieOverview movie= {movie} key= {movie.id} {...props}/> )}
+                    
                 {total > 20 &&
                     <Pagination pages= {numPages} next={next} current = {current}/> }
-                 
+                
             </section>             
             : 
             <ErrorMessage error = {error}> 

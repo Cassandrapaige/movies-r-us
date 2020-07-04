@@ -34,10 +34,12 @@ const MovieDetails = ({history, match, ...props}) => {
       }, 500)
     })
   },[]) 
+
+  const imagePath = movie.backdrop_path !== null && `url(https://image.tmdb.org/t/p/w500/${movie.backdrop_path})`;
     
   return (
-    <div className="individual-movie" style= {{backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie.backdrop_path})`}}>
-    {movie !== null || undefined && !isLoading ? (
+    <div className="individual-movie" style= {{backgroundImage: imagePath}}>
+    {isLoading ?  <Spinner /> :
       <div className='individual-movie-container' key={movie.id}>
       <div className="individual-movie-image">
           <ImageWithPlaceholder movie = {movie}/>
@@ -72,9 +74,8 @@ const MovieDetails = ({history, match, ...props}) => {
            </div>
         </div> 
   </div> 
-  ) 
+  }
   
-  : <Spinner />}
   </div>
 )}
 
