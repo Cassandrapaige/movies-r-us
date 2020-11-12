@@ -1,11 +1,16 @@
 import React from 'react'
 
+import { NavLink } from 'react-router-dom'
+
 import './nav-item.styles.scss'
 
 const NavItem = ({text, link, isDropdown, handleClick}) => (
-        <a href = {link} className={`${isDropdown ? 'dropdown-link' : 'nav-link'}`}>
+        <NavLink
+            to = {link} 
+            onClick = {handleClick}
+            className={`${isDropdown ? 'dropdown-link' : 'nav-link'}`} >
             {text}
-        </a>
+        </NavLink>
     )
 
 export default NavItem

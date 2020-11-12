@@ -9,12 +9,12 @@ import Search from '../search-bar/search-bar.component'
 import './header.styles.scss'
 
 const Header = () => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`)
       .then(result => {
-        setData(result.data.results[9])
+        setData(result.data.results[0])
       },(error => console.log(error)))        
   }, [])
    

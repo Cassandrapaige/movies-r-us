@@ -10,10 +10,10 @@ import PlayButton from '../play-button/play-button.component'
 
 import './movie-overview-container.styles.scss'
 
-const MovieOverview = ({movie, fadeIn, video, ...props}) => {
+const MovieOverview = ({movie, video, ...props}) => {
 
     return (
-    <div className = {`movie-overview-container ${fadeIn ? 'fade-in-container' : 'slide-up-container'}`}>
+    <div className = 'movie-overview-container slide-up-container'>
         <NavLink to = {`/movie/${movie.id}`}>
             <ImageWithPlaceholder movie = {movie}/>
             <div className="image-overlay"></div>

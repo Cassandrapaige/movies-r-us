@@ -1,5 +1,5 @@
 import React from 'react'
-import {animated, useSpring, useTransition, config} from 'react-spring'
+import {animated, useTransition, config} from 'react-spring'
 
 import GenreNav from '../genre-nav/genre-nav.compponent'
 import NavList from '../nav-list/nav-list.component'
@@ -17,14 +17,16 @@ const DropdownMenu = ({setIsActive, isOpen, ...props}) => {
         leave: { transform:'translateX(500px)'}
     })
 
+    const handleClick = () => setIsActive(false);
+
     return transitions.map(({ item, props}) => item && (
         <animated.div style = {props} className = 'dropdown-menu'>
             <Search setIsActive = {setIsActive} {...props}/>
             <div className="dropdown-menu-items">
                 <h3 className = 'genre-dropdown-title'>Explore</h3>
-                <NavItem text = 'Now Playing' link='/movies/new' isDropdown/>
-                <NavItem text = 'Most Popular' link='/movies/popular' isDropdown/>
-                <NavItem text = 'Top Rated' link='/movies/top-rated' isDropdown/>
+                <NavItem text = 'Now Playing' link='/movies/new' handleClick = {handleClick} isDropdown/>
+                <NavItem text = 'Most Popular' link='/movies/popular' handleClick = {handleClick} isDropdown/>
+                <NavItem text = 'Top Rated' link='/movies/top-rated' handleClick = {handleClick} isDropdown/>
                 <h3 className = 'genre-dropdown-title'>Explore by genre</h3>
                 <GenreNav isDropdown setIsActive = {setIsActive}/>
             </div>

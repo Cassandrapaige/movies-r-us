@@ -31,7 +31,10 @@ const Navbar = ({history}) => {
             </div>  
             {expandSearch && <Search expand = {expandSearch} setExpandSearch = {setExpandSearch} handleClick = {() => setExpandSearch(false)}/>}   
         </nav>
-        <DropdownMenu setIsActive = {setIsOpen} setExpandSearch = {setIsOpen} isOpen = {isOpen} setIsOpen = {setIsOpen}/>
+        <DropdownMenu 
+            setIsActive = {setIsOpen} 
+            setExpandSearch = {setIsOpen} 
+            isOpen = {isOpen} />
         </>
     )
 }

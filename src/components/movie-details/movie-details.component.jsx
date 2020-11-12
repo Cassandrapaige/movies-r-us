@@ -22,17 +22,17 @@ const MovieDetails = ({history, match, ...props}) => {
 
   let id = match.params.movie_id;
 
+  const fetchResults = async () => {
+    const result = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`);
+    setMovie(result.data);
+    const genres = await result.data.genres;
+    setGenres(genres);
+    setIsLoading(false)
+  }
   useEffect(() => {
     setIsLoading(true);
-    axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`)
-    .then(result => {
-      setMovie(result.data);
-      setGenres(result.data.genres)
-      window.scrollTo(0, 80);
-      setTimeout(() => {
-        setIsLoading(false)
-      }, 500)
-    })
+    window.scrollTo(0, 80);
+    fetchResults();
   },[]) 
 
   const imagePath = movie.backdrop_path !== null && `url(https://image.tmdb.org/t/p/w500/${movie.backdrop_path})`;

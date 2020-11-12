@@ -9,12 +9,24 @@
     z-index: 100000;
 
     &:hover {
-      button {
+      button, .draggable {
         display: block;
       }
     }
   }
   
+  .draggable {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--secondary-color);
+    padding: 20px;
+    cursor: move;
+    display: none;
+    font-size: 40px;
+  }
+
   .video button {
     width: 50px;
     height: 50px;

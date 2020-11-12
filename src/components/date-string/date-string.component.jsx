@@ -16,7 +16,6 @@ export const DateString = ({date, children}) => {
     return <h5 className = 'string-date'>{children} {stringDate(date)}</h5>
 }
 
-
 export const GetYear = ({date}) => {
 
     const getYear = date => {

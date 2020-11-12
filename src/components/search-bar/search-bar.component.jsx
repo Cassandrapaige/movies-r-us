@@ -34,9 +34,8 @@ const Search = ({history, stickySearch, expand, setIsActive, setExpandSearch, ha
             let searchComponent = document.querySelector('.main-header');   
             let searchComponentInView = searchComponent.getBoundingClientRect() 
             
-            searchComponentInView.bottom < window.innerHeight / 2 ?
-                setInView(true)
-                : setInView(false)  
+            searchComponentInView.bottom < window.innerHeight / 2 
+                ? setInView(true) : setInView(false)  
         }
     }
 

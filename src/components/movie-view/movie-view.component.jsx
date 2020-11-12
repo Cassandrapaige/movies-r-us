@@ -16,17 +16,19 @@ const MovieView = ({url, title, genre, error, ...props}) => {
     const [current, setCurrent] = useState(1)
     const [total, setTotal] = useState()     
 
+    const fetchResults = async () => {
+        const result = await axios.get(`${url}&page=${current}`);
+        setMovies(result.data.results)
+        const total_results = await result.data.total_results;
+        setTotal(total_results);
+        setIsLoading(false);
+    }
     useEffect(() => {
-        setIsLoading(true)
-        axios.get(`${url}&page=${current}`)
-        .then(result => {
-            setMovies(result.data.results)
-            setTotal(result.data.total_results)
-            window.scrollTo(0, 0);
-            setTimeout(() => {
-                setIsLoading(false)
-            }, 1000)
-        },(error => console.log(error)))
+        window.scrollTo(0, 0);
+        setIsLoading(true);
+        setTimeout(() => {
+            fetchResults();
+        }, 1000)
     },[current, url])
   
     const next = pageNum => setCurrent(pageNum)

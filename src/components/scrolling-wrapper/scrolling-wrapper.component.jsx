@@ -8,20 +8,21 @@ import MovieOverview from '../movie-overview-container/movie-overview-container.
 import './scrolling-wrapper.styles.scss'
 
 const ScrollingWrapper = ({id, linkRel, url,  children, ...props}) => {
-    const [isScrolling, setIsScrolling] = useState(false)
-    const [showLeftNav, setShowLeftNav] = useState(false)
-    const [showRightNav, setShowRightNav] = useState(true)
+    const [isScrolling, setIsScrolling] = useState(false);
+    const [showLeftNav, setShowLeftNav] = useState(false);
+    const [showRightNav, setShowRightNav] = useState(true);
 
-    const [data, setData] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
+    const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     
+    const fetchResults = async () => {
+        const result = await axios.get(url);
+        setData(result.data.results);
+        setIsLoading(false);
+    }
     useEffect(() => {
-        setIsLoading(true)
-        axios.get(url)
-        .then(result => {
-            setData(result.data.results)
-            setIsLoading(false)
-        })
+        setIsLoading(true);
+        fetchResults();
     }, [url])
 
     const scrollStyles = useSpring({
@@ -31,24 +32,24 @@ const ScrollingWrapper = ({id, linkRel, url,  children, ...props}) => {
 
     const getScrollPosition = window.innerWidth / 1.2;
 
-    const [scrollPosition, setScrollPosition] = useState(getScrollPosition)
+    const [scrollPosition, setScrollPosition] = useState(getScrollPosition);
 
     useEffect(() => {
         window.addEventListener('resize', () => {setScrollPosition(window.innerWidth / 1.2);
         })
-        return () => window.removeEventListener('resize', () => setScrollPosition())
+        return () => window.removeEventListener('resize', () => setScrollPosition());
     },[])
 
     const toggleScrollerArrows = elem => {
-        const scrollWidth = elem.scrollWidth - elem.offsetWidth
+        const scrollWidth = elem.scrollWidth - elem.offsetWidth;
 
         elem.scrollLeft > 0 ? 
         setShowLeftNav(true)
-        : setShowLeftNav(false)
+        : setShowLeftNav(false);
     
         elem.scrollLeft < scrollWidth ?
         setShowRightNav(true)
-        : setShowRightNav(false)
+        : setShowRightNav(false);
     }
 
     const POS = {
@@ -57,14 +58,14 @@ const ScrollingWrapper = ({id, linkRel, url,  children, ...props}) => {
     }
 
     const scrollWrapper = (el, type) => {
-        setIsScrolling(true)
-        const content = el.target.parentNode.parentNode
+        setIsScrolling(true);
+        const content = el.target.parentNode.parentNode;
 
-        type === 'left' && content.scrollBy(POS.LEFT, 0)
+        type === 'left' && content.scrollBy(POS.LEFT, 0);
         
-        type === 'right' && content.scrollBy(POS.RIGHT, 0)
+        type === 'right' && content.scrollBy(POS.RIGHT, 0);
         
-        content.addEventListener('scroll', () => toggleScrollerArrows(content))
+        content.addEventListener('scroll', () => toggleScrollerArrows(content));
     }
 
     return (

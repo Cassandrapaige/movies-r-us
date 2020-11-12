@@ -12,7 +12,7 @@ import Spinner from './components/spinner/spinner.component'
 const Homepage = lazy(() => import('./pages/homepage'));
 const SearchView = lazy(() => import('./pages/search-results-page'));
 const SimilarView = lazy(() => import('./pages/similar-movies-page'));
-const MoviesPage = lazy(() => import('./pages/movies-page/movies-page.component'));
+const MoviesPage = lazy(() => import('./pages/movies-page.component'));
 const GenrePage = lazy(() => import('./pages/genre-page.component'));
 const MovieDetailsPage = lazy(() => import('./pages/movie-details-page'));
 
