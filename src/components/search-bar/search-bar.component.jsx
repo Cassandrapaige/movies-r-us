@@ -1,4 +1,4 @@
-import React, {useState, useEffect, createRef } from 'react'
+import React, {useState, useEffect, createRef, useCallback } from 'react'
 import {withRouter} from 'react-router-dom'
 import axios from 'axios';
 
@@ -29,7 +29,7 @@ const Search = ({history, stickySearch, expand, setIsActive, setExpandSearch, ha
 
     const [inView, setInView] = useState(false)
 
-    const searchComponentScroll = () => {
+    const searchComponentScroll = useCallback(() => {
         if(stickySearch && window.innerWidth > 570) {
             let searchComponent = document.querySelector('.main-header');   
             let searchComponentInView = searchComponent.getBoundingClientRect() 
@@ -37,12 +37,12 @@ const Search = ({history, stickySearch, expand, setIsActive, setExpandSearch, ha
             searchComponentInView.bottom < window.innerHeight / 2 
                 ? setInView(true) : setInView(false)  
         }
-    }
+    }, [stickySearch])
 
     useEffect(() => {
         window.addEventListener('scroll',searchComponentScroll)
         return () => window.removeEventListener('scroll',searchComponentScroll)
-    },[])
+    },[searchComponentScroll])
     
     /* --------------------------------------------------------
 
@@ -141,7 +141,7 @@ const Search = ({history, stickySearch, expand, setIsActive, setExpandSearch, ha
     useEffect(() => {
         movieSuggestions.length && upPress &&
             setCursor(prevState => prevState > 0 ? prevState - 1 : prevState)
-    }, [upPress])
+    }, [upPress, movieSuggestions.length])
 
     const enterPress = useKeyPress('Enter')
 

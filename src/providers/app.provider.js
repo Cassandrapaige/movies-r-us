@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react'
-import App from '../App';
 
+import {addToFavourites, addToLocalStorage, removeFromFavourites} from './app.utils'
 
 const AppContext = createContext();
 
@@ -12,9 +12,29 @@ const INITIAL_STATE = {
 
 const appStateReducer = (state, action) => {
     switch(action.type) {
-        case "INCREASE_TOTAL": {
+        case "GET_LOCAL_STATE": {
             return {
-                total: state.total += 1
+                ...state,
+                favourites: action.payload,
+                total: action.payload.length
+            }
+        }
+        case "ADD_TO_FAVOURITES": {
+            let items = addToFavourites(state.favourites, action.payload);
+            addToLocalStorage("favourites", items);
+            return {
+                ...state,
+                favourites: items,
+                total: items.length
+            }
+        }
+        case "REMOVE_FROM_FAVOURITES": {
+            let items = removeFromFavourites(state.favourites, action.payload);
+            addToLocalStorage("favourites", items);
+            return {
+                ...state,
+                favourites: items,
+                total: items.length
             }
         }
         default: {

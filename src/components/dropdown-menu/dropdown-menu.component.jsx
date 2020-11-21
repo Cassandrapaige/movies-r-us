@@ -2,7 +2,6 @@ import React from 'react'
 import {animated, useTransition, config} from 'react-spring'
 
 import GenreNav from '../genre-nav/genre-nav.compponent'
-import NavList from '../nav-list/nav-list.component'
 import Search from '../search-bar/search-bar.component'
 import NavItem from '../nav-item/nav-item.component'
 

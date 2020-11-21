@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import axios from 'axios'
 import {NavLink} from 'react-router-dom'
 import {animated, config, useSpring} from 'react-spring'
@@ -15,15 +15,16 @@ const ScrollingWrapper = ({id, linkRel, url,  children, ...props}) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     
-    const fetchResults = async () => {
+    const fetchResults = useCallback(async () => {
         const result = await axios.get(url);
         setData(result.data.results);
         setIsLoading(false);
-    }
+    }, [url]);
+
     useEffect(() => {
         setIsLoading(true);
         fetchResults();
-    }, [url])
+    }, [fetchResults])
 
     const scrollStyles = useSpring({
         config: config.wobbly,
@@ -76,7 +77,7 @@ const ScrollingWrapper = ({id, linkRel, url,  children, ...props}) => {
 
         {data.map(movie => (
             movie.backdrop_path == null ? '' : 
-                <MovieOverview fadeIn movie = {movie} {...props}/>
+                <MovieOverview fadeIn movie = {movie} {...props} key = {movie.id}/>
             ))
         }
             <div className="see-more-scroller">
@@ -85,9 +86,9 @@ const ScrollingWrapper = ({id, linkRel, url,  children, ...props}) => {
                 </NavLink>  
             </div>
             {showLeftNav 
-                && <div className="left-arrow" onClick = {(el) => scrollWrapper(el, 'left')}><i class="fas fa-chevron-left"></i></div>}
+                && <div className="left-arrow" onClick = {(el) => scrollWrapper(el, 'left')}><i className="fas fa-chevron-left"></i></div>}
             {showRightNav 
-                && <div className="right-arrow" onClick = {(el) => scrollWrapper(el, 'right')}><i class="fas fa-chevron-right"></i></div> }
+                && <div className="right-arrow" onClick = {(el) => scrollWrapper(el, 'right')}><i className="fas fa-chevron-right"></i></div> }
         </div>}
     </animated.div>
     )

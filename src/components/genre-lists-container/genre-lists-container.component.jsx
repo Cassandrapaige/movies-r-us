@@ -17,14 +17,14 @@ const GenreListsContainer = ({...props}) => {
                     let url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${id}`
                     
                     return (
-                    <>
-                    <h3>{title[0]}</h3>
-                    <ScrollingWrapper 
-                        id = {id} 
-                        linkRel = {`/movies/genre/${id}`}
-                        url = {url} 
-                        {...props} />                
-                    </>
+                    <div key = {id}>
+                        <h3>{title[0]}</h3>
+                        <ScrollingWrapper 
+                            id = {id} 
+                            linkRel = {`/movies/genre/${id}`}
+                            url = {url} 
+                            {...props} />                
+                    </div>
 
                 )})
             }

@@ -8,9 +8,10 @@ import './genre-nav.styles.scss'
 const GenreNav = ({setIsActive, isDropdown}) => {    
     return (
     <div className = {`${isDropdown ? 'dropdown-genre-list' : 'genre-list-nav'}`}>
-        {Object.keys(GENRE_DATA).map(el => {
+        {Object.keys(GENRE_DATA).map((el, index) => {
            return (
             <GenreItems genreNav 
+                key = {index}
                 isDropdown = {isDropdown}
                 id = {el}
                 name = {GENRE_DATA[el].genre} 

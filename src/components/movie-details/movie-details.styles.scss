@@ -68,16 +68,26 @@
 
     &-navigation-btns {
       display: flex;
-      align-items: center;
       padding-top: 25px;
+      flex-wrap: wrap;
+      column-gap: 10px;
+      row-gap: 10px;
+      max-width: 500px;
 
-      .similar-btn {
+      .btn {
         background: rgba(19, 19, 19, 0.5);
         padding: 14px 18px;
         font-size: 17px;
-        border: 1px solid var(--primary-color);
         color: var(--primary-color);
-        margin-left: 20px;
+        cursor: pointer;
+        border: 1px solid var(--primary-color);
+        outline: none;
+      }
+
+      .fave-btn {
+        background: var(--primary-color);
+        color: var(--secondary-color);
+        flex-grow: 1;
       }
     }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, useCallback} from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import axios from 'axios'
 
@@ -14,28 +14,48 @@ import PlayButton from '../../components/play-button/play-button.component';
 
 import './movie-details.styles.scss'
 
+import {useAppContext} from '../../providers/app.provider'
+
 const MovieDetails = ({history, match, ...props}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [movie, setMovie] = useState([]);
   const [genres, setGenres] = useState([])
+  const [{favourites}, dispatch] = useAppContext();
 
   let id = match.params.movie_id;
 
-  const fetchResults = async () => {
+  const fetchResults = useCallback(async () => {
     const result = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`);
     setMovie(result.data);
     const genres = await result.data.genres;
     setGenres(genres);
     setIsLoading(false)
-  }
+  },[id]);
+
   useEffect(() => {
     setIsLoading(true);
     window.scrollTo(0, 80);
     fetchResults();
-  },[]) 
+  },[fetchResults]) 
 
   const imagePath = movie.backdrop_path !== null && `url(https://image.tmdb.org/t/p/w500/${movie.backdrop_path})`;
     
+  const addToFavourites = movie => {
+    if(exisitingItem) {
+      dispatch({
+        type: "REMOVE_FROM_FAVOURITES",
+        payload: movie
+      })
+    } else {
+      dispatch({
+        type: "ADD_TO_FAVOURITES",
+        payload: movie
+      });
+    }
+  }
+
+  const exisitingItem = favourites.find(item => item.id === movie.id);
+ 
   return (
     <div className="individual-movie" style= {{backgroundImage: imagePath}}>
     {isLoading ?  <Spinner /> :
@@ -67,9 +87,12 @@ const MovieDetails = ({history, match, ...props}) => {
         
             <div className="individual-movie-navigation-btns">
               <BackButton />
-              <NavLink to={`/similar/${movie.id}`} className ='similar-btn'>
+              <NavLink to={`/similar/${movie.id}`} className ='btn similar-btn'>
                 See Similar <i className="fas fa-arrow-right"></i>
               </NavLink>
+              <button onClick = {() => addToFavourites(movie)} className ='btn fave-btn'>
+                {exisitingItem ? "Remove from watchlist" : "Add to watchlist"}
+              </button>
            </div>
         </div> 
   </div> 

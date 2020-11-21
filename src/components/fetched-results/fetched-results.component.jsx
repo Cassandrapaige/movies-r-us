@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
 
 import Pagination from '../pagination/pagination.component'
@@ -12,20 +12,21 @@ const FetchedResults = ({url, genre, error, ...props}) => {
     const [current, setCurrent] = useState(1)
     const [total, setTotal] = useState()     
 
-    const fetchResults = async () => {
+    const fetchResults = useCallback(async () => {
         const result = await axios.get(`${url}&page=${current}`);
         setMovies(result.data.results)
         const total_results = await result.data.total_results;
         setTotal(total_results);
         setIsLoading(false);
-    }
+    }, [current, url]);
+
     useEffect(() => {
         window.scrollTo(0, 0);
         setIsLoading(true);
         setTimeout(() => {
             fetchResults();
         }, 1000)
-    },[current, url])
+    },[fetchResults])
   
     const next = pageNum => setCurrent(pageNum)
 

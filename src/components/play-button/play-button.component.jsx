@@ -6,8 +6,10 @@ import {API_KEY} from '../../base'
 import './play-button.styles.scss'
 
 const PlayButton = ({id, action}) => {
-    const [video, setVideo] = useState(null)
+    const [video, setVideo] = useState(null);
+
     useEffect(() => {
+        if(id !== undefined)
         axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`)
         .then(result => {
             if(result.data.results.length === 0) {

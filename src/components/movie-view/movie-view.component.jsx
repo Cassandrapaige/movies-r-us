@@ -1,10 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { withRouter } from 'react-router-dom'
-import axios from 'axios'
+import React from 'react'
 
-import Pagination from '../pagination/pagination.component'
 import Spinner from '../spinner/spinner.component'
-import BackButton from '../back-button/back-button.component'
 import MovieOverview from '../movie-overview-container/movie-overview-container.component'
 
 import './movie-view.styles.scss'
