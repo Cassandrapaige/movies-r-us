@@ -2,11 +2,8 @@ import React from 'react'
 
 import {SubstringContainer} from './substring-text.styles'
 
-const substring = (desc, limit) => `${desc.substring(0, limit)}...`
-
 const Substring = ({text, limit, ...props}) => {
-    return <SubstringContainer {...props}>{substring(text, limit)}</SubstringContainer>
-    
+    return <SubstringContainer {...props}>{text.substring(0, limit)}...</SubstringContainer>  
 }
 
 export default Substring

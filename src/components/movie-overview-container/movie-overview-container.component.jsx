@@ -1,8 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {NavLink} from 'react-router-dom'
-import axios from 'axios'
-
-import {API_KEY} from '../../base'
 
 import ImageWithPlaceholder from '../image-with-placeholder/image-with-placeholder.component'
 import Substring from '../substring-text/substring-text.component'

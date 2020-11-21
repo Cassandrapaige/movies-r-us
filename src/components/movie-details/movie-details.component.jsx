@@ -6,7 +6,6 @@ import {API_KEY} from '../../base'
 
 import StarRating from '../../components/star-rating/star-rating.component';
 import Spinner from '../../components/spinner/spinner.component'
-import Video from '../../components/video/video.component'
 import GenreList from '../../components/genre-list/genre-list.component';
 import {DateString} from '../../components/date-string/date-string.component'
 import BackButton from '../../components/back-button/back-button.component'

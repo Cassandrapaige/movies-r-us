@@ -31,7 +31,7 @@ const Footer = () => {
                         </li> 
                         <li className="contact_list_item">
                             <a href="https://github.com/Cassandrapaige">
-                                <i class="fab fa-github"></i>
+                                <i className="fab fa-github"></i>
                             </a>
                         </li>   
                     </ul>

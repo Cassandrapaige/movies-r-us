@@ -1,7 +1,4 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
-
-import {API_KEY} from '../../base'
+import React from 'react'
 
 import {GENRE_DATA} from '../../constants'
 import GenreItems from '../genre-items/genre-items.component'

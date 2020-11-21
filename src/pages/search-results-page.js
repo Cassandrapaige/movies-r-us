@@ -2,7 +2,7 @@ import React from 'react'
 
 import {API_KEY} from '../base'
 
-import MovieView from '../components/movie-view/movie-view.component'
+import FetchedResults from '../components/fetched-results/fetched-results.component'
 
 import withVideo from '../withVideo'
 
@@ -11,7 +11,7 @@ const SearchResults = ({action, history, match}) => {
     let title = query.replace(/&/g, ' ')
     
     return (
-        <MovieView 
+        <FetchedResults 
             action = {action}
             title = {`Search results for '${title}'`}
             error = "Either something went wrong or that movie doesn't exist"

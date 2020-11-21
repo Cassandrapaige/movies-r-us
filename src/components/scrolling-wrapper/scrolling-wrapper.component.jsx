@@ -67,7 +67,7 @@ const ScrollingWrapper = ({id, linkRel, url,  children, ...props}) => {
         
         content.addEventListener('scroll', () => toggleScrollerArrows(content));
     }
-
+ 
     return (
     <animated.div style = {scrollStyles} onMouseLeave = {() => setIsScrolling(false)} className="scrolling-wrapper-container">
         {isLoading ? <div className = 'loading-wrapper'></div>

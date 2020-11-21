@@ -11,11 +11,11 @@ const Pagination = ({pages, current, next}) => {
     for(let i = 1; i <= pages; i++) {
         links.push(
             <PaginationLink 
-            key = {i}
-            i = {i}
-            handleClick = {() => {next(i)}}
-            current = {current}
-            text = {i}
+                key = {i}
+                i = {i}
+                handleClick = {() => next(i)}
+                current = {current}
+                text = {i}
             />)
     }
 
@@ -27,16 +27,16 @@ const Pagination = ({pages, current, next}) => {
 
     let prevButton =  ( 
         <PaginationLink 
-        handleClick = {() => next(current - 1)}
-        current = {current}
-        text = 'Prev'
+            handleClick = {() => next(current - 1)}
+            current = {current}
+            text = 'Prev'
         />)
 
     let nextButton = (  
         <PaginationLink 
-        handleClick = {() => next(current + 1)}
-        current = {current}
-        text = 'Next'
+            handleClick = {() => next(current + 1)}
+            current = {current}
+            text = 'Next'
         />)
 
     return (

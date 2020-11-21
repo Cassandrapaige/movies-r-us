@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import {API_KEY} from '../base'
 
-import MovieView from '../components/movie-view/movie-view.component'
+import FetchedResults from '../components/fetched-results/fetched-results.component'
 
 import withVideo from '../withVideo'
 
@@ -16,10 +16,10 @@ const SimilarView = ({action, match}) => {
         axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`)
         .then(results => setResults(results.data))
         .catch(error => console.log(error))
-    }, [])
+    }, [id])
 
 return (
-        <MovieView 
+        <FetchedResults 
             action = {action}
             title = {`Movies similar to ${results.original_title}`}
             error = 'Apparently this movie is just so original that no other can compare.'

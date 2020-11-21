@@ -3,7 +3,7 @@ import {Route} from 'react-router-dom'
 
 import {API_KEY} from '../base'
 
-import MovieView from '../components/movie-view/movie-view.component'
+import FetchedResults from '../components/fetched-results/fetched-results.component'
 import withVideo from '../withVideo'
 
 const MoviesPage = ({action}) => {
@@ -12,7 +12,7 @@ const MoviesPage = ({action}) => {
             <Route 
             exact path= '/movies/popular' 
             render = {() => 
-                <MovieView
+                <FetchedResults
                     action = {action}
                     url = {`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`}
                     title = 'Most Popular'
@@ -21,7 +21,7 @@ const MoviesPage = ({action}) => {
             <Route 
             exact path= '/movies/top-rated' 
             render = {() => 
-                <MovieView
+                <FetchedResults
                     action = {action}
                     url = {`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`}
                     title = 'Top Rated'
@@ -30,7 +30,7 @@ const MoviesPage = ({action}) => {
             <Route 
             exact path= '/movies/new' 
             render = {() => 
-                <MovieView
+                <FetchedResults
                     action = {action}
                     url = {`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`}
                     title = 'Now Playing'

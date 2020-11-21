@@ -14,8 +14,8 @@ const withVideo = (WrappedComponent) => {
         const fetchVideo = id => {
             axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
             .then(result => {
-                setVideo(result.data.results[0].key)
-                setIsOpen(true)
+                setVideo(result.data.results[0].key);
+                setIsOpen(true);
             },(error => console.log(error)))
         } 
 
@@ -23,13 +23,12 @@ const withVideo = (WrappedComponent) => {
         <div>
             <WrappedComponent action = {fetchVideo} video = {video} {...props} />
             {
-                isOpen &&
-                <Video video = {video} toggleView = {() => setIsOpen(!isOpen)}/>
+                isOpen && <Video video = {video} toggleView = {() => setIsOpen(false)}/>
             }
         </div>
     )
 }
-return WithVideo
+    return WithVideo;
 }
 
 export default withVideo

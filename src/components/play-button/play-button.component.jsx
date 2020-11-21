@@ -16,14 +16,14 @@ const PlayButton = ({id, action}) => {
                 setVideo(result.data.results[0].key)
             }
         },(error => console.log(error)))
-    },[])
+    },[id])
 
     return (
        
        <div className="play-button-space-holder">
         {video &&
         <div className="play-button" onClick = {() => action(id)}>
-            <i class="fas fa-play"></i>Play Trailer
+            <i className="fas fa-play"></i>Play Trailer
         </div>}
        </div>
     
