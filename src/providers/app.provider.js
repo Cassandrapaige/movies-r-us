@@ -25,7 +25,7 @@ const appStateReducer = (state, action) => {
             return {
                 ...state,
                 favourites: items,
-                total: items.length
+                total: items.length,
             }
         }
         case "REMOVE_FROM_FAVOURITES": {

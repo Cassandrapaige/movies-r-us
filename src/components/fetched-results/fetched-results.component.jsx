@@ -23,9 +23,7 @@ const FetchedResults = ({url, genre, error, ...props}) => {
     useEffect(() => {
         window.scrollTo(0, 0);
         setIsLoading(true);
-        setTimeout(() => {
-            fetchResults();
-        }, 1000)
+        fetchResults();
     },[fetchResults])
   
     const next = pageNum => setCurrent(pageNum)

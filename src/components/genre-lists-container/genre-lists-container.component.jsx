@@ -13,7 +13,7 @@ const GenreListsContainer = ({...props}) => {
         <div className = 'genre-lists-container'>
             {
                 genreIds.map(id => {
-                    let title = Object.keys(GENRE_DATA).map(key => GENRE_DATA[id].genre)
+                    let title = Object.keys(GENRE_DATA).map(key => GENRE_DATA[id].genre);
                     let url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${id}`
                     
                     return (
@@ -25,7 +25,6 @@ const GenreListsContainer = ({...props}) => {
                             url = {url} 
                             {...props} />                
                     </div>
-
                 )})
             }
             <button onClick = {() => window.scrollTo(0, 0)}>Go to top</button>

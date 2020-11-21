@@ -11,7 +11,14 @@ const FavouritesPage = ({...props}) => {
     const [{total, favourites}] = useAppContext();
 
     return (   
-        <MovieView title = "Favourites" subtext = "These are you favourite movies" movies = {favourites} total = {total} />
+        <MovieView 
+            title = "Favourites" 
+            subtext = "These are you favourite movies" 
+            movies = {favourites} 
+            total = {total} 
+            data = {favourites}
+            {...props}
+        />
     )
 }
 

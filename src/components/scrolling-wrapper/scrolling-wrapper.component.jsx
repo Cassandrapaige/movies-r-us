@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react'
+import React, {useState, useEffect, useCallback, Suspense} from 'react'
 import axios from 'axios'
 import {NavLink} from 'react-router-dom'
 import {animated, config, useSpring} from 'react-spring'
@@ -6,6 +6,7 @@ import {animated, config, useSpring} from 'react-spring'
 import MovieOverview from '../movie-overview-container/movie-overview-container.component'
 
 import './scrolling-wrapper.styles.scss'
+import SkeletonScreen from '../skeleton-screen/skeleton-screen.component'
 
 const ScrollingWrapper = ({id, linkRel, url,  children, ...props}) => {
     const [isScrolling, setIsScrolling] = useState(false);
@@ -16,8 +17,9 @@ const ScrollingWrapper = ({id, linkRel, url,  children, ...props}) => {
     const [isLoading, setIsLoading] = useState(false);
     
     const fetchResults = useCallback(async () => {
-        const result = await axios.get(url);
-        setData(result.data.results);
+        const response = await axios.get(url);
+        const results = await response.data.results;
+        setData(results);
         setIsLoading(false);
     }, [url]);
 
@@ -36,8 +38,7 @@ const ScrollingWrapper = ({id, linkRel, url,  children, ...props}) => {
     const [scrollPosition, setScrollPosition] = useState(getScrollPosition);
 
     useEffect(() => {
-        window.addEventListener('resize', () => {setScrollPosition(window.innerWidth / 1.2);
-        })
+        window.addEventListener('resize', () => setScrollPosition(window.innerWidth / 1.2))
         return () => window.removeEventListener('resize', () => setScrollPosition());
     },[])
 
@@ -70,27 +71,26 @@ const ScrollingWrapper = ({id, linkRel, url,  children, ...props}) => {
     }
  
     return (
-    <animated.div style = {scrollStyles} onMouseLeave = {() => setIsScrolling(false)} className="scrolling-wrapper-container">
-        {isLoading ? <div className = 'loading-wrapper'></div>
-        :
-        <div className='scrolling-wrapper'>
-
-        {data.map(movie => (
-            movie.backdrop_path == null ? '' : 
-                <MovieOverview fadeIn movie = {movie} {...props} key = {movie.id}/>
-            ))
-        }
-            <div className="see-more-scroller">
-                <NavLink to = {linkRel} >
-                See more
-                </NavLink>  
+        <animated.div style = {scrollStyles} onMouseLeave = {() => setIsScrolling(false)} className="scrolling-wrapper-container">
+        {isLoading ? 
+            <div className="loading-wrapper">
+                <SkeletonScreen />
             </div>
-            {showLeftNav 
-                && <div className="left-arrow" onClick = {(el) => scrollWrapper(el, 'left')}><i className="fas fa-chevron-left"></i></div>}
-            {showRightNav 
-                && <div className="right-arrow" onClick = {(el) => scrollWrapper(el, 'right')}><i className="fas fa-chevron-right"></i></div> }
-        </div>}
-    </animated.div>
+            :
+            <div className='scrolling-wrapper'>
+                {data.map(movie => movie.backdrop_path !== null &&
+                    <MovieOverview movie = {movie} {...props} key = {movie.id}/>
+                )}
+                <div className="see-more-scroller">
+                    <NavLink to = {linkRel}>See more</NavLink>  
+                </div>
+                {showLeftNav 
+                    && <div className="left-arrow" onClick = {(el) => scrollWrapper(el, 'left')}><i className="fas fa-chevron-left"></i></div>}
+                {showRightNav 
+                    && <div className="right-arrow" onClick = {(el) => scrollWrapper(el, 'right')}><i className="fas fa-chevron-right"></i></div> }
+            </div>
+        }
+        </animated.div>
     )
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 
 import Spinner from '../spinner/spinner.component'
 import MovieOverview from '../movie-overview-container/movie-overview-container.component'
@@ -14,10 +14,17 @@ const MovieView = ({title, error, subtext, movies, isLoading, total, children, .
                     <p>{subtext}</p>
                 </div>
 
-                {isLoading ?  <Spinner />
-                : movies.map(movie => 
-                    <MovieOverview movie= {movie} key= {movie.id} {...props}/> )}
-                    
+                <div className = "movie-list">
+                    {movies.map(movie => 
+                        <MovieOverview 
+                            isAnimated
+                            movie= {movie} 
+                            key= {movie.id} 
+                            isLoading = {isLoading}
+                            {...props}
+                        /> 
+                    )}
+                </div>
                 {children}
             </section>             
         </div> 

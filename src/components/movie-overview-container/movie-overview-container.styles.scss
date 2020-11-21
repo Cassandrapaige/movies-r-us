@@ -1,5 +1,6 @@
 .movie-overview-container {
   width: 100%;
+  min-height: 400px;
   position: relative;
   
   .image-overlay {
@@ -24,6 +25,8 @@
   }
 
   @media(max-width: 570px) {
+      min-height: 150px;
+
       &-overlay {
         p {
           font-weight: 400;
@@ -40,6 +43,12 @@
   transform: translateY(80px);
   opacity: 0;
   animation: 1.2s slideIn ease forwards;
+
+  @media(max-width: 700px) {
+    animation: none;
+    transform: unset;
+    opacity: 1;
+  }
 }
 
 @for $i from 1 through 25 {
