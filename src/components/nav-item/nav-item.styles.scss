@@ -8,9 +8,14 @@
 }
 
 .fa-heart {
-    color: rgb(255, 50, 101);
+    color: rgb(249, 128, 148);;
     transition: all .3s ease;
-    font-size: 1.1em;
+    font-size: 1.5em;
+    margin: 0 10px;
+
+    @media (max-width: 900px) { 
+        margin-right: 70px;
+    }
 
     &:hover {
         transform: scale(1.1);

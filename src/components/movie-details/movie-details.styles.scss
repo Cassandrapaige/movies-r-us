@@ -82,12 +82,12 @@
         cursor: pointer;
         border: 1px solid var(--primary-color);
         outline: none;
+        flex-grow: 1;
       }
 
       .fave-btn {
-        background: var(--primary-color);
-        color: var(--secondary-color);
-        flex-grow: 1;
+        border: 1px solid  rgb(249, 128, 148);
+        color:  rgb(249, 128, 148);
       }
     }
 
