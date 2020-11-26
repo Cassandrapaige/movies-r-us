@@ -12,8 +12,8 @@ const FavouritesPage = ({...props}) => {
 
     return (   
         <MovieView 
-            title = "Favourites" 
-            subtext = "These are you favourite movies" 
+            title = "My Watchlist 👁️‍🗨️"
+            subtext = {`${total < 1 ? "You haven't saved any movies yet!" : "Click on an image to see movies that are similar or remove item from your watchlist"}`} 
             movies = {favourites} 
             total = {total} 
             data = {favourites}

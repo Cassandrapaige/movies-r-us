@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import axios from 'axios'
+import {withRouter} from 'react-router-dom'
 
 import Pagination from '../pagination/pagination.component'
 import MovieView from '../movie-view/movie-view.component'
 import ErrorMessage from '../error-message/error-message.component'
 import BackButton from '../back-button/back-button.component'
 
-const FetchedResults = ({url, genre, error, ...props}) => {
+const FetchedResults = ({url, genre, error, history, match, ...props}) => {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [current, setCurrent] = useState(1)
@@ -26,7 +27,9 @@ const FetchedResults = ({url, genre, error, ...props}) => {
         fetchResults();
     },[fetchResults])
   
-    const next = pageNum => setCurrent(pageNum)
+    const next = pageNum => {
+        setCurrent(pageNum);
+    }
 
     const numPages = Math.floor(total / 20)
 
@@ -48,4 +51,4 @@ const FetchedResults = ({url, genre, error, ...props}) => {
     )
 }         
     
-export default FetchedResults
+export default withRouter(FetchedResults);

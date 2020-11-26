@@ -29,7 +29,11 @@ const Navbar = ({history}) => {
             <div className="nav-links">
                 <HamburgerMenu isOpen = {isOpen} toggleClass= {toggleClass}/>
                 <NavList />
-                <NavLink to = "/favourites"><i class="fas fa-heart"></i></NavLink>
+                <NavLink to = "/favourites">
+                    <i class="fas fa-heart">
+                        <div class = 'item-count'>{total}</div>
+                    </i>
+                </NavLink>
                 {
                     window.location.pathname !== '/' && 
                         <i className="fas fa-search" onClick={() => setExpandSearch(true)} ></i>
