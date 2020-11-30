@@ -4,11 +4,11 @@ import NavItem from '../nav-item/nav-item.component'
 
 import './nav-list.styles.scss'
 
-const NavList = ({isDropdown}) => (
+const NavList = () => (
     <div className = 'nav-list'>
-        <NavItem text = 'Now Playing' link='/movies/new' />
-        <NavItem text = 'Most Popular' link='/movies/popular' />
-        <NavItem text = 'Top Rated' link='/movies/top-rated' />
+        <NavItem text = 'Now Playing' link='/movies/new/page-1' />
+        <NavItem text = 'Most Popular' link='/movies/popular/page-1' />
+        <NavItem text = 'Top Rated' link='/movies/top-rated/page-1' />
     </div>
 )
 

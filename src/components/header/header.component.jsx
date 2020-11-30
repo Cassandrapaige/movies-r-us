@@ -1,8 +1,5 @@
-import React, { useState, useEffect, Suspense } from 'react';
-import {withRouter} from 'react-router-dom'
-import axios from 'axios';
-
-import {API_KEY} from '../../base'
+import React from 'react';
+import {withRouter} from 'react-router-dom';
 
 import Search from '../search-bar/search-bar.component'
 

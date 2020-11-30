@@ -12,7 +12,7 @@ import DropdownMenu from '../dropdown-menu/dropdown-menu.component'
 import { useAppContext } from '../../providers/app.provider'
 import useLocalState from '../../hooks/useLocalState'
 
-const Navbar = ({history}) => {
+const Navbar = () => {
     useLocalState();
     const [isOpen, setIsOpen] = useState(false)
     const [expandSearch, setExpandSearch] = useState(false)
@@ -30,8 +30,8 @@ const Navbar = ({history}) => {
                 <HamburgerMenu isOpen = {isOpen} toggleClass= {toggleClass}/>
                 <NavList />
                 <NavLink to = "/favourites">
-                    <i class="fas fa-heart">
-                        <div class = 'item-count'>{total}</div>
+                    <i className ="fas fa-heart">
+                        <div className = 'item-count'>{total}</div>
                     </i>
                 </NavLink>
                 {

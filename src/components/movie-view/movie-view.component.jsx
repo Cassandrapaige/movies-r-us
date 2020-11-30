@@ -1,6 +1,5 @@
-import React, {Suspense} from 'react'
+import React from 'react'
 
-import Spinner from '../spinner/spinner.component'
 import MovieOverview from '../movie-overview-container/movie-overview-container.component'
 
 import './movie-view.styles.scss'

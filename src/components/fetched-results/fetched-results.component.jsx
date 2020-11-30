@@ -7,10 +7,11 @@ import MovieView from '../movie-view/movie-view.component'
 import ErrorMessage from '../error-message/error-message.component'
 import BackButton from '../back-button/back-button.component'
 
-const FetchedResults = ({url, genre, error, history, match, ...props}) => {
+const FetchedResults = ({url, genre, error, history, match, path, ...props}) => {
+    const pageNum = Number(match.params.page.match(/\d+/)[0]);
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-    const [current, setCurrent] = useState(1)
+    const [current, setCurrent] = useState(pageNum || 1);
     const [total, setTotal] = useState()     
 
     const fetchResults = useCallback(async () => {
@@ -27,8 +28,9 @@ const FetchedResults = ({url, genre, error, history, match, ...props}) => {
         fetchResults();
     },[fetchResults])
   
-    const next = pageNum => {
-        setCurrent(pageNum);
+    const next = num => {
+        setCurrent(num);
+        history.push(`${path}/page-${num}`);
     }
 
     const numPages = Math.floor(total / 20)

@@ -9,6 +9,7 @@
     z-index: 100000;
     width: 560px;
     height: 315px; 
+    resize: both;
 
     &:hover {
       .video-button, .draggable {
@@ -47,6 +48,7 @@
     cursor: move;
     display: none;
     font-size: 40px;
+    resize: both;
   }
 
   @media (max-width: 600px) {
