@@ -14,7 +14,7 @@ const StarRating = ({movie}) => {
                     editing={false}
                     renderStarIcon={() => <span> ★ </span>}
                     starCount={10}
-                    starColor={'#1DB3AE'}
+                    starColor={'#ffbb0b'}
                     value={avg(movie.vote_average)}
                 />
             </div> ) : <p className = 'zero-rating'>This movie hasn't been rated yet</p>
