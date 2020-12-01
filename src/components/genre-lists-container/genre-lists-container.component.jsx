@@ -21,7 +21,7 @@ const GenreListsContainer = ({...props}) => {
                         <h3>{title[0]}</h3>
                         <ScrollingWrapper 
                             id = {id} 
-                            linkRel = {`/movies/genre/${id}`}
+                            linkRel = {`/movies&genre=${GENRE_DATA[id].genre.toLowerCase()}&page=1`}
                             url = {url} 
                             {...props} />                
                     </div>

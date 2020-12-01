@@ -12,12 +12,13 @@ const Search = ({history, stickySearch, expand, setIsActive, setExpandSearch, ha
     const [selected, setSelected] = useState(null);
     const [cursor, setCursor] = useState(0);
 
-    const textInput = createRef()
-    useEffect(() => textInput.current.focus(), [textInput])
+    const textInput = createRef();
 
-    const getUserInput = event => setUserInput(event.target.value)
+    useEffect(() => textInput.current.focus(), [textInput]);
 
-    const joinQuery = query => query.replace(/-/g,'&').split(' ').join('&').toLowerCase();
+    const getUserInput = event => setUserInput(event.target.value);
+
+    // const joinQuery = query => query.replace(/-/g,'&').split(' ').join('&').toLowerCase();
 
     /* --------------------------------------------------------
 
@@ -59,13 +60,13 @@ const Search = ({history, stickySearch, expand, setIsActive, setExpandSearch, ha
         if(selected !== null) {
             history.push({
                 pathname: '/search',
-                search: joinQuery(selected.title)
+                search: `?q=${selected.title}&page=1`
             })
         }
         else {
             history.push({
                 pathname: '/search',
-                search: joinQuery(userInput)
+                search: `?q=${userInput}&page=1`
             })
         }
         setUserInput('')
@@ -74,11 +75,11 @@ const Search = ({history, stickySearch, expand, setIsActive, setExpandSearch, ha
         if(setIsActive)setIsActive(false)
     }
 
-    const handleSelected = (event, target) => {
-        setSelected(target)
+    const handleSelected = (event, target) => {        
+        setSelected(target);
         history.push({
             pathname: '/search',
-            search: joinQuery(event.target.textContent)
+            search: `?q=${event.target.textContent}&page=1`
         })
         if(setExpandSearch)setExpandSearch(false)
         if(setIsActive)setIsActive(false)

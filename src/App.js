@@ -32,8 +32,8 @@ const App = () => {
               <Route path= '/search' component = { SearchView} />
               <Route path = '/movies' component = {MoviesPage} />
               <Route exact path = '/favourites' component = {FavouritesPage} />
-              <Route exact path= '/movies/genre/:genre_id' component = { GenrePage } />
-              <Route exact path= '/similar/:movie_id' component = {SimilarView}/>
+              <Route exact path= '/movies&genre=:genre&id=:id&page=:page' component = { GenrePage } />
+              <Route exact path= '/similar/:movie_id&:page' component = {SimilarView}/>
               <Route exact path= '/movie/:movie_id' component = { MovieDetailsPage } />
               </Suspense>
             </ErrorHandler>

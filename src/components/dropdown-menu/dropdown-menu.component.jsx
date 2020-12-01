@@ -23,9 +23,9 @@ const DropdownMenu = ({setIsActive, isOpen, ...props}) => {
             <Search setIsActive = {setIsActive} {...props}/>
             <div className="dropdown-menu-items">
                 <h3 className = 'genre-dropdown-title'>Explore</h3>
-                <NavItem text = 'Now Playing' link='/movies/new' handleClick = {handleClick} isDropdown/>
-                <NavItem text = 'Most Popular' link='/movies/popular' handleClick = {handleClick} isDropdown/>
-                <NavItem text = 'Top Rated' link='/movies/top-rated' handleClick = {handleClick} isDropdown/>
+                <NavItem text = 'Now Playing' link='/movies/new&page=1' handleClick = {handleClick} isDropdown/>
+                <NavItem text = 'Most Popular' link='/movies/popular&page=1' handleClick = {handleClick} isDropdown/>
+                <NavItem text = 'Top Rated' link='/movies/top-rated&page=1' handleClick = {handleClick} isDropdown/>
                 <h3 className = 'genre-dropdown-title'>Explore by genre</h3>
                 <GenreNav isDropdown setIsActive = {setIsActive}/>
             </div>

@@ -9,14 +9,13 @@ import withVideo from '../withVideo'
 
 import FetchedResults from '../components/fetched-results/fetched-results.component'
 
-const GenrePage = ({action, match}) => {
-    const id = match.params.genre_id
-    const title = Object.keys(GENRE_DATA).map(key => GENRE_DATA[id].genre)
-
+const GenrePage = ({action, match, history}) => {
+    const id = Number(match.params.id);
+    
     return (
         <FetchedResults
             action = {action}
-            title = {title[0]}
+            title = {match.params.genre}
             url = {`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${id}`} />
     )
 }   
