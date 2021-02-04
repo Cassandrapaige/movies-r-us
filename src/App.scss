@@ -1,20 +1,21 @@
-
 :root {
-  --primary-color: #1DB3AE;
+  --primary-color: #1db3ae;
   --secondary-color: #161616;
   --accent-color: #202020;
   --light-color: #696969;
   --text-color: #f3f3f3;
+  --pink: #ff6890;
   --shadow: 0 3px 6px -6px #000;
-  --bg-overlay: rgba(19,19,19,0.8);
+  --bg-overlay: rgba(19, 19, 19, 0.8);
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch; 
-  font-family: 'Helvetica', sans-serif; 
+  -webkit-overflow-scrolling: touch;
+  font-family: "Helvetica", sans-serif;
 }
 
 ::selection {
@@ -29,7 +30,7 @@
 }
 
 body {
-  font-family: 'Helvetica', sans-serif;
+  font-family: "Helvetica", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--secondary-color);
@@ -42,7 +43,6 @@ a {
   text-decoration: none;
   color: #fff;
 }
-
 
 @keyframes fadeIn {
   100% {

@@ -1,37 +1,37 @@
 .nav-link {
-    font-size: 20px;
-    padding: 12px;
+  font-size: 20px;
+  padding: 12px;
 
-    &:hover {
-        color: var(--primary-color);
-    }
+  &:hover {
+    color: var(--primary-color);
+  }
 }
 
 .fa-heart {
-    color: rgb(255, 104, 144);
-    transition: all .3s ease;
-    font-size: 1.5em;
-    margin: 0 10px;
-    position: relative;
+  color: var(--pink);
+  transition: all 0.3s ease;
+  font-size: 1.5em;
+  margin: 0 10px;
+  position: relative;
 
-    .item-count {
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        background: var(--accent-color);
-        font-size: .6em;
-        color: var(--text-color);
-        border-radius: 50%;
-        min-width: 17px;
-        min-height: 17px;
-        text-align: center;
-    }
+  .item-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--accent-color);
+    font-size: 0.6em;
+    color: var(--text-color);
+    border-radius: 50%;
+    min-width: 17px;
+    min-height: 17px;
+    text-align: center;
+  }
 
-    @media (max-width: 900px) { 
-        margin-right: 70px;
-    }
+  @media (max-width: 900px) {
+    margin-right: 70px;
+  }
 
-    &:hover {
-        transform: scale(1.1);
-    }
+  &:hover {
+    transform: scale(1.1);
+  }
 }

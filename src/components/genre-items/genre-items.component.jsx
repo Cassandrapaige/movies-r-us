@@ -18,7 +18,7 @@ const GenreItems = ({genre, genreNav, id, name, setIsActive, isDropdown}) => {
                 {name}
             </NavLink>    
             :
-           <NavLink to = {`/movies&genre=${GENRE_DATA[genre.id].genre.toLowerCase()}&id=${id}&page=1`}>
+           <NavLink to = {`/movies&genre=${GENRE_DATA[genre.id].genre.toLowerCase()}&id=${genre.id}&page=1`}>
                 <li className='genre-list-item' key={genre.id}>
                     <img className='genre-icon' src={switchGenre(genre.name)} alt={genre.name}/>
                     {genre.name}

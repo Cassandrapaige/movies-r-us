@@ -1,116 +1,117 @@
 .individual-movie {
-    min-height: 100vh;
+  min-height: 100vh;
+  opacity: 0;
+  animation: 1s fadeIn ease forwards;
+  padding: 50px 100px;
+  position: relative;
+  margin-top: 5px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: inset 0 0 0 2000px rgba(19, 19, 19, 0.9);
+  transition: all 0.5s ease;
+
+  .loading {
+    padding-top: 300px;
+  }
+
+  &-container {
+    min-height: 80vh;
+    display: grid;
+    grid-template-columns: 45% 55%;
+    margin: auto;
     opacity: 0;
-    animation: 1s fadeIn ease forwards;
-    padding: 50px 100px;
-    position: relative;
-    margin-top: 5px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    box-shadow:inset 0 0 0 2000px rgba(19, 19, 19, 0.9);
-    transition: all .5s ease;
+    animation: 0.5s fadeIn ease forwards 0.1s;
 
-    .loading {
-      padding-top: 300px;
+    .image-with-placeholder {
+      height: 400px;
+      width: 300px;
+      box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.2),
+        3px 3px 8px rgba(0, 0, 0, 0.3);
     }
+  }
 
-    &-container {
-      min-height: 80vh;
-      display: grid;
-      grid-template-columns: 45% 55%;
-      margin: auto;
-      opacity: 0;
-      animation: .5s fadeIn ease forwards .1s;
-  
-      .image-with-placeholder {
-        height: 400px;
-        width: 300px;
-        box-shadow: 0px -2px 6px rgba(0,0,0,0.2),
-        3px 3px 8px rgba(0,0,0,0.3);    
-      }
+  &-header {
+    padding-bottom: 10px;
+
+    h2 {
+      font-size: 30px;
+      padding-bottom: 20px;
     }
+  }
 
-    &-header {
-      padding-bottom: 10px;
+  &-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-right: 50px;
 
-      h2 {
-        font-size: 30px;
-        padding-bottom: 8px;
-      }
-    }
-
-    &-content {
+    .action-links,
+    .website-link {
       display: flex;
-      justify-content: center;
-      flex-direction: column;
-      padding-right: 50px;
-
-      .action-links, .website-link {
-        display: flex;
-        align-items: center;
-        padding-right: 15px;
-
-        .fa-link {
-          padding-right: 5px;
-        }
-      }
-    }
-
-    &-overview {
-      padding: 10px 0 10px 0;
-
-      p {
-        line-height: 25px;
-        padding: 10px 0;
-        font-size: 17px;
-      }
-    }
-
-    &-navigation-btns {
-      display: flex;
-      padding-top: 25px;
-      flex-wrap: wrap;
-      column-gap: 10px;
-      row-gap: 10px;
-      max-width: 500px;
-
-      .btn {
-        background: rgba(19, 19, 19, 0.5);
-        padding: 14px 18px;
-        font-size: 17px;
-        color: var(--primary-color);
-        cursor: pointer;
-        border: 1px solid var(--primary-color);
-        outline: none;
-        flex-grow: 1;
-      }
-
-      .fave-btn {
-        background:  var(--primary-color);
-        color: var(--secondary-color);
-      }
-    }
-
-    &-image {
-      display: flex;
-      justify-content: center;
       align-items: center;
-      opacity: .8;
-      width: 450px;
+      padding-right: 15px;
 
-      img {
-        width: 100% !important;
-        height: 100% !important;
+      .fa-link {
+        padding-right: 5px;
       }
     }
   }
-  
-  @keyframes fadeIn {
-    to {
-      opacity: 1
+
+  &-overview {
+    padding: 10px 0 20px 0;
+
+    p {
+      line-height: 25px;
+      padding: 10px 0;
+      font-size: 17px;
     }
   }
+
+  &-navigation-btns {
+    display: flex;
+    padding-top: 35px;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 10px;
+    max-width: 500px;
+
+    .btn {
+      background: rgba(19, 19, 19, 0.5);
+      padding: 14px 18px;
+      font-size: 17px;
+      color: var(--primary-color);
+      cursor: pointer;
+      border: 1px solid var(--primary-color);
+      outline: none;
+      flex-grow: 1;
+    }
+
+    .fave-btn {
+      border: 1px solid var(--pink);
+      color: var(--pink);
+    }
+  }
+
+  &-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+    width: 450px;
+
+    img {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
 
 @media (max-width: 1200px) {
   .individual-movie {
@@ -139,7 +140,7 @@
       padding-bottom: 27px;
     }
 
-    &-content{
+    &-content {
       order: 1;
       padding: 0 20px;
       padding-bottom: 30px;
@@ -151,7 +152,7 @@
 
     &-overview {
       width: 100%;
-      
+
       h3 {
         padding-bottom: 5px;
       }
@@ -163,8 +164,7 @@
   }
 }
 
-@media(max-width: 500px) {
-
+@media (max-width: 500px) {
   .individual-movie {
     .loading {
       padding-top: 100px;
